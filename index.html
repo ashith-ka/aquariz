@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquariz - Premium Food Products & Culinary Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a365d, #2c5282);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        nav {
+            background-color: #1a202c;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(44, 82, 130, 0.8)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><circle fill="%23e2e8f0" cx="300" cy="200" r="120"/><circle fill="%23cbd5e0" cx="900" cy="400" r="80"/><circle fill="%23a0aec0" cx="1100" cy="150" r="60"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+            color: white;
+            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1a365d;
+            transform: translateY(-3px);
+        }
+
+        .brands {
+            padding: 6rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1a365d;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+        }
+
+        .brand-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .brand-card {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-logo {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #4a7c59;
+        }
+
+        .brand-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c5530;
+        }
+
+        .brand-tagline {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .brand-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .brand-btn {
+            background: linear-gradient(45deg, #4a7c59, #2c5530);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
+        }
+
+        .brand-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
+        }
+
+        .about-company {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1a365d;
+        }
+
+        .company-values {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .company-values li {
+            padding: 1rem 0;
+            position: relative;
+            padding-left: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .company-values li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4a7c59;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1a365d;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .contact {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #1a365d, #2c5282);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background-color: #1a202c;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">AQUARIZ</div>
+            <div class="company-tagline">Premium Food Products & Culinary Solutions</div>
+            <div class="subtitle">Bringing Quality and Flavor to Your Kitchen</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#brands">Our Brands</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Welcome to Aquariz</h1>
+            <p>Your trusted partner for premium food products and authentic culinary experiences. We bring the finest
+                ingredients and flavors directly to your kitchen.</p>
+            <div class="hero-buttons">
+                <a href="#brands" class="btn btn-primary">Explore Our Brands</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands" id="brands">
+        <div class="container">
+            <h2 class="section-title">Our Brands</h2>
+            <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your
+                culinary journey</p>
+
+            <div class="brand-showcase">
+                <div class="brand-card">
+                    <div class="brand-logo">🌿</div>
+                    <h3 class="brand-name">Swadlicious</h3>
+                    <p class="brand-tagline">"Taste the Freshness"</p>
+                    <p class="brand-description">
+                        Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients.
+                        Swadlicious brings authentic flavors and natural goodness to your everyday cooking.
+                    </p>
+                    <a href="swadlicious/" class="brand-btn">Visit Swadlicious</a>
+                </div>
+
+                <div class="brand-card">
+                    <div class="brand-logo">🚀</div>
+                    <h3 class="brand-name">Coming Soon</h3>
+                    <p class="brand-tagline">"Innovation in Every Bite"</p>
+                    <p class="brand-description">
+                        We're constantly innovating and expanding our product portfolio.
+                        Stay tuned for exciting new brands and flavors that will revolutionize your cooking experience.
+                    </p>
+                    <a href="#contact" class="brand-btn">Stay Updated</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-company" id="about">
+        <div class="container">
+            <h2 class="section-title">About Aquariz</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated
+                        to bringing premium food products to kitchens worldwide. We believe that great cooking starts
+                        with great ingredients, and every product we create reflects this commitment to excellence.</p>
+
+                    <p>Our journey began with a simple mission: to make authentic, high-quality food products accessible
+                        to everyone. Today, we continue to uphold the same values of quality, freshness, and
+                        authenticity that have made us a trusted name in the culinary world.</p>
+
+                    <ul class="company-values">
+                        <li>Premium Quality Ingredients</li>
+                        <li>Authentic Flavors & Recipes</li>
+                        <li>Sustainable Sourcing Practices</li>
+                        <li>Hygienic Manufacturing Standards</li>
+                        <li>Customer-Centric Approach</li>
+                        <li>Continuous Innovation</li>
+                    </ul>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Natural Ingredients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Quality Assurance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Connect With Us</h2>
+            <p>Ready to experience the Aquariz difference? Get in touch with our team today!</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📞 Phone</h4>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p>hello@aquariz.com</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>📍 Address</h4>
+                    <p>123 Culinary Boulevard<br>Flavor District, FD 12345</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>🌐 Business Hours</h4>
+                    <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Our Brands</h4>
+                    <ul>
+                        <li><a href="swadlicious/">Swadlicious</a></li>
+                        <li><a href="#contact">Upcoming Brands</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid #2d3748; padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 Aquariz. All rights reserved. | Bringing Premium Quality to Your Kitchen</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.brand-card, .stat-item');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 150;
+
+                if (cardTop < window.innerHeight - cardVisible) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialize card animations
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.brand-card, .stat-item');
+            cards.forEach(card => {
+                card.style.opacity = '0.8';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease-out';
+            });
+        });
+    </script>
+</body>
+
+</html>
