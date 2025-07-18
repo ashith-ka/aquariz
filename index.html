@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aquariz - Premium Food Products & Culinary Solutions</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #1a365d;
-            --secondary-blue: #2c5282;
-            --accent-blue: #4299e1;
-            --light-blue: #e6f3ff;
-            --warm-white: #fafafa;
-            --text-dark: #2c3e50;
-            --text-light: #6c757d;
-            --orange: #ff6b35;
-            --green: #4a7c59;
-            --shadow-light: rgba(0, 0, 0, 0.08);
-            --shadow-medium: rgba(0, 0, 0, 0.12);
-            --shadow-heavy: rgba(0, 0, 0, 0.25);
+            --primary-blue: #0a1628;
+            --secondary-blue: #1e3a8a;
+            --accent-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --warm-white: #fefefe;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --orange: #f97316;
+            --green: #059669;
+            --gold: #f59e0b;
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
         * {
@@ -31,163 +32,253 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--warm-white);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 1rem;
+        }
+
+        /* Mobile-first container sizing */
+        @media (min-width: 640px) {
+            .container { padding: 0 1.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .container { padding: 0 2rem; }
         }
 
         /* Loading Animation */
-        .loading-animation {
+        .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-blue);
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
         }
 
-        .loading-animation.hidden {
+        .loading-screen.hidden {
             opacity: 0;
-            pointer-events: none;
+            visibility: hidden;
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid white;
+        .loading-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid var(--orange);
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Header & Navigation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Header - Ultra Mobile Optimized */
         header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: white;
-            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px var(--shadow-medium);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .header-content {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            text-align: left;
+            padding: 1rem;
+            min-height: 70px;
         }
 
         .logo-section {
-            display: flex;
-            flex-direction: column;
+            flex: 1;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 4px 8px var(--shadow-heavy);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
         }
 
-        .company-tagline {
-            font-size: 1.3rem;
-            font-weight: 500;
-            opacity: 0.95;
-            margin-bottom: 0.3rem;
+        .logo:hover {
+            transform: scale(1.05);
         }
 
-        .subtitle {
-            font-size: 1rem;
+        .tagline {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.8);
             font-weight: 300;
-            opacity: 0.85;
-            font-style: italic;
+            margin-top: 0.2rem;
+            line-height: 1.2;
         }
 
         .nav-toggle {
-            display: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
             background: none;
             border: none;
-            color: white;
-            font-size: 1.5rem;
             cursor: pointer;
+            padding: 0;
+            z-index: 1001;
         }
 
-        nav ul {
+        .nav-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
             display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             list-style: none;
-            gap: 2rem;
+            transition: right 0.3s ease;
+            z-index: 1000;
         }
 
-        nav ul li a {
+        .nav-menu.active {
+            right: 0;
+        }
+
+        .nav-menu li {
+            margin: 1.5rem 0;
+        }
+
+        .nav-menu a {
             color: white;
             text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            font-size: 1.5rem;
             font-weight: 500;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             transition: all 0.3s ease;
-            position: relative;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
         }
 
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--orange);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+        /* Desktop Navigation */
+        @media (min-width: 1024px) {
+            .header-container {
+                padding: 1.5rem 2rem;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-menu {
+                position: static;
+                width: auto;
+                height: auto;
+                background: none;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 2rem;
+            }
+
+            .nav-menu a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .nav-menu a:hover {
+                transform: translateY(-2px);
+            }
         }
 
-        nav ul li a:hover::after {
-            width: 80%;
-        }
-
-        /* Hero Section */
+        /* Hero Section - Mobile First */
         .hero {
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(44, 82, 130, 0.8)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/></pattern></defs><rect fill="%23f7fafc" width="1200" height="600"/><rect fill="url(%23dots)" width="1200" height="600"/></svg>');
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(30, 58, 138, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient></defs><rect width="1200" height="800" fill="%23f8fafc"/><circle cx="300" cy="200" r="100" fill="url(%23grad1)"/><circle cx="900" cy="600" r="150" fill="url(%23grad1)"/><circle cx="1100" cy="300" r="80" fill="url(%23grad1)"/></svg>');
             background-size: cover;
             background-position: center;
             color: white;
-            text-align: center;
-            padding: 8rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
         }
@@ -199,117 +290,138 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+            animation: shimmer 4s infinite ease-in-out;
         }
 
         @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
+            text-align: center;
+            padding: 2rem 0;
         }
 
-        .hero h1 {
+        .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
             line-height: 1.1;
-            text-shadow: 2px 4px 8px var(--shadow-heavy);
+            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 1s ease-out;
         }
 
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
+        .hero-subtitle {
+            font-size: 1.1rem;
             font-weight: 300;
+            margin-bottom: 2rem;
             opacity: 0.95;
+            line-height: 1.5;
             animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            padding: 1.2rem 2.5rem;
-            text-decoration: none;
+            padding: 1rem 2rem;
             border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            min-width: 200px;
+            text-align: center;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, var(--accent-blue), #3182ce);
+            background: linear-gradient(135deg, var(--accent-blue), var(--secondary-blue));
             color: white;
-            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.4);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(66, 153, 225, 0.6);
+            box-shadow: var(--shadow-xl);
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: white;
-            color: var(--primary-blue);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Hero */
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: row;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 4.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
         }
 
         /* Brands Section */
         .brands {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary-blue);
             margin-bottom: 1rem;
@@ -319,38 +431,37 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: var(--orange);
             border-radius: 2px;
         }
 
         .section-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--text-light);
             font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        .brand-showcase {
+        .brand-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .brand-card {
             background: white;
-            border-radius: 24px;
-            padding: 3rem;
+            border-radius: 20px;
+            padding: 2rem;
             text-align: center;
-            box-shadow: 0 15px 40px var(--shadow-light);
+            box-shadow: var(--shadow-md);
             transition: all 0.4s ease;
-            border: 1px solid rgba(230, 243, 255, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -362,180 +473,222 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .brand-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 60px var(--shadow-medium);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
         }
 
         .brand-card:hover::before {
             opacity: 1;
         }
 
-        .brand-logo {
-            font-size: 4rem;
+        .brand-icon {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: var(--green);
             position: relative;
             z-index: 2;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
             color: var(--primary-blue);
+            margin-bottom: 0.5rem;
             position: relative;
             z-index: 2;
         }
 
         .brand-tagline {
-            font-size: 1.3rem;
+            font-size: 1rem;
             color: var(--text-light);
-            margin-bottom: 2rem;
             font-style: italic;
+            margin-bottom: 1rem;
             position: relative;
             z-index: 2;
         }
 
         .brand-description {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--text-light);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
+            line-height: 1.6;
+            margin-bottom: 2rem;
             position: relative;
             z-index: 2;
         }
 
         .brand-btn {
-            background: linear-gradient(45deg, var(--green), #2c5530);
+            background: linear-gradient(135deg, var(--green), #047857);
             color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
             position: relative;
             z-index: 2;
         }
 
         .brand-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Brands */
+        @media (min-width: 768px) {
+            .brands {
+                padding: 6rem 0;
+            }
+
+            .brand-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .brand-card {
+                padding: 3rem;
+            }
+
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.2rem;
+            }
         }
 
         /* About Section */
-        .about-company {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, var(--light-blue) 0%, #f0f8ff 100%);
+        .about {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--light-blue) 0%, #f0f9ff 100%);
         }
 
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 3rem;
         }
 
         .about-text h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--primary-blue);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .about-text p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-light);
+            line-height: 1.7;
             margin-bottom: 1.5rem;
-            line-height: 1.8;
         }
 
-        .company-values {
+        .values-list {
             list-style: none;
             margin-top: 2rem;
         }
 
-        .company-values li {
-            padding: 1rem 0;
+        .values-list li {
+            padding: 0.8rem 0;
             position: relative;
-            padding-left: 3rem;
-            font-size: 1.1rem;
+            padding-left: 2.5rem;
+            font-size: 0.95rem;
             color: var(--text-dark);
-            border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
 
-        .company-values li:before {
+        .values-list li:before {
             content: "";
             position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             background: var(--orange);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .company-values li:after {
+        .values-list li:after {
             content: "✓";
             position: absolute;
-            left: 6px;
+            left: 4px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
             font-weight: bold;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
         }
 
-        .stats {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .stat-item {
-            text-align: center;
-            padding: 2.5rem;
             background: white;
+            padding: 1.5rem;
             border-radius: 16px;
-            box-shadow: 0 10px 30px var(--shadow-light);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
-            border: 1px solid rgba(230, 243, 255, 0.5);
         }
 
         .stat-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px var(--shadow-medium);
+            box-shadow: var(--shadow-md);
         }
 
         .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--primary-blue);
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Responsive About */
+        @media (min-width: 768px) {
+            .about {
+                padding: 6rem 0;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         /* Contact Section */
         .contact {
-            padding: 8rem 0;
+            padding: 4rem 0;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
             position: relative;
@@ -548,84 +701,114 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>');
             background-size: 50px 50px;
         }
 
         .contact-content {
-            text-align: center;
             position: relative;
             z-index: 2;
+            text-align: center;
         }
 
-        .contact h2 {
+        .contact-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
         .contact-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
             opacity: 0.9;
             font-weight: 300;
         }
 
-        .contact-info {
+        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
-        .contact-item {
+        .contact-card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: 2.5rem;
+            padding: 2rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
+            text-align: center;
         }
 
-        .contact-item:hover {
+        .contact-card:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.15);
         }
 
-        .contact-item i {
-            font-size: 2.5rem;
+        .contact-card i {
+            font-size: 2rem;
             color: var(--orange);
             margin-bottom: 1rem;
         }
 
-        .contact-item h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+        .contact-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
-        .contact-item p {
-            font-size: 1.1rem;
+        .contact-card p {
+            font-size: 0.95rem;
             opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Responsive Contact */
+        @media (min-width: 640px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .contact {
+                padding: 6rem 0;
+            }
+
+            .contact-title {
+                font-size: 3rem;
+            }
+
+            .contact-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
         }
 
         /* Footer */
         footer {
-            background-color: #1a202c;
+            background: #0f172a;
             color: white;
-            padding: 3rem 0;
-            text-align: center;
+            padding: 3rem 0 2rem;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .footer-section h4 {
-            margin-bottom: 1rem;
             color: var(--orange);
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .footer-section ul {
@@ -637,9 +820,10 @@
         }
 
         .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .footer-section ul li a:hover {
@@ -647,67 +831,17 @@
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
-            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary-blue);
-                flex-direction: column;
-                padding: 1rem;
-                gap: 0;
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .brand-showcase {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
+        /* Responsive Footer */
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -722,29 +856,60 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Performance optimizations */
+        .brand-card,
+        .contact-card,
+        .stat-item {
+            will-change: transform;
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Touch targets for mobile */
+        @media (max-width: 768px) {
+            .btn,
+            .brand-btn,
+            .nav-menu a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
     </style>
 </head>
-
 <body>
-    <!-- Loading Animation -->
-    <div class="loading-animation" id="loading">
-        <div class="spinner"></div>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">AQUARIZ</div>
+        <div class="loading-spinner"></div>
     </div>
 
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="header-content">
+            <div class="header-container">
                 <div class="logo-section">
-                    <div class="logo">AQUARIZ</div>
-                    <div class="company-tagline">Premium Food Products & Culinary Solutions</div>
-                    <div class="subtitle">Bringing Quality and Flavor to Your Kitchen</div>
+                    <a href="#home" class="logo">AQUARIZ</a>
+                    <div class="tagline">Premium Food Products & Culinary Solutions</div>
                 </div>
+                
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
                 <nav>
-                    <button class="nav-toggle" id="navToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <ul id="navMenu">
+                    <ul class="nav-menu" id="navMenu">
                         <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="#brands"><i class="fas fa-star"></i> Our Brands</a></li>
                         <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
@@ -759,9 +924,8 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <h1>Welcome to Aquariz</h1>
-                <p>Your trusted partner for premium food products and authentic culinary experiences. We bring the
-                    finest ingredients and flavors directly to your kitchen.</p>
+                <h1 class="hero-title">Welcome to Aquariz</h1>
+                <p class="hero-subtitle">Your trusted partner for premium food products and authentic culinary experiences. We bring the finest ingredients and flavors directly to your kitchen.</p>
                 <div class="hero-buttons">
                     <a href="#brands" class="btn btn-primary">
                         <i class="fas fa-rocket"></i> Explore Our Brands
@@ -779,17 +943,16 @@
         <div class="container">
             <div class="section-header scroll-reveal">
                 <h2 class="section-title">Our Brands</h2>
-                <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your
-                    culinary journey</p>
+                <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your culinary journey</p>
             </div>
 
-            <div class="brand-showcase">
+            <div class="brand-grid">
                 <div class="brand-card scroll-reveal">
-                    <div class="brand-logo">🌿</div>
+                    <div class="brand-icon">🌿</div>
                     <h3 class="brand-name">Swadlicious</h3>
                     <p class="brand-tagline">"Taste the Freshness"</p>
                     <p class="brand-description">
-                        Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients.
+                        Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients. 
                         Swadlicious brings authentic flavors and natural goodness to your everyday cooking.
                     </p>
                     <a href="swadlicious/" class="brand-btn">
@@ -798,11 +961,11 @@
                 </div>
 
                 <div class="brand-card scroll-reveal">
-                    <div class="brand-logo">🚀</div>
+                    <div class="brand-icon">🚀</div>
                     <h3 class="brand-name">Coming Soon</h3>
                     <p class="brand-tagline">"Innovation in Every Bite"</p>
                     <p class="brand-description">
-                        We're constantly innovating and expanding our product portfolio.
+                        We're constantly innovating and expanding our product portfolio. 
                         Stay tuned for exciting new brands and flavors that will revolutionize your cooking experience.
                     </p>
                     <a href="#contact" class="brand-btn">
@@ -814,23 +977,20 @@
     </section>
 
     <!-- About Section -->
-    <section class="about-company" id="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="section-header scroll-reveal">
                 <h2 class="section-title">About Aquariz</h2>
             </div>
+            
             <div class="about-content scroll-reveal">
                 <div class="about-text">
                     <h3>Our Story</h3>
-                    <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated
-                        to bringing premium food products to kitchens worldwide. We believe that great cooking starts
-                        with great ingredients, and every product we create reflects this commitment to excellence.</p>
+                    <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated to bringing premium food products to kitchens worldwide. We believe that great cooking starts with great ingredients, and every product we create reflects this commitment to excellence.</p>
 
-                    <p>Our journey began with a simple mission: to make authentic, high-quality food products accessible
-                        to everyone. Today, we continue to uphold the same values of quality, freshness, and
-                        authenticity that have made us a trusted name in the culinary world.</p>
+                    <p>Our journey began with a simple mission: to make authentic, high-quality food products accessible to everyone. Today, we continue to uphold the same values of quality, freshness, and authenticity that have made us a trusted name in the culinary world.</p>
 
-                    <ul class="company-values">
+                    <ul class="values-list">
                         <li>Premium Quality Ingredients</li>
                         <li>Authentic Flavors & Recipes</li>
                         <li>Sustainable Sourcing Practices</li>
@@ -840,7 +1000,7 @@
                     </ul>
                 </div>
 
-                <div class="stats">
+                <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-number">100%</div>
                         <div class="stat-label">Natural Ingredients</div>
@@ -866,30 +1026,29 @@
     <section class="contact" id="contact">
         <div class="container">
             <div class="contact-content scroll-reveal">
-                <h2>Connect With Us</h2>
-                <p class="contact-subtitle">Ready to experience the Aquariz difference? Get in touch with our team
-                    today!</p>
+                <h2 class="contact-title">Connect With Us</h2>
+                <p class="contact-subtitle">Ready to experience the Aquariz difference? Get in touch with our team today!</p>
 
-                <div class="contact-info">
-                    <div class="contact-item">
+                <div class="contact-grid">
+                    <div class="contact-card">
                         <i class="fas fa-phone"></i>
                         <h4>Phone</h4>
                         <p>+91 6238 796 383</p>
                     </div>
 
-                    <div class="contact-item">
+                    <div class="contact-card">
                         <i class="fas fa-envelope"></i>
                         <h4>Email</h4>
                         <p>aquariz.official@gmail.com</p>
                     </div>
 
-                    <div class="contact-item">
+                    <div class="contact-card">
                         <i class="fas fa-map-marker-alt"></i>
                         <h4>Address</h4>
                         <p>123 Culinary Boulevard<br>Flavor District, FD 12345</p>
                     </div>
 
-                    <div class="contact-item">
+                    <div class="contact-card">
                         <i class="fas fa-clock"></i>
                         <h4>Business Hours</h4>
                         <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
@@ -937,107 +1096,138 @@
     </footer>
 
     <script>
-        // Loading animation
-        window.addEventListener('load', function () {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-            }, 1000);
-        });
-
-        // Mobile navigation toggle
-        document.getElementById('navToggle').addEventListener('click', function () {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                // Close mobile menu if open
-                document.getElementById('navMenu').classList.remove('active');
+        // Performance optimized JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Loading screen
+            const loadingScreen = document.getElementById('loadingScreen');
+            
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                }, 1200);
             });
-        });
 
-        // Scroll reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
+            // Mobile navigation
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
-        });
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
 
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function () {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'linear-gradient(135deg, rgba(26, 54, 93, 0.95), rgba(44, 82, 130, 0.95))';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--secondary-blue))';
-                header.style.backdropFilter = 'none';
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Scroll animations with Intersection Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Header background change on scroll
+            let ticking = false;
+            
+            function updateHeader() {
+                const header = document.querySelector('header');
+                const scrolled = window.pageYOffset;
+                
+                if (scrolled > 50) {
+                    header.style.background = 'linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(30, 58, 138, 0.95))';
+                    header.style.backdropFilter = 'blur(15px)';
+                } else {
+                    header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--secondary-blue))';
+                    header.style.backdropFilter = 'blur(10px)';
+                }
+                
+                ticking = false;
             }
-        });
 
-        // Parallax effect for hero section
-        window.addEventListener('scroll', function () {
-            const hero = document.querySelector('.hero');
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        });
-
-        // Stats animation
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumber = entry.target.querySelector('.stat-number');
-                    const finalNumber = statNumber.textContent;
-                    const isPercentage = finalNumber.includes('%');
-                    const isPlus = finalNumber.includes('+');
-                    const numberValue = parseInt(finalNumber);
-
-                    let counter = 0;
-                    const increment = numberValue / 30;
-
-                    const timer = setInterval(() => {
-                        counter += increment;
-                        if (counter >= numberValue) {
-                            counter = numberValue;
-                            clearInterval(timer);
-                        }
-
-                        let displayValue = Math.floor(counter);
-                        if (isPercentage) displayValue += '%';
-                        if (isPlus) displayValue += '+';
-                        if (finalNumber.includes('/')) displayValue = finalNumber;
-
-                        statNumber.textContent = displayValue;
-                    }, 50);
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    requestAnimationFrame(updateHeader);
+                    ticking = true;
                 }
             });
-        });
 
-        document.querySelectorAll('.stat-item').forEach(item => {
-            statsObserver.observe(item);
+            // Stats counter animation
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target.querySelector('.stat-number');
+                        if (statNumber && !statNumber.classList.contains('counted')) {
+                            statNumber.classList.add('counted');
+                            const finalText = statNumber.textContent;
+                            const isPercentage = finalText.includes('%');
+                            const isPlus = finalText.includes('+');
+                            const numberValue = parseInt(finalText);
+                            
+                            if (!isNaN(numberValue)) {
+                                let counter = 0;
+                                const increment = numberValue / 30;
+                                
+                                const timer = setInterval(() => {
+                                    counter += increment;
+                                    if (counter >= numberValue) {
+                                        counter = numberValue;
+                                        clearInterval(timer);
+                                    }
+                                    
+                                    let displayValue = Math.floor(counter);
+                                    if (isPercentage) displayValue += '%';
+                                    if (isPlus) displayValue += '+';
+                                    if (finalText.includes('/')) displayValue = finalText;
+                                    
+                                    statNumber.textContent = displayValue;
+                                }, 50);
+                            }
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.stat-item').forEach(item => {
+                statsObserver.observe(item);
+            });
+
+            // Preload critical resources
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preload';
+            preloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap';
+            preloadLink.as = 'style';
+            document.head.appendChild(preloadLink);
         });
     </script>
 </body>
-
 </html>
