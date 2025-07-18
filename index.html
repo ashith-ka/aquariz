@@ -5,7 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aquariz - Premium Food Products & Culinary Solutions</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2c5282;
+            --accent-blue: #4299e1;
+            --light-blue: #e6f3ff;
+            --warm-white: #fafafa;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --orange: #ff6b35;
+            --green: #4a7c59;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
+            --shadow-heavy: rgba(0, 0, 0, 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,217 +32,400 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--warm-white);
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
+        /* Loading Animation */
+        .loading-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-animation.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #1a365d, #2c5282);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
             padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--shadow-medium);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
         }
 
         .logo {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 4px 8px var(--shadow-heavy);
         }
 
         .company-tagline {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+            opacity: 0.95;
+            margin-bottom: 0.3rem;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.85;
+            font-style: italic;
         }
 
-        nav {
-            background-color: #1a202c;
-            padding: 1rem 0;
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         nav ul {
-            list-style: none;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0 2rem;
+            list-style: none;
+            gap: 2rem;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
             padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            transition: all 0.3s;
+            border-radius: 8px;
             font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
         }
 
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--orange);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav ul li a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(44, 82, 130, 0.8)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><circle fill="%23e2e8f0" cx="300" cy="200" r="120"/><circle fill="%23cbd5e0" cx="900" cy="400" r="80"/><circle fill="%23a0aec0" cx="1100" cy="150" r="60"/></svg>');
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(44, 82, 130, 0.8)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="white" opacity="0.1"/></pattern></defs><rect fill="%23f7fafc" width="1200" height="600"/><rect fill="url(%23dots)" width="1200" height="600"/></svg>');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
-            padding: 6rem 0;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+            text-shadow: 2px 4px 8px var(--shadow-heavy);
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero p {
             font-size: 1.4rem;
             margin-bottom: 3rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-weight: 300;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-buttons {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 1.2rem 2.5rem;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #4299e1, #3182ce);
+            background: linear-gradient(45deg, var(--accent-blue), #3182ce);
             color: white;
-            box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.6);
+            box-shadow: 0 12px 35px rgba(66, 153, 225, 0.6);
         }
 
         .btn-secondary {
             background: transparent;
             color: white;
             border: 2px solid white;
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
             background: white;
-            color: #1a365d;
+            color: var(--primary-blue);
             transform: translateY(-3px);
         }
 
+        /* Brands Section */
         .brands {
-            padding: 6rem 0;
-            background-color: white;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
             margin-bottom: 1rem;
-            color: #1a365d;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--orange);
+            border-radius: 2px;
         }
 
         .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 4rem;
+            font-size: 1.3rem;
+            color: var(--text-light);
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .brand-showcase {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 3rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .brand-card {
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
-            border-radius: 20px;
+            background: white;
+            border-radius: 24px;
             padding: 3rem;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 15px 40px var(--shadow-light);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(230, 243, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .brand-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px var(--shadow-medium);
+        }
+
+        .brand-card:hover::before {
+            opacity: 1;
         }
 
         .brand-logo {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
-            color: #4a7c59;
+            color: var(--green);
+            position: relative;
+            z-index: 2;
         }
 
         .brand-name {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: #2c5530;
+            color: var(--primary-blue);
+            position: relative;
+            z-index: 2;
         }
 
         .brand-tagline {
             font-size: 1.3rem;
-            color: #666;
+            color: var(--text-light);
             margin-bottom: 2rem;
             font-style: italic;
+            position: relative;
+            z-index: 2;
         }
 
         .brand-description {
             font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
             line-height: 1.8;
+            position: relative;
+            z-index: 2;
         }
 
         .brand-btn {
-            background: linear-gradient(45deg, #4a7c59, #2c5530);
+            background: linear-gradient(45deg, var(--green), #2c5530);
             color: white;
             padding: 1rem 2rem;
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: inline-block;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             box-shadow: 0 4px 15px rgba(74, 124, 89, 0.3);
+            position: relative;
+            z-index: 2;
         }
 
         .brand-btn:hover {
@@ -231,27 +433,31 @@
             box-shadow: 0 6px 20px rgba(74, 124, 89, 0.4);
         }
 
+        /* About Section */
         .about-company {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--light-blue) 0%, #f0f8ff 100%);
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
 
-        .about-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
         }
 
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1a365d;
+        .about-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
         }
 
         .company-values {
@@ -264,68 +470,132 @@
             position: relative;
             padding-left: 3rem;
             font-size: 1.1rem;
+            color: var(--text-dark);
+            border-bottom: 1px solid rgba(26, 54, 93, 0.1);
         }
 
         .company-values li:before {
-            content: "✓";
+            content: "";
             position: absolute;
             left: 0;
-            color: #4a7c59;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-values li:after {
+            content: "✓";
+            position: absolute;
+            left: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 0.8rem;
         }
 
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
         }
 
         .stat-item {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(230, 243, 255, 0.5);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-medium);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: bold;
-            color: #1a365d;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 1rem;
-            color: #666;
-            margin-top: 0.5rem;
+            color: var(--text-light);
         }
 
+        /* Contact Section */
         .contact {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #1a365d, #2c5282);
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
             color: white;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            background-size: 50px 50px;
+        }
+
+        .contact-content {
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .contact h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 4rem;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
         }
 
         .contact-item {
             background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
             backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
         }
 
         .contact-item h4 {
@@ -333,11 +603,17 @@
             margin-bottom: 1rem;
         }
 
+        .contact-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
         footer {
             background-color: #1a202c;
             color: white;
-            text-align: center;
             padding: 3rem 0;
+            text-align: center;
         }
 
         .footer-content {
@@ -349,6 +625,7 @@
 
         .footer-section h4 {
             margin-bottom: 1rem;
+            color: var(--orange);
         }
 
         .footer-section ul {
@@ -360,16 +637,49 @@
         }
 
         .footer-section ul li a {
-            color: #cbd5e0;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .footer-section ul li a:hover {
             color: white;
         }
 
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-blue);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
             .logo {
                 font-size: 2.5rem;
             }
@@ -382,62 +692,99 @@
                 font-size: 1.2rem;
             }
 
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
             .brand-showcase {
                 grid-template-columns: 1fr;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .section-title {
+                font-size: 2.5rem;
             }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
 <body>
+    <!-- Loading Animation -->
+    <div class="loading-animation" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">AQUARIZ</div>
-            <div class="company-tagline">Premium Food Products & Culinary Solutions</div>
-            <div class="subtitle">Bringing Quality and Flavor to Your Kitchen</div>
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">AQUARIZ</div>
+                    <div class="company-tagline">Premium Food Products & Culinary Solutions</div>
+                    <div class="subtitle">Bringing Quality and Flavor to Your Kitchen</div>
+                </div>
+                <nav>
+                    <button class="nav-toggle" id="navToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul id="navMenu">
+                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#brands"><i class="fas fa-star"></i> Our Brands</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#brands">Our Brands</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Welcome to Aquariz</h1>
-            <p>Your trusted partner for premium food products and authentic culinary experiences. We bring the finest
-                ingredients and flavors directly to your kitchen.</p>
-            <div class="hero-buttons">
-                <a href="#brands" class="btn btn-primary">Explore Our Brands</a>
-                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            <div class="hero-content">
+                <h1>Welcome to Aquariz</h1>
+                <p>Your trusted partner for premium food products and authentic culinary experiences. We bring the
+                    finest ingredients and flavors directly to your kitchen.</p>
+                <div class="hero-buttons">
+                    <a href="#brands" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Explore Our Brands
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Get in Touch
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Brands Section -->
     <section class="brands" id="brands">
         <div class="container">
-            <h2 class="section-title">Our Brands</h2>
-            <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your
-                culinary journey</p>
+            <div class="section-header scroll-reveal">
+                <h2 class="section-title">Our Brands</h2>
+                <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your
+                    culinary journey</p>
+            </div>
 
             <div class="brand-showcase">
-                <div class="brand-card">
+                <div class="brand-card scroll-reveal">
                     <div class="brand-logo">🌿</div>
                     <h3 class="brand-name">Swadlicious</h3>
                     <p class="brand-tagline">"Taste the Freshness"</p>
@@ -445,10 +792,12 @@
                         Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients.
                         Swadlicious brings authentic flavors and natural goodness to your everyday cooking.
                     </p>
-                    <a href="swadlicious/" class="brand-btn">Visit Swadlicious</a>
+                    <a href="swadlicious/" class="brand-btn">
+                        <i class="fas fa-arrow-right"></i> Visit Swadlicious
+                    </a>
                 </div>
 
-                <div class="brand-card">
+                <div class="brand-card scroll-reveal">
                     <div class="brand-logo">🚀</div>
                     <h3 class="brand-name">Coming Soon</h3>
                     <p class="brand-tagline">"Innovation in Every Bite"</p>
@@ -456,16 +805,21 @@
                         We're constantly innovating and expanding our product portfolio.
                         Stay tuned for exciting new brands and flavors that will revolutionize your cooking experience.
                     </p>
-                    <a href="#contact" class="brand-btn">Stay Updated</a>
+                    <a href="#contact" class="brand-btn">
+                        <i class="fas fa-bell"></i> Stay Updated
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- About Section -->
     <section class="about-company" id="about">
         <div class="container">
-            <h2 class="section-title">About Aquariz</h2>
-            <div class="about-content">
+            <div class="section-header scroll-reveal">
+                <h2 class="section-title">About Aquariz</h2>
+            </div>
+            <div class="about-content scroll-reveal">
                 <div class="about-text">
                     <h3>Our Story</h3>
                     <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated
@@ -508,35 +862,44 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>Connect With Us</h2>
-            <p>Ready to experience the Aquariz difference? Get in touch with our team today!</p>
+            <div class="contact-content scroll-reveal">
+                <h2>Connect With Us</h2>
+                <p class="contact-subtitle">Ready to experience the Aquariz difference? Get in touch with our team
+                    today!</p>
 
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h4>📞 Phone</h4>
-                    <p>+91 6238 796 383</p>
-                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone</h4>
+                        <p>+91 6238 796 383</p>
+                    </div>
 
-                <div class="contact-item">
-                    <h4>📧 Email</h4>
-                    <p>aquariz.official@gmail.com</p>
-                </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>aquariz.official@gmail.com</p>
+                    </div>
 
-                <div class="contact-item">
-                    <h4>📍 Address</h4>
-                    <p>123 Culinary Boulevard<br>Flavor District, FD 12345</p>
-                </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Address</h4>
+                        <p>123 Culinary Boulevard<br>Flavor District, FD 12345</p>
+                    </div>
 
-                <div class="contact-item">
-                    <h4>🌐 Business Hours</h4>
-                    <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <h4>Business Hours</h4>
+                        <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -558,54 +921,121 @@
                 </div>
 
                 <div class="footer-section">
-                    <h4>Support</h4>
+                    <h4>Follow Us</h4>
                     <ul>
-                        <li><a href="#help">Help Center</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div style="border-top: 1px solid #2d3748; padding-top: 2rem; margin-top: 2rem;">
+            <div class="footer-bottom">
                 <p>&copy; 2025 Aquariz. All rights reserved. | Bringing Premium Quality to Your Kitchen</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Loading animation
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Mobile navigation toggle
+        document.getElementById('navToggle').addEventListener('click', function () {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.getElementById('navMenu').classList.remove('active');
             });
         });
 
-        // Add animation on scroll
-        window.addEventListener('scroll', () => {
-            const cards = document.querySelectorAll('.brand-card, .stat-item');
-            cards.forEach(card => {
-                const cardTop = card.getBoundingClientRect().top;
-                const cardVisible = 150;
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-                if (cardTop < window.innerHeight - cardVisible) {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(26, 54, 93, 0.95), rgba(44, 82, 130, 0.95))';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--secondary-blue))';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function () {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+
+        // Stats animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const finalNumber = statNumber.textContent;
+                    const isPercentage = finalNumber.includes('%');
+                    const isPlus = finalNumber.includes('+');
+                    const numberValue = parseInt(finalNumber);
+
+                    let counter = 0;
+                    const increment = numberValue / 30;
+
+                    const timer = setInterval(() => {
+                        counter += increment;
+                        if (counter >= numberValue) {
+                            counter = numberValue;
+                            clearInterval(timer);
+                        }
+
+                        let displayValue = Math.floor(counter);
+                        if (isPercentage) displayValue += '%';
+                        if (isPlus) displayValue += '+';
+                        if (finalNumber.includes('/')) displayValue = finalNumber;
+
+                        statNumber.textContent = displayValue;
+                    }, 50);
                 }
             });
         });
 
-        // Initialize card animations
-        document.addEventListener('DOMContentLoaded', function () {
-            const cards = document.querySelectorAll('.brand-card, .stat-item');
-            cards.forEach(card => {
-                card.style.opacity = '0.8';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.6s ease-out';
-            });
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
         });
     </script>
 </body>
