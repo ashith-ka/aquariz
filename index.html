@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aquariz - Premium Food Products & Culinary Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
@@ -55,10 +58,15 @@
 
         /* Mobile-first container sizing */
         @media (min-width: 640px) {
-            .container { padding: 0 1.5rem; }
+            .container {
+                padding: 0 1.5rem;
+            }
         }
+
         @media (min-width: 1024px) {
-            .container { padding: 0 2rem; }
+            .container {
+                padding: 0 2rem;
+            }
         }
 
         /* Loading Animation */
@@ -101,13 +109,25 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
         }
 
         /* Header - Ultra Mobile Optimized */
@@ -272,7 +292,7 @@
         /* Hero Section - Mobile First */
         .hero {
             background: linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(30, 58, 138, 0.9)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient></defs><rect width="1200" height="800" fill="%23f8fafc"/><circle cx="300" cy="200" r="100" fill="url(%23grad1)"/><circle cx="900" cy="600" r="150" fill="url(%23grad1)"/><circle cx="1100" cy="300" r="80" fill="url(%23grad1)"/></svg>');
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient></defs><rect width="1200" height="800" fill="%23f8fafc"/><circle cx="300" cy="200" r="100" fill="url(%23grad1)"/><circle cx="900" cy="600" r="150" fill="url(%23grad1)"/><circle cx="1100" cy="300" r="80" fill="url(%23grad1)"/></svg>');
             background-size: cover;
             background-position: center;
             color: white;
@@ -295,8 +315,13 @@
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         .hero-content {
@@ -376,6 +401,7 @@
                 opacity: 0;
                 transform: translateY(40px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -866,6 +892,7 @@
 
         /* Accessibility improvements */
         @media (prefers-reduced-motion: reduce) {
+
             *,
             *::before,
             *::after {
@@ -877,6 +904,7 @@
 
         /* Touch targets for mobile */
         @media (max-width: 768px) {
+
             .btn,
             .brand-btn,
             .nav-menu a {
@@ -886,6 +914,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
@@ -901,13 +930,13 @@
                     <a href="#home" class="logo">AQUARIZ</a>
                     <div class="tagline">Premium Food Products & Culinary Solutions</div>
                 </div>
-                
+
                 <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                
+
                 <nav>
                     <ul class="nav-menu" id="navMenu">
                         <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
@@ -925,7 +954,8 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">Welcome to Aquariz</h1>
-                <p class="hero-subtitle">Your trusted partner for premium food products and authentic culinary experiences. We bring the finest ingredients and flavors directly to your kitchen.</p>
+                <p class="hero-subtitle">Your trusted partner for premium food products and authentic culinary
+                    experiences. We bring the finest ingredients and flavors directly to your kitchen.</p>
                 <div class="hero-buttons">
                     <a href="#brands" class="btn btn-primary">
                         <i class="fas fa-rocket"></i> Explore Our Brands
@@ -943,20 +973,21 @@
         <div class="container">
             <div class="section-header scroll-reveal">
                 <h2 class="section-title">Our Brands</h2>
-                <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your culinary journey</p>
+                <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your
+                    culinary journey</p>
             </div>
 
             <div class="brand-grid">
                 <div class="brand-card scroll-reveal">
                     <div class="brand-icon">🌿</div>
-                    <h3 class="brand-name">Swadlicious</h3>
+                    <h3 class="brand-name">Flanora</h3>
                     <p class="brand-tagline">"Taste the Freshness"</p>
                     <p class="brand-description">
-                        Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients. 
-                        Swadlicious brings authentic flavors and natural goodness to your everyday cooking.
+                        Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients.
+                        Flanora brings authentic flavors and natural goodness to your everyday cooking.
                     </p>
-                    <a href="swadlicious/" class="brand-btn">
-                        <i class="fas fa-arrow-right"></i> Visit Swadlicious
+                    <a href="flanora/" class="brand-btn">
+                        <i class="fas fa-arrow-right"></i> Visit Flanora
                     </a>
                 </div>
 
@@ -965,7 +996,7 @@
                     <h3 class="brand-name">Coming Soon</h3>
                     <p class="brand-tagline">"Innovation in Every Bite"</p>
                     <p class="brand-description">
-                        We're constantly innovating and expanding our product portfolio. 
+                        We're constantly innovating and expanding our product portfolio.
                         Stay tuned for exciting new brands and flavors that will revolutionize your cooking experience.
                     </p>
                     <a href="#contact" class="brand-btn">
@@ -982,13 +1013,17 @@
             <div class="section-header scroll-reveal">
                 <h2 class="section-title">About Aquariz</h2>
             </div>
-            
+
             <div class="about-content scroll-reveal">
                 <div class="about-text">
                     <h3>Our Story</h3>
-                    <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated to bringing premium food products to kitchens worldwide. We believe that great cooking starts with great ingredients, and every product we create reflects this commitment to excellence.</p>
+                    <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated
+                        to bringing premium food products to kitchens worldwide. We believe that great cooking starts
+                        with great ingredients, and every product we create reflects this commitment to excellence.</p>
 
-                    <p>Our journey began with a simple mission: to make authentic, high-quality food products accessible to everyone. Today, we continue to uphold the same values of quality, freshness, and authenticity that have made us a trusted name in the culinary world.</p>
+                    <p>Our journey began with a simple mission: to make authentic, high-quality food products accessible
+                        to everyone. Today, we continue to uphold the same values of quality, freshness, and
+                        authenticity that have made us a trusted name in the culinary world.</p>
 
                     <ul class="values-list">
                         <li>Premium Quality Ingredients</li>
@@ -1027,7 +1062,8 @@
         <div class="container">
             <div class="contact-content scroll-reveal">
                 <h2 class="contact-title">Connect With Us</h2>
-                <p class="contact-subtitle">Ready to experience the Aquariz difference? Get in touch with our team today!</p>
+                <p class="contact-subtitle">Ready to experience the Aquariz difference? Get in touch with our team
+                    today!</p>
 
                 <div class="contact-grid">
                     <div class="contact-card">
@@ -1065,7 +1101,7 @@
                 <div class="footer-section">
                     <h4>Our Brands</h4>
                     <ul>
-                        <li><a href="swadlicious/">Swadlicious</a></li>
+                        <li><a href="flanora/">Flanora</a></li>
                         <li><a href="#contact">Upcoming Brands</a></li>
                     </ul>
                 </div>
@@ -1097,11 +1133,11 @@
 
     <script>
         // Performance optimized JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Loading screen
             const loadingScreen = document.getElementById('loadingScreen');
-            
-            window.addEventListener('load', function() {
+
+            window.addEventListener('load', function () {
                 setTimeout(() => {
                     loadingScreen.classList.add('hidden');
                 }, 1200);
@@ -1110,15 +1146,15 @@
             // Mobile navigation
             const navToggle = document.getElementById('navToggle');
             const navMenu = document.getElementById('navMenu');
-            
-            navToggle.addEventListener('click', function() {
+
+            navToggle.addEventListener('click', function () {
                 navToggle.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
 
             // Close mobile menu when clicking on links
             document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     navToggle.classList.remove('active');
                     navMenu.classList.remove('active');
                 });
@@ -1144,7 +1180,7 @@
                 rootMargin: '0px 0px -50px 0px'
             };
 
-            const observer = new IntersectionObserver(function(entries) {
+            const observer = new IntersectionObserver(function (entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
@@ -1158,11 +1194,11 @@
 
             // Header background change on scroll
             let ticking = false;
-            
+
             function updateHeader() {
                 const header = document.querySelector('header');
                 const scrolled = window.pageYOffset;
-                
+
                 if (scrolled > 50) {
                     header.style.background = 'linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(30, 58, 138, 0.95))';
                     header.style.backdropFilter = 'blur(15px)';
@@ -1170,11 +1206,11 @@
                     header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--secondary-blue))';
                     header.style.backdropFilter = 'blur(10px)';
                 }
-                
+
                 ticking = false;
             }
 
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 if (!ticking) {
                     requestAnimationFrame(updateHeader);
                     ticking = true;
@@ -1192,23 +1228,23 @@
                             const isPercentage = finalText.includes('%');
                             const isPlus = finalText.includes('+');
                             const numberValue = parseInt(finalText);
-                            
+
                             if (!isNaN(numberValue)) {
                                 let counter = 0;
                                 const increment = numberValue / 30;
-                                
+
                                 const timer = setInterval(() => {
                                     counter += increment;
                                     if (counter >= numberValue) {
                                         counter = numberValue;
                                         clearInterval(timer);
                                     }
-                                    
+
                                     let displayValue = Math.floor(counter);
                                     if (isPercentage) displayValue += '%';
                                     if (isPlus) displayValue += '+';
                                     if (finalText.includes('/')) displayValue = finalText;
-                                    
+
                                     statNumber.textContent = displayValue;
                                 }, 50);
                             }
@@ -1230,4 +1266,5 @@
         });
     </script>
 </body>
+
 </html>
