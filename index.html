@@ -129,12 +129,15 @@
     }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
 
-    .brand-header-link { display: flex; align-items: center; gap: 0.85rem; }
-    .aquariz-nav-logo { height: 46px; width: auto; object-fit: contain; }
+    .brand-header-link { display: flex; align-items: center; gap: 0.65rem; min-width: 0; flex-shrink: 1; }
+    .aquariz-nav-logo { height: 38px; width: auto; object-fit: contain; flex-shrink: 0; }
+    @media (min-width: 768px) { .aquariz-nav-logo { height: 46px; } .brand-header-link { gap: 0.85rem; } }
 
-    .aquariz-title-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .aquariz-brand-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; color: #fff; }
-    .aquariz-by-parent { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #86efac; }
+    .aquariz-title-text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+    .aquariz-brand-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; color: #fff; white-space: nowrap; }
+    @media (min-width: 768px) { .aquariz-brand-title { font-size: 1.35rem; } }
+    .aquariz-by-parent { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #86efac; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    @media (min-width: 768px) { .aquariz-by-parent { font-size: 0.65rem; letter-spacing: 0.1em; } }
 
     .nav-links-desktop { display: none; align-items: center; gap: 1.75rem; }
     @media (min-width: 960px) { .nav-links-desktop { display: flex; } }
@@ -144,21 +147,30 @@
     .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px; background: var(--color-primary-bright); transition: width var(--transition-fast); }
     .nav-link:hover::after { width: 100%; }
 
-    .nav-action-btns { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-action-btns { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+    @media (min-width: 768px) { .nav-action-btns { gap: 0.75rem; } }
 
-    .btn-nav-order { min-height: 44px;
-      display: inline-flex; align-items: center; gap: 0.5rem;
+    /* Compact, elegant WhatsApp button in navbar */
+    .btn-nav-order {
+      display: inline-flex; align-items: center; gap: 0.35rem;
       background: linear-gradient(135deg, #16a34a, #15803d); color: #fff;
-      font-weight: 700; font-size: 0.86rem; padding: 0.55rem 1.15rem;
-      border-radius: var(--radius-sm); box-shadow: var(--shadow-md); transition: all var(--transition-fast);
+      font-weight: 700; font-size: 0.78rem; padding: 0.4rem 0.7rem;
+      border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); transition: all var(--transition-fast);
+      min-height: 36px; white-space: nowrap; touch-action: manipulation;
     }
-    .btn-nav-order:hover { box-shadow: var(--shadow-lg); }
+    @media (min-width: 768px) {
+      .btn-nav-order { font-size: 0.86rem; padding: 0.5rem 1rem; min-height: 40px; gap: 0.5rem; }
+    }
+    .btn-nav-order:hover { box-shadow: var(--shadow-md); background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .btn-nav-order:active { transform: scale(0.96); }
 
     .btn-mobile-toggle {
       background: transparent; border: 1px solid var(--color-border-emerald); color: #fff;
-      width: 42px; height: 42px; border-radius: var(--radius-sm);
+      width: 38px; height: 38px; border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center; cursor: pointer;
+      touch-action: manipulation; flex-shrink: 0;
     }
+    @media (min-width: 768px) { .btn-mobile-toggle { width: 42px; height: 42px; } }
     @media (min-width: 960px) { .btn-mobile-toggle { display: none; } }
 
     /* Mobile Drawer */
@@ -223,7 +235,28 @@
       border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 2.25rem;
       text-align: center; position: relative; box-shadow: var(--shadow-lg); overflow: hidden;
     }
-    .aquariz-hero-image { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .aquariz-hero-logo-box {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .aquariz-hero-logo-img {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      max-height: 85px;
+      object-fit: contain;
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .aquariz-hero-logo-img { max-height: 105px; }
+    }
     .hero-badge-seal { background: rgba(230, 167, 66, 0.15); border: 1px solid var(--color-border-gold); color: var(--color-accent-light); padding: 0.5rem 1rem; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; display: inline-block; }
     .hero-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; text-align: left; }
     .stat-item { background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 0.75rem; }
@@ -345,6 +378,23 @@
        ========================================================================== */
     .skip-link { position: fixed; left: -999px; top: -999px; z-index: 9999; background: var(--color-primary-bright); color: #fff; padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); font-weight: 700; }
     .skip-link:focus { left: 1rem; top: 1rem; }
+  
+    .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      animation: pulse-green 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-green {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
   </style>
 
   <script type="application/ld+json">
@@ -396,9 +446,9 @@
       </nav>
 
       <div class="nav-action-btns">
-        <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20learn%20more" target="_blank" rel="noopener noreferrer" class="btn-nav-order">
+        <a href="https://wa.me/916238796383?text=Hi%20Aquariz%20team%21%20%F0%9F%91%8B%20I%20came%20across%20your%20website%20and%20would%20love%20to%20know%20more%20about%20your%20products." target="_blank" rel="noopener noreferrer" class="btn-nav-order" aria-label="Contact Aquariz on WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
-          <span>Contact Us</span>
+          <span>Contact</span>
         </a>
         <button class="btn-mobile-toggle" id="aquarizMenuToggle" aria-label="Toggle Menu">
           <i class="fa-solid fa-bars"></i>
@@ -424,7 +474,7 @@
       <a href="#facility" class="drawer-item"><span>Facility</span> <i class="fa-solid fa-chevron-right"></i></a>
       <a href="#contact" class="drawer-item"><span>Contact</span> <i class="fa-solid fa-chevron-right"></i></a>
       <a href="flanora/index.html" class="drawer-item" style="color: var(--color-accent);"><span>Flanora Sub-Brand</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-      <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20learn%20more" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="justify-content:center;margin-top:1rem;">
+      <a href="https://wa.me/916238796383?text=Hi%20Aquariz%20team%21%20%F0%9F%91%8B%20I%20came%20across%20your%20website%20and%20would%20love%20to%20know%20more%20about%20your%20products." target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="justify-content:center;margin-top:1rem;">
         <i class="fa-brands fa-whatsapp"></i> Quick WhatsApp
       </a>
     </div>
@@ -470,12 +520,15 @@
               <div class="trust-chip"><i class="fa-solid fa-check"></i> FSSAI Compliant</div>
               <div class="trust-chip"><i class="fa-solid fa-check"></i> Thrissur Based</div>
               <div class="trust-chip"><i class="fa-solid fa-check"></i> Kerala Made</div>
+              <div class="trust-chip" style="border-color: rgba(34, 197, 94, 0.5);"><span class="pulse-dot"></span> Active on WhatsApp • Fast Response</div>
             </div>
           </div>
 
           <!-- Hero Showcase Card -->
           <div class="hero-showcase-card">
-            <img src="Aquariz logo white.jpg" alt="Aquariz Manufacturing Facility" class="aquariz-hero-image" loading="lazy" />
+            <div class="aquariz-hero-logo-box">
+              <img src="Aquariz logo white.jpg" alt="Aquariz Brand Logo" class="aquariz-hero-logo-img" loading="lazy" />
+            </div>
             <div class="hero-badge-seal">
               <i class="fa-solid fa-certificate"></i> Verified Indian Manufacturer
             </div>
@@ -627,7 +680,7 @@
         <div class="contact-grid">
           <div class="contact-card">
             <h3>Direct Contact</h3>
-            <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20connect" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <a href="https://wa.me/916238796383?text=Hi%20Aquariz%20team%21%20%F0%9F%91%8B%20I%27d%20love%20to%20connect%20with%20you%20regarding%20partnerships%20and%20products." target="_blank" rel="noopener noreferrer" class="contact-link">
               <i class="fa-brands fa-whatsapp" style="color: #22c55e;"></i>
               <div>
                 <div class="contact-label">WhatsApp</div>
@@ -734,7 +787,7 @@
 
   <!-- MOBILE QUICK BAR -->
   <div class="mobile-bottom-bar" aria-label="Mobile Quick Actions">
-    <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20connect" class="bar-btn bar-wa" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/916238796383?text=Hi%20Aquariz%20team%21%20%F0%9F%91%8B%20I%27d%20love%20to%20connect%20with%20you%20regarding%20partnerships%20and%20products." class="bar-btn bar-wa" target="_blank" rel="noopener noreferrer">
       <i class="fa-brands fa-whatsapp"></i>
       <span>WhatsApp</span>
     </a>
@@ -799,9 +852,13 @@
       const phone = document.getElementById('aqPhone').value.trim();
       const message = document.getElementById('aqMessage').value.trim();
       if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-      let msg = `*Aquariz Inquiry*\n• *Name:* ${name}\n• *Phone:* ${phone}\n`;
-      if (message) msg += `• *Message:* ${message}\n`;
-      msg += `\n_Submitted via Aquariz Official Web Portal_`;
+      let msg = `Hi Aquariz team! 👋 This is ${name}.\n\n`;
+      if (message) {
+        msg += `${message}\n\n`;
+      } else {
+        msg += `I was browsing your website and would love to connect with your team.\n\n`;
+      }
+      msg += `My contact number: ${phone}\nLooking forward to hearing from you!`;
       window.open(`https://wa.me/916238796383?text=${encodeURIComponent(msg)}`, '_blank');
     }
   </script>

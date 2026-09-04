@@ -1,0 +1,45 @@
+1. Multi-Item "WhatsApp Cart / Kitchen Bag" (Biggest Conversion Opportunity)
+The Problem Now: When a user wants both Ginger-Garlic Paste (500g) and Pure Garlic Paste (200g), they have to click one product, get redirected to WhatsApp, then come back to the website to click the second product.
+The Mobile Solution:
+A lightweight sticky bottom "Kitchen Bag" counter (e.g., 2 Items Selected | Tap to Order on WhatsApp).
+Users can tap + or - on each paste card to assemble their custom pack in 5 seconds.
+Generates a single WhatsApp message listing all chosen items, quantities, and their district.
+Why it works: Average order value increases significantly because customers rarely buy just one jar of paste when stocking their monthly pantry.
+2. "Active Now / Quick Reply in 5 Mins" WhatsApp Status Chip
+The Mobile Psychology: In India, customers often hesitate to message business WhatsApp numbers because they fear it's an unmanned account or an annoying bot that will spam them later.
+The Addition:
+Add a pulsing green indicator next to the WhatsApp button: 🟢 Active Now • Typical reply in under 5 minutes (with Thrissur facility hours: 8 AM – 8 PM).
+Why it works: Eliminates hesitation and encourages immediate messaging while they are looking at the page.
+3. Kerala District / Pincode Delivery Checker (Instant Local Assurance)
+The Problem Now: Delivery terms are in a text section further down the page. Mobile users want immediate assurance: "Will this arrive at my house in Kozhikode or Aluva before Sunday?"
+The Addition:
+A compact one-tap dropdown or 6-digit Pincode box right under the product card:
+Select: [Thrissur / Ernakulam / Palakkad] → ⚡ Free Delivery within 48 Hours
+Select: [Kozhikode / Malappuram / Kannur / TVM / Other] → 🚚 Express Courier Delivery Available (COD Supported)
+Why it works: Instantly answers the buyer's unspoken question before they even ask on WhatsApp.
+4. Interactive "Water Dilution vs. Stone-Crushed" Comparison Slider
+The Problem Now: The comparison table is great, but tables require horizontal swiping on mobile screens.
+The Addition:
+A visual Before/After touch toggle or visual tab:
+Tab 1: Commercial Store Brand (Show photo/graphic of water separation, yellowish watery liquid, splattering oil).
+Tab 2: Flanora Stone-Crushed (Show thick, coarse fibers, rich aroma, clean sizzle).
+Why it works: 80% of mobile users are visual skimmers; a side-by-side visual communicates 10x faster than reading table rows.
+5. Instant Commercial Savings Calculator for Restaurants & Caterers
+Targeting: Chefs, cloud kitchen managers, wedding caterers.
+The Addition:
+A simple touch slider: "How much paste does your kitchen use per week?" [ 5 kg ————— 25 kg ————— 100 kg ]
+Instantly computes:
+💡 Estimated prep hours saved: ~14 hours/week (no peeling or crushing)
+💰 Savings vs. buying whole ginger/garlic: Cuts raw material loss by ~25%
+🥘 Dish Yield: Sufficient for ~1,250 biryani portions
+One-tap button: "Get Bulk HORECA Pricing on WhatsApp"
+6. "Tap to Call" Quick Dial Speed-Dial in Mobile Bottom Bar
+The Mobile Reality: Many older homemakers, caterers, and provision store owners in Kerala prefer talking directly in Malayalam over typing long WhatsApp messages.
+The Addition:
+Ensure the "Call Desk" button on mobile initiates a direct call with a label like: 📞 Call in Malayalam / English (+91 6238 796 383).
+7. Digital "1-Page Retail Margin Card" for Salesmen
+The Salesman Use Case: When one of your founders or sales reps visits a local supermarket in Kochi or Thrissur, they need to share information in 10 seconds before the store manager loses patience.
+The Addition:
+A button on both sites: "Download 1-Page Retailer Dealership Card (Image/PDF)".
+A clean, print-friendly white card showing bottle photos, retail margins (18%–25%), FSSAI, GSTIN, and order MOQ.
+Can be shared instantly via WhatsApp direct share.
