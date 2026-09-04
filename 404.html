@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#070e17" />
+  <title>404 - Page Not Found | Aquariz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg-deep: #050b12;
+      --bg-card: rgba(14, 25, 39, 0.7);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --accent-gold: #e5a93c;
+      --accent-cyan: #06b6d4;
+      --text-white: #ffffff;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --radius-md: 14px;
+      --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background-color: var(--bg-deep); }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 480px; text-align: center; }
+    .error-code {
+      font-family: var(--font-serif);
+      font-size: 8rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 60px rgba(229, 169, 60, 0.3);
+    }
+    .error-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 1rem;
+    }
+    .error-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      padding: 0.85rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(37, 99, 235, 0.5); }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+    .flanora-link {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+    .flanora-link p { color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.95rem; }
+    .flanora-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+    }
+    .flanora-link a:hover { color: #fff; }
+    @media (max-width: 480px) {
+      .error-code { font-size: 5rem; }
+      .error-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-desc">
+      The page you're looking for doesn't exist or has been moved. 
+      It might be a temporary issue or the URL was entered incorrectly.
+    </p>
+    <div class="btn-group">
+      <a href="index.html" class="btn btn-primary">
+        <i class="fa-solid fa-house"></i> Back to Home
+      </a>
+      <a href="flanora/index.html" class="btn btn-secondary">
+        <i class="fa-solid fa-leaf"></i> Visit Flanora
+      </a>
+    </div>
+    <div class="flanora-link">
+      <p>Looking for our premium cold-pressed pastes?</p>
+      <a href="flanora/index.html">
+        <i class="fa-solid fa-jar"></i> Explore Flanora Products
+      </a>
+    </div>
+  </div>
+</body>
+</html>

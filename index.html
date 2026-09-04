@@ -1,1270 +1,809 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aquariz - Premium Food Products & Culinary Solutions</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-blue: #0a1628;
-            --secondary-blue: #1e3a8a;
-            --accent-blue: #3b82f6;
-            --light-blue: #dbeafe;
-            --warm-white: #fefefe;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --orange: #f97316;
-            --green: #059669;
-            --gold: #f59e0b;
-            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--warm-white);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Mobile-first container sizing */
-        @media (min-width: 640px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .container {
-                padding: 0 2rem;
-            }
-        }
-
-        /* Loading Animation */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loading-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 2rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            border-top: 4px solid var(--orange);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        /* Header - Ultra Mobile Optimized */
-        header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            min-height: 70px;
-        }
-
-        .logo-section {
-            flex: 1;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .tagline {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 300;
-            margin-top: 0.2rem;
-            line-height: 1.2;
-        }
-
-        .nav-toggle {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1001;
-        }
-
-        .nav-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: white;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-            transition: right 0.3s ease;
-            z-index: 1000;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-menu li {
-            margin: 1.5rem 0;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-menu a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(10px);
-        }
-
-        /* Desktop Navigation */
-        @media (min-width: 1024px) {
-            .header-container {
-                padding: 1.5rem 2rem;
-            }
-
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 0.9rem;
-            }
-
-            .nav-toggle {
-                display: none;
-            }
-
-            .nav-menu {
-                position: static;
-                width: auto;
-                height: auto;
-                background: none;
-                flex-direction: row;
-                justify-content: flex-end;
-                gap: 2rem;
-            }
-
-            .nav-menu a {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
-            }
-
-            .nav-menu a:hover {
-                transform: translateY(-2px);
-            }
-        }
-
-        /* Hero Section - Mobile First */
-        .hero {
-            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(30, 58, 138, 0.9)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="grad1" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient></defs><rect width="1200" height="800" fill="%23f8fafc"/><circle cx="300" cy="200" r="100" fill="url(%23grad1)"/><circle cx="900" cy="600" r="150" fill="url(%23grad1)"/><circle cx="1100" cy="300" r="80" fill="url(%23grad1)"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
-            animation: shimmer 4s infinite ease-in-out;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            line-height: 1.5;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            min-width: 200px;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-blue), var(--secondary-blue));
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Hero */
-        @media (min-width: 640px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .hero-buttons {
-                flex-direction: row;
-                gap: 1.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-title {
-                font-size: 4.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Brands Section */
-        .brands {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--orange);
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .brand-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .brand-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(59, 130, 246, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .brand-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .brand-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .brand-card:hover::before {
-            opacity: 1;
-        }
-
-        .brand-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .brand-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .brand-tagline {
-            font-size: 1rem;
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .brand-description {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .brand-btn {
-            background: linear-gradient(135deg, var(--green), #047857);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .brand-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Responsive Brands */
-        @media (min-width: 768px) {
-            .brands {
-                padding: 6rem 0;
-            }
-
-            .brand-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 3rem;
-            }
-
-            .brand-card {
-                padding: 3rem;
-            }
-
-            .section-title {
-                font-size: 3rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* About Section */
-        .about {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--light-blue) 0%, #f0f9ff 100%);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-
-        .about-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            font-size: 1rem;
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .values-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .values-list li {
-            padding: 0.8rem 0;
-            position: relative;
-            padding-left: 2.5rem;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-        }
-
-        .values-list li:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            background: var(--orange);
-            border-radius: 50%;
-        }
-
-        .values-list li:after {
-            content: "✓";
-            position: absolute;
-            left: 4px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-weight: bold;
-            font-size: 0.7rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .stat-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        /* Responsive About */
-        @media (min-width: 768px) {
-            .about {
-                padding: 6rem 0;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 4rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .stats-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: white;
-            position: relative;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></svg>');
-            background-size: 50px 50px;
-        }
-
-        .contact-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .contact-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .contact-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .contact-card i {
-            font-size: 2rem;
-            color: var(--orange);
-            margin-bottom: 1rem;
-        }
-
-        .contact-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .contact-card p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
-        /* Responsive Contact */
-        @media (min-width: 640px) {
-            .contact-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .contact {
-                padding: 6rem 0;
-            }
-
-            .contact-title {
-                font-size: 3rem;
-            }
-
-            .contact-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2rem;
-            }
-        }
-
-        /* Footer */
-        footer {
-            background: #0f172a;
-            color: white;
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            color: var(--orange);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .footer-section ul li a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Responsive Footer */
-        @media (min-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Scroll animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Performance optimizations */
-        .brand-card,
-        .contact-card,
-        .stat-item {
-            will-change: transform;
-        }
-
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Touch targets for mobile */
-        @media (max-width: 768px) {
-
-            .btn,
-            .brand-btn,
-            .nav-menu a {
-                min-height: 44px;
-                min-width: 44px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#05150a" />
+  <meta name="robots" content="index, follow" />
+  <meta name="description" content="Aquariz - A precision engineering and FMCG venture based in Thrissur, Kerala. Specializing in cold-pressed spice pastes, sustainable manufacturing, and innovative engineering solutions." />
+  <meta name="keywords" content="Aquariz, Thrissur, Kerala, FMCG, cold-pressed pastes, ginger paste, garlic paste, Flanora, engineering, sustainable manufacturing, innovation" />
+  <meta property="og:title" content="Aquariz | Precision Engineering & FMCG Venture from Kerala" />
+  <meta property="og:description" content="Aquariz is a precision engineering and FMCG venture based in Thrissur, Kerala. We combine engineering rigor with entrepreneurial drive to build sustainable products and businesses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aquariz.in/" />
+  <meta property="og:image" content="https://aquariz.in/Aquariz%20logo%20white.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aquariz | Precision Engineering & FMCG Venture from Kerala" />
+  <meta name="twitter:description" content="Aquariz is a precision engineering and FMCG venture based in Thrissur, Kerala." />
+  <meta name="twitter:image" content="https://aquariz.in/Aquariz%20logo%20white.jpg" />
+  <link rel="canonical" href="https://aquariz.in/" />
+  <link rel="icon" type="image/jpeg" href="Aquariz logo white.jpg" />
+  <link rel="apple-touch-icon" href="Aquariz logo white.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN SYSTEM & VARIABLES
+       ========================================================================== */
+    :root {
+      --color-bg: #05150a;
+      --color-surface: #0a2313;
+      --color-surface-elevated: #10331c;
+      --color-border: rgba(255, 255, 255, 0.08);
+      --color-border-emerald: rgba(34, 197, 94, 0.2);
+      --color-border-gold: rgba(230, 167, 66, 0.3);
+
+      --color-primary: #15803d;
+      --color-primary-bright: #22c55e;
+      --color-accent: #e6a742;
+      --color-accent-light: #fef08a;
+      --color-accent-cream: #fbf8f2;
+
+      --color-text: #f1f5f9;
+      --color-text-muted: #94a3b8;
+      --color-text-green: #86efac;
+      --color-white: #ffffff;
+
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-8: 48px;
+      --space-10: 64px;
+      --space-12: 96px;
+
+      --radius-none: 0;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+      --shadow-focus: 0 0 0 3px rgba(34, 197, 94, 0.3);
+
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; background-color: var(--color-bg); scroll-padding-top: 74px; }
+    body {
+      font-family: var(--font-body); background-color: var(--color-bg); color: var(--color-text);
+      line-height: 1.6; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; transition: color var(--transition-fast); }
+    a:active { opacity: 0.7; }
+    button:active { opacity: 0.7; }
+    a, button, input, select, textarea { touch-action: manipulation; }
+    * { -webkit-tap-highlight-color: rgba(34, 197, 94, 0.15); }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { width: 100%; max-width: 1240px; margin-left: auto; margin-right: auto; padding-left: var(--space-4); padding-right: var(--space-4); }
+    @media (max-width: 480px) { .container { padding-left: var(--space-3); padding-right: var(--space-3); } }
+
+    .bg-mesh-layer {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(34, 197, 94, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(230, 167, 66, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 75%, rgba(21, 128, 61, 0.15) 0%, transparent 55%);
+    }
+    .bg-pattern-layer {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ==========================================================================
+       2. TOP BANNER & NAVBAR
+       ========================================================================== */
+    .top-parent-banner {
+      background: #020b05; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem; padding: 0.45rem 0; color: var(--color-text-muted);
+      position: relative; z-index: 100;
+    }
+    .top-banner-flex {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%;
+    }
+    @media (max-width: 540px) {
+      .top-banner-flex { flex-direction: column; justify-content: center; text-align: center; gap: 0.25rem; font-size: 0.74rem; }
+    }
+    .top-parent-banner a { color: var(--color-accent); font-weight: 700; display: inline-flex; align-items: center; gap: 0.35rem; }
+    .top-parent-banner a:hover { color: #fff; }
+
+    .navbar {
+      position: sticky; top: 0; z-index: 90;
+      background: rgba(5, 21, 10, 0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border-emerald); transition: all var(--transition-smooth);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+
+    .brand-header-link { display: flex; align-items: center; gap: 0.85rem; }
+    .aquariz-nav-logo { height: 46px; width: auto; object-fit: contain; }
+
+    .aquariz-title-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .aquariz-brand-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; color: #fff; }
+    .aquariz-by-parent { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #86efac; }
+
+    .nav-links-desktop { display: none; align-items: center; gap: 1.75rem; }
+    @media (min-width: 960px) { .nav-links-desktop { display: flex; } }
+
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: #cbd5e1; position: relative; }
+    .nav-link:hover, .nav-link.active { color: #fff; }
+    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px; background: var(--color-primary-bright); transition: width var(--transition-fast); }
+    .nav-link:hover::after { width: 100%; }
+
+    .nav-action-btns { display: flex; align-items: center; gap: 0.75rem; }
+
+    .btn-nav-order { min-height: 44px;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, #16a34a, #15803d); color: #fff;
+      font-weight: 700; font-size: 0.86rem; padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-sm); box-shadow: var(--shadow-md); transition: all var(--transition-fast);
+    }
+    .btn-nav-order:hover { box-shadow: var(--shadow-lg); }
+
+    .btn-mobile-toggle {
+      background: transparent; border: 1px solid var(--color-border-emerald); color: #fff;
+      width: 42px; height: 42px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    @media (min-width: 960px) { .btn-mobile-toggle { display: none; } }
+
+    /* Mobile Drawer */
+    .aquariz-drawer {
+      position: fixed; inset: 0; background: rgba(4, 16, 8, 0.98);
+      backdrop-filter: blur(20px); z-index: 999; display: flex; flex-direction: column;
+      padding: 2rem 1.5rem; transform: translateX(100%); transition: transform var(--transition-smooth);
+    }
+    .aquariz-drawer.open { transform: translateX(0); }
+    .drawer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .drawer-items { display: flex; flex-direction: column; gap: 1.35rem; }
+    .drawer-item { font-size: 1.25rem; font-weight: 600; color: #f1f5f9; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 0.75rem; }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero-wrap { position: relative; padding: var(--space-8) 0 var(--space-8); z-index: 10; }
+    @media (min-width: 768px) { .hero-wrap { padding: var(--space-12) 0 var(--space-10); } }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: start; text-align: center; }
+    @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.2fr 1fr; gap: var(--space-8); text-align: left; } }
+
+    .hero-badge-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.4);
+      padding: 0.4rem 0.95rem; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 700; color: #86efac; margin-bottom: 1.25rem;
+    }
+    .hero-main-title { font-size: 1.85rem; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: #fff; margin-bottom: 1.25rem; }
+    @media (min-width: 480px) { .hero-main-title { font-size: 2.3rem; } }
+    @media (min-width: 640px) { .hero-main-title { font-size: 3.2rem; } }
+    @media (min-width: 1024px) { .hero-main-title { font-size: 3.8rem; } }
+    .title-highlight-gold { background: linear-gradient(135deg, #fff 10%, #fde047 50%, #eab308 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-description { font-size: 1.05rem; color: #cbd5e1; line-height: 1.7; margin-bottom: 2rem; max-width: 620px; }
+
+    .hero-button-group { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; justify-content: center; }
+    @media (max-width: 639px) {
+      .hero-button-group { flex-direction: column; width: 100%; gap: 0.75rem; }
+      .hero-button-group .btn-hero-primary,
+      .hero-button-group .btn-hero-secondary { width: 100%; justify-content: center; text-align: center; }
+    }
+
+
+    .btn-hero-primary { min-height: 48px;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: linear-gradient(135deg, #22c55e, #15803d); color: #fff; font-weight: 700; font-size: 0.98rem;
+      padding: 0.95rem 1.85rem; border-radius: var(--radius-sm); box-shadow: var(--shadow-md); transition: all var(--transition-fast); cursor: pointer;
+    }
+    .btn-hero-primary:hover { box-shadow: var(--shadow-lg); background: linear-gradient(135deg, #4ade80, #16a34a); }
+    .btn-hero-secondary { min-height: 48px;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--color-border-emerald);
+      color: #fff; font-weight: 600; font-size: 0.95rem; padding: 0.95rem 1.6rem;
+      border-radius: var(--radius-sm); transition: all var(--transition-fast);
+    }
+    .btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(34, 197, 94, 0.6); }
+
+    .trust-chips-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; }
+    .trust-chip { display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(16, 51, 28, 0.6); border: 1px solid var(--color-border-emerald); padding: 0.4rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; color: #e2e8f0; }
+    .trust-chip i { color: var(--color-primary-bright); }
+
+    .hero-showcase-card {
+      background: linear-gradient(145deg, rgba(16, 51, 28, 0.7) 0%, rgba(6, 26, 12, 0.9) 100%);
+      border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 2.25rem;
+      text-align: center; position: relative; box-shadow: var(--shadow-lg); overflow: hidden;
+    }
+    .aquariz-hero-image { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+    .hero-badge-seal { background: rgba(230, 167, 66, 0.15); border: 1px solid var(--color-border-gold); color: var(--color-accent-light); padding: 0.5rem 1rem; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 700; margin-bottom: 1.5rem; display: inline-block; }
+    .hero-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; text-align: left; }
+    .stat-item { background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm); padding: 0.75rem; }
+    .stat-value { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .stat-label { font-size: 0.72rem; color: var(--color-text-muted); }
+
+    /* ==========================================================================
+       4. SECTIONS
+       ========================================================================== */
+    .section-spacing { padding: var(--space-8) 0; position: relative; z-index: 10; }
+    @media (min-width: 768px) { .section-spacing { padding: var(--space-12) 0; } }
+    .section-header-center { text-align: center; max-width: 760px; margin: 0 auto var(--space-10); }
+    .badge-sub { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.75rem; }
+    .section-heading { font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    @media (min-width: 640px) { .section-heading { font-size: 1.95rem; } }
+    @media (min-width: 768px) { .section-heading { font-size: 2.5rem; } }
+    .section-subtext { font-size: 1rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    /* Engineering Section */
+    .engineering-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-8); }
+    @media (min-width: 768px) { .engineering-grid { grid-template-columns: repeat(2, 1fr); } }
+    .engineering-card { background: var(--color-surface); border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 1.5rem; transition: all var(--transition-smooth); display: flex; flex-direction: column; align-items: flex-start; }
+    @media (min-width: 768px) { .engineering-card { padding: 2rem; } }
+    .engineering-card:hover { border-color: var(--color-primary-bright); box-shadow: var(--shadow-lg); }
+    .engine-icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.3); color: #4ade80; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.25rem; }
+    .engineering-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+    .engineering-card p { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
+
+    /* Story Section */
+    .story-card { background: linear-gradient(145deg, rgba(16, 51, 28, 0.7) 0%, rgba(6, 26, 12, 0.9) 100%); border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 1.5rem; text-align: center; }
+    @media (min-width: 768px) { .story-card { padding: 2.5rem; } }
+    .story-card h2 { font-size: 1.5rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 1.5rem; }
+    @media (min-width: 768px) { .story-card h2 { font-size: 2rem; } }
+    .story-card p { font-size: 1rem; color: #cbd5e1; line-height: 1.8; max-width: 700px; margin: 0 auto 1.5rem; }
+    .founder-quote { font-style: italic; color: var(--color-accent-light); font-size: 1.1rem; border-left: 3px solid var(--color-accent); padding-left: 1.5rem; margin-bottom: 1rem; }
+
+    /* Facility Section */
+    .facility-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); margin-top: var(--space-8); align-items: start; }
+    @media (min-width: 900px) { .facility-grid { grid-template-columns: 1fr 1fr; } }
+    .facility-info-card { background: var(--color-surface); border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column; }
+    @media (min-width: 900px) { .facility-info-card { padding: 2rem; } }
+    .facility-info-card h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.3; }
+    @media (min-width: 768px) { .facility-info-card h2 { font-size: 1.8rem; } }
+    .facility-info-card p { font-size: 0.95rem; color: #cbd5e1; line-height: 1.7; margin-bottom: 1.5rem; }
+    .gstin-box { background: rgba(34, 197, 94, 0.1); border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .gstin-box .gstin-text { font-family: monospace; font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .gstin-box .gstin-copy { background: var(--color-primary); color: #fff; font-weight: 700; font-size: 0.78rem; padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); border: none; cursor: pointer; transition: all var(--transition-fast); }
+    .gstin-box .gstin-copy:hover { background: #22c55e; }
+    .facility-meta { font-size: 0.92rem; color: #cbd5e1; line-height: 1.7; }
+
+    @media (max-width: 540px) {
+      .facility-info-card a.btn-hero-primary,
+      .facility-info-card a.btn-hero-secondary {
+        width: 100%; justify-content: center; text-align: center;
+      }
+    }
+
+    .facility-meta strong { color: #fff; }
+    .facility-image-wrap { border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/10; }
+    .facility-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Contact Section */
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-top: var(--space-8); }
+    @media (min-width: 768px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
+    .contact-card { background: var(--color-surface); border: 1px solid var(--color-border-emerald); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column; }
+    @media (min-width: 768px) { .contact-card { padding: 2rem; } }
+    .contact-card h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 0.75rem; color: #cbd5e1; transition: all var(--transition-fast); text-decoration: none; }
+    .contact-link:hover { border-color: var(--color-primary-bright); color: #fff; }
+    .contact-link i { font-size: 1.2rem; width: 24px; text-align: center; }
+    .contact-link .contact-label { font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700; }
+    .contact-link .contact-value { font-weight: 700; color: #fff; }
+
+    /* ==========================================================================
+       5. FOOTER
+       ========================================================================== */
+    .aquariz-footer { background: #020904; border-top: 1px solid var(--color-border-emerald); padding: 3.5rem 0 calc(5.5rem + env(safe-area-inset-bottom, 0px)); margin-top: auto; position: relative; z-index: 10; }
+    @media (min-width: 768px) { .aquariz-footer { padding-bottom: 3.5rem; } }
+    .footer-flex { display: flex; flex-direction: column; gap: var(--space-6); }
+    @media (min-width: 768px) { .footer-flex { flex-direction: row; justify-content: space-between; align-items: flex-start; } }
+    .footer-bottom-copy { border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: var(--space-6); margin-top: var(--space-6); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); font-size: var(--text-sm); color: var(--color-text-muted); }
+
+    /* ==========================================================================
+       6. MOBILE BOTTOM BAR
+       ========================================================================== */
+    .mobile-bottom-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(5, 11, 18, 0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--color-border-emerald);
+      padding: 0.55rem 0.75rem; padding-bottom: max(0.55rem, env(safe-area-inset-bottom));
+      display: flex; align-items: center; justify-content: space-around;
+      gap: 0.5rem; z-index: 99;
+    }
+    @media (min-width: 768px) { .mobile-bottom-bar { display: none; } }
+    .mobile-bottom-bar .bar-btn {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.45rem;
+      padding: 0.65rem 0.5rem; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 700;
+      min-height: 44px; text-decoration: none; touch-action: manipulation;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+    .mobile-bottom-bar .bar-btn:active { transform: scale(0.96); }
+    .bar-wa { background: #16a34a; color: #fff; }
+    .bar-call { background: #15803d; color: #fff; }
+    .bar-parent { background: rgba(255, 255, 255, 0.08); color: #cbd5e1; }
+
+    /* ==========================================================================
+       7. TOAST
+       ========================================================================== */
+    .toast-aquariz {
+      position: fixed; bottom: 80px; right: 20px; background: #061e0d; border: 1px solid var(--color-primary-bright);
+      color: #fff; padding: 0.75rem 1.25rem; border-radius: var(--radius-md); box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;
+      z-index: 1000; opacity: 0; transform: translateY(20px); transition: all 0.3s cubic-bezier(0.16,1,0.3,1); pointer-events: none;
+    }
+    .toast-aquariz.show { opacity: 1; transform: translateY(0); }
+
+    /* ==========================================================================
+       8. SKIP LINK
+       ========================================================================== */
+    .skip-link { position: fixed; left: -999px; top: -999px; z-index: 9999; background: var(--color-primary-bright); color: #fff; padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); font-weight: 700; }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Aquariz",
+    "description": "Precision engineering and FMCG venture based in Thrissur, Kerala.",
+    "url": "https://aquariz.in",
+    "logo": "https://aquariz.in/Aquariz%20logo%20white.jpg",
+    "address": { "@type": "PostalAddress", "streetAddress": "Ward -12, Plot no 801/2-24, Thumboor", "addressLocality": "Thrissur", "addressRegion": "Kerala", "postalCode": "680662", "addressCountry": "IN" },
+    "contactPoint": { "@type": "ContactPoint", "telephone": "+916238796383", "contactType": "customer service", "email": "aquariz.official@gmail.com" },
+    "sameAs": ["https://instagram.com/aquariz.official"]
+  }
+  </script>
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-logo">AQUARIZ</div>
-        <div class="loading-spinner"></div>
+
+  <!-- Background Layers -->
+  <div class="bg-mesh-layer" aria-hidden="true"></div>
+  <div class="bg-pattern-layer" aria-hidden="true"></div>
+
+  <!-- Top Banner -->
+  <aside class="top-parent-banner" aria-label="Company Identity">
+    <div class="container top-banner-flex">
+      <span><strong>Aquariz</strong> &bull; Precision Engineering & FMCG &bull; Thrissur, Kerala</span>
+      <a href="flanora/index.html"><i class="fa-solid fa-jar"></i> Flanora Culinary Pastes &rarr;</a>
     </div>
+  </aside>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-container">
-                <div class="logo-section">
-                    <a href="#home" class="logo">AQUARIZ</a>
-                    <div class="tagline">Premium Food Products & Culinary Solutions</div>
-                </div>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-header-link" aria-label="Aquariz Home">
+        <img src="Aquariz logo white.jpg" alt="Aquariz Brand Logo" class="aquariz-nav-logo" />
+        <div class="aquariz-title-text">
+          <span class="aquariz-brand-title">AQUARIZ</span>
+          <span class="aquariz-by-parent">Precision Engineering & FMCG</span>
+        </div>
+      </a>
 
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+      <nav class="nav-links-desktop" aria-label="Main Navigation">
+        <a href="#engineering" class="nav-link">Engineering</a>
+        <a href="#story" class="nav-link">Our Story</a>
+        <a href="#facility" class="nav-link">Facility</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="flanora/index.html" class="nav-link"><i class="fa-solid fa-jar"></i> Flanora</a>
+      </nav>
+
+      <div class="nav-action-btns">
+        <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20learn%20more" target="_blank" rel="noopener noreferrer" class="btn-nav-order">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Contact Us</span>
+        </a>
+        <button class="btn-mobile-toggle" id="aquarizMenuToggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="aquariz-drawer" id="aquarizDrawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="aquariz-title-text">
+        <span class="aquariz-brand-title">AQUARIZ</span>
+        <span class="aquariz-by-parent">Precision & FMCG</span>
+      </div>
+      <button class="btn-mobile-toggle" id="aquarizDrawerClose" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="drawer-items">
+      <a href="#engineering" class="drawer-item"><span>Engineering</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#story" class="drawer-item"><span>Our Story</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#facility" class="drawer-item"><span>Facility</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#contact" class="drawer-item"><span>Contact</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="flanora/index.html" class="drawer-item" style="color: var(--color-accent);"><span>Flanora Sub-Brand</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20learn%20more" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="justify-content:center;margin-top:1rem;">
+        <i class="fa-brands fa-whatsapp"></i> Quick WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="hero-wrap">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge-pill">
+              <i class="fa-solid fa-seedling"></i>
+              <span>Precision Engineering & FMCG from Kerala</span>
+            </div>
+
+            <h1 class="hero-main-title">
+              Where Engineering <br />
+              <span class="title-highlight-gold">Meets Enterprise</span>
+            </h1>
+
+            <p class="hero-description">
+              Aquariz is a precision engineering and FMCG venture based in Thrissur, Kerala.
+              We combine manufacturing rigor with innovative business thinking to build sustainable products that serve communities.
+            </p>
+
+            <div class="hero-button-group">
+              <a href="#engineering" class="btn-hero-primary">
+                <i class="fa-solid fa-gears"></i>
+                <span>Explore Engineering</span>
+              </a>
+              <a href="#facility" class="btn-hero-secondary">
+                <i class="fa-solid fa-industry"></i>
+                <span>Visit Our Facility</span>
+              </a>
+            </div>
+
+            <!-- Trust Chips -->
+            <div class="trust-chips-row">
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> GST Registered</div>
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> FSSAI Compliant</div>
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> Thrissur Based</div>
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> Kerala Made</div>
+            </div>
+          </div>
+
+          <!-- Hero Showcase Card -->
+          <div class="hero-showcase-card">
+            <img src="Aquariz logo white.jpg" alt="Aquariz Manufacturing Facility" class="aquariz-hero-image" loading="lazy" />
+            <div class="hero-badge-seal">
+              <i class="fa-solid fa-certificate"></i> Verified Indian Manufacturer
+            </div>
+            <div class="hero-stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">GSTIN</div>
+                <div class="stat-label">32ACCFA6985C1ZL</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">+91 6238 796 383</div>
+                <div class="stat-label">Phone / WhatsApp</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">Thrissur, Kerala</div>
+                <div class="stat-label">Headquarters</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">Flanora</div>
+                <div class="stat-label">FMCG Sub-Brand</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENGINEERING SECTION -->
+    <section class="section-spacing" id="engineering">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="badge-sub"><i class="fa-solid fa-gears"></i> Core Capabilities</div>
+          <h2 class="section-heading">Engineering That Builds Brands</h2>
+          <p class="section-subtext">
+            Aquariz combines precision manufacturing, quality systems, and entrepreneurial strategy to deliver products and ventures that stand the test of time.
+          </p>
+        </div>
+
+        <div class="engineering-grid">
+          <div class="engineering-card">
+            <div class="engine-icon"><i class="fa-solid fa-industry"></i></div>
+            <h3>Manufacturing</h3>
+            <p>State-of-the-art processing unit in Thrissur with cold-press technology and induction-sealed packaging. GMP-compliant facilities ensuring every batch meets the highest standards.</p>
+          </div>
+          <div class="engineering-card">
+            <div class="engine-icon"><i class="fa-solid fa-microscope"></i></div>
+            <h3>Quality Control</h3>
+            <p>Every product undergoes rigorous batch testing for purity, potency, and safety. FSSAI compliant with full traceability from farm to finished product.</p>
+          </div>
+          <div class="engineering-card">
+            <div class="engine-icon"><i class="fa-solid fa-flask"></i></div>
+            <h3>R&D & Innovation</h3>
+            <p>Continuous process improvement and product development. We invest in cold-crushing technology and preservation methods that maximize natural essence retention.</p>
+          </div>
+          <div class="engineering-card">
+            <div class="engine-icon"><i class="fa-solid fa-chart-simple"></i></div>
+            <h3>Brand Strategy</h3>
+            <p>From concept to market launch, Aquariz brings entrepreneurial thinking to every venture. We build brands that connect authentically with consumers and partners.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY SECTION -->
+    <section class="section-spacing" id="story" style="background: rgba(2, 12, 5, 0.5);">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="badge-sub"><i class="fa-solid fa-heart"></i> Our Story</div>
+          <h2 class="section-heading">Born from Purpose, Built to Last</h2>
+        </div>
+        <div class="story-card">
+          <p class="founder-quote">"We believe great products come from great processes. Every bottle, every batch, every brand we build reflects our commitment to excellence and authenticity."</p>
+          <h2 style="font-size: 1.6rem; color: #fff; margin-bottom: 1rem;">The Aquariz Promise</h2>
+          <p>
+            Aquariz started with a simple belief: that Kerala's natural wealth deserves products made with the same care and precision as the traditions they come from.
+            From the spice gardens of Wayanad and Idukki to the processing floor in Thrissur, we bring you products that honor their origins.
+          </p>
+          <p>
+            Our journey is rooted in combining the rigor of engineering with the passion of entrepreneurship — building brands, systems, and products that create real value for our communities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACILITY SECTION -->
+    <section class="section-spacing" id="facility">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="badge-sub"><i class="fa-solid fa-industry"></i> Processing Facility</div>
+          <h2 class="section-heading">Manufactured in Thrissur, Kerala</h2>
+          <p class="section-subtext">
+            Aquariz's central processing unit ensures quality control at every stage of production.
+          </p>
+        </div>
+
+        <div class="facility-grid">
+          <div class="facility-info-card">
+            <h2>Our Thrissur Processing Hub</h2>
+            <p>
+              Aquariz operates a fully integrated processing and manufacturing facility in Thrissur, Kerala.
+              Our facility handles everything from raw material sourcing through cold-press processing, quality testing, and induction-sealed packaging.
+            </p>
+
+            <div class="gstin-box">
+              <div>
+                <span style="font-size: 0.72rem; color: #86efac; font-weight: 700; text-transform: uppercase;">GSTIN</span>
+                <div style="font-family: monospace; font-size: 1.15rem; font-weight: 700; color: #fff;">GSTIN: 32ACCFA6985C1ZL</div>
+              </div>
+              <button type="button" class="gstin-copy" onclick="copyAquarizGstin()">
+                <i class="fa-regular fa-copy"></i> Copy
+              </button>
+            </div>
+
+            <div class="facility-meta">
+              <strong>Address:</strong><br />
+              Aquariz Processing Division<br />
+              Ward -12, Plot no 801/2-24, Thumboor<br />
+              Thumboor P.O,<br />
+              Thrissur District, Kerala, PIN: <strong>680662</strong>
+            </div>
+
+            <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center;">
+              <a href="https://www.google.com/maps/search/?api=1&query=Ward%20-12%2C%20Plot%20no%20801%2F2-24%2C%20Thumboor%2C%20Thrissur%2C%20Kerala%20680662" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="font-size:0.85rem; padding:0.75rem 1.25rem;">
+                <i class="fa-solid fa-location-arrow"></i> Open in Google Maps
+              </a>
+              <a href="tel:+916238796383" class="btn-hero-secondary" style="font-size:0.85rem; padding:0.75rem 1.25rem;">
+                <i class="fa-solid fa-phone"></i> Call Facility
+              </a>
+            </div>
+          </div>
+
+          <div class="facility-image-wrap">
+            <img src="assets/images/aquariz_facility.jpg" alt="Aquariz Processing Facility in Thrissur, Kerala" class="facility-image" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section-spacing" id="contact" style="background: rgba(4, 18, 9, 0.95);">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="badge-sub"><i class="fa-solid fa-envelope"></i> Get in Touch</div>
+          <h2 class="section-heading">Connect With Us</h2>
+          <p class="section-subtext">
+            Reach out for partnerships, inquiries, or just to say hello.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Direct Contact</h3>
+            <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20connect" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <i class="fa-brands fa-whatsapp" style="color: #22c55e;"></i>
+              <div>
+                <div class="contact-label">WhatsApp</div>
+                <div class="contact-value">+91 6238 796 383</div>
+              </div>
+            </a>
+            <a href="tel:+916238796383" class="contact-link">
+              <i class="fa-solid fa-phone" style="color: var(--color-primary-bright);"></i>
+              <div>
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">+91 6238 796 383</div>
+              </div>
+            </a>
+            <a href="mailto:aquariz.official@gmail.com" class="contact-link">
+              <i class="fa-solid fa-envelope" style="color: var(--color-accent);"></i>
+              <div>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">aquariz.official@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://instagram.com/aquariz.official" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <i class="fa-brands fa-instagram" style="color: #ec4899;"></i>
+              <div>
+                <div class="contact-label">Instagram</div>
+                <div class="contact-value">@aquariz.official</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <h3>Quick Message</h3>
+            <form style="display:flex; flex-direction:column; gap:1.15rem;" onsubmit="event.preventDefault(); submitAquarizContact();">
+              <div style="display:flex; flex-direction:column; gap:0.35rem;">
+                <label for="aqName" style="font-size:0.8rem; font-weight:700; color:#86efac; text-transform:uppercase;">Your Name *</label>
+                <input type="text" id="aqName" required autocomplete="name" placeholder="Enter your full name" style="width:100%; min-height:48px; background:rgba(5,21,10,0.8); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius-sm); padding:0.75rem 1rem; color:#fff; font-size:16px; outline:none; transition: border-color 0.2s;" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.35rem;">
+                <label for="aqPhone" style="font-size:0.8rem; font-weight:700; color:#86efac; text-transform:uppercase;">WhatsApp / Phone *</label>
+                <input type="tel" id="aqPhone" required inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" style="width:100%; min-height:48px; background:rgba(5,21,10,0.8); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius-sm); padding:0.75rem 1rem; color:#fff; font-size:16px; outline:none; transition: border-color 0.2s;" />
+              </div>
+              <div style="display:flex; flex-direction:column; gap:0.35rem;">
+                <label for="aqMessage" style="font-size:0.8rem; font-weight:700; color:#86efac; text-transform:uppercase;">Message / Inquiry</label>
+                <textarea id="aqMessage" rows="3" placeholder="Tell us about your requirements or question..." style="width:100%; background:rgba(5,21,10,0.8); border:1px solid rgba(34,197,94,0.3); border-radius:var(--radius-sm); padding:0.75rem 1rem; color:#fff; font-size:16px; outline:none; resize:vertical; transition: border-color 0.2s;"></textarea>
+              </div>
+              <div style="display:flex; gap:0.75rem; flex-direction:column; margin-top:0.25rem;">
+                <button type="submit" class="btn-hero-primary" style="width:100%; justify-content:center; border:none; min-height:48px;">
+                  <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
                 </button>
-
-                <nav>
-                    <ul class="nav-menu" id="navMenu">
-                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#brands"><i class="fas fa-star"></i> Our Brands</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+                <button type="button" onclick="sendAquarizEmail()" class="btn-hero-secondary" style="width:100%; justify-content:center; min-height:48px;">
+                  <i class="fa-solid fa-envelope"></i> Send via Email
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Welcome to Aquariz</h1>
-                <p class="hero-subtitle">Your trusted partner for premium food products and authentic culinary
-                    experiences. We bring the finest ingredients and flavors directly to your kitchen.</p>
-                <div class="hero-buttons">
-                    <a href="#brands" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Explore Our Brands
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-phone"></i> Get in Touch
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- Brands Section -->
-    <section class="brands" id="brands">
-        <div class="container">
-            <div class="section-header scroll-reveal">
-                <h2 class="section-title">Our Brands</h2>
-                <p class="section-subtitle">Discover our carefully crafted product lines, each designed to enhance your
-                    culinary journey</p>
-            </div>
+  </main>
 
-            <div class="brand-grid">
-                <div class="brand-card scroll-reveal">
-                    <div class="brand-icon">🌿</div>
-                    <h3 class="brand-name">Flanora</h3>
-                    <p class="brand-tagline">"Taste the Freshness"</p>
-                    <p class="brand-description">
-                        Our premium line of ginger and garlic pastes, crafted from the finest fresh ingredients.
-                        Flanora brings authentic flavors and natural goodness to your everyday cooking.
-                    </p>
-                    <a href="flanora/" class="brand-btn">
-                        <i class="fas fa-arrow-right"></i> Visit Flanora
-                    </a>
-                </div>
-
-                <div class="brand-card scroll-reveal">
-                    <div class="brand-icon">🚀</div>
-                    <h3 class="brand-name">Coming Soon</h3>
-                    <p class="brand-tagline">"Innovation in Every Bite"</p>
-                    <p class="brand-description">
-                        We're constantly innovating and expanding our product portfolio.
-                        Stay tuned for exciting new brands and flavors that will revolutionize your cooking experience.
-                    </p>
-                    <a href="#contact" class="brand-btn">
-                        <i class="fas fa-bell"></i> Stay Updated
-                    </a>
-                </div>
-            </div>
+  <!-- FOOTER -->
+  <footer class="aquariz-footer">
+    <div class="container">
+      <div class="footer-flex">
+        <div>
+          <div class="aquariz-title-text" style="margin-bottom:0.75rem;">
+            <span class="aquariz-brand-title" style="font-size:1.6rem;">AQUARIZ</span>
+            <span class="aquariz-by-parent">Precision Engineering & FMCG Venture</span>
+          </div>
+          <p style="font-size:0.88rem; color:#cbd5e1; max-width:380px; line-height:1.6;">
+            A precision engineering and FMCG venture proudly based in Thrissur, Kerala. Building brands and systems that create lasting value.
+          </p>
+          <div style="margin-top:1rem; display:flex; gap:0.75rem;">
+            <a href="https://instagram.com/aquariz.official" target="_blank" rel="noopener noreferrer" style="width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--color-border-emerald); display:flex; align-items:center; justify-content:center; color:#fff;" aria-label="Aquariz Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/916238796383" target="_blank" rel="noopener noreferrer" style="width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--color-border-emerald); display:flex; align-items:center; justify-content:center; color:#22c55e;" aria-label="WhatsApp Us"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:aquariz.official@gmail.com" style="width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--color-border-emerald); display:flex; align-items:center; justify-content:center; color:#e5a93c;" aria-label="Email Us"><i class="fa-solid fa-envelope"></i></a>
+          </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header scroll-reveal">
-                <h2 class="section-title">About Aquariz</h2>
-            </div>
-
-            <div class="about-content scroll-reveal">
-                <div class="about-text">
-                    <h3>Our Story</h3>
-                    <p>Founded with a passion for authentic flavors and quality ingredients, Aquariz has been dedicated
-                        to bringing premium food products to kitchens worldwide. We believe that great cooking starts
-                        with great ingredients, and every product we create reflects this commitment to excellence.</p>
-
-                    <p>Our journey began with a simple mission: to make authentic, high-quality food products accessible
-                        to everyone. Today, we continue to uphold the same values of quality, freshness, and
-                        authenticity that have made us a trusted name in the culinary world.</p>
-
-                    <ul class="values-list">
-                        <li>Premium Quality Ingredients</li>
-                        <li>Authentic Flavors & Recipes</li>
-                        <li>Sustainable Sourcing Practices</li>
-                        <li>Hygienic Manufacturing Standards</li>
-                        <li>Customer-Centric Approach</li>
-                        <li>Continuous Innovation</li>
-                    </ul>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Natural Ingredients</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5+</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-label">Happy Customers</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Quality Assurance</div>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <h4 style="font-size:0.88rem; font-weight:700; text-transform:uppercase; color:#86efac; margin-bottom:1rem;">Quick Links</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.88rem; color:#cbd5e1;">
+            <li><a href="#engineering">Engineering</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#facility">Facility</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="flanora/index.html">Flanora Sub-Brand</a></li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content scroll-reveal">
-                <h2 class="contact-title">Connect With Us</h2>
-                <p class="contact-subtitle">Ready to experience the Aquariz difference? Get in touch with our team
-                    today!</p>
-
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <i class="fas fa-phone"></i>
-                        <h4>Phone</h4>
-                        <p>+91 6238 796 383</p>
-                    </div>
-
-                    <div class="contact-card">
-                        <i class="fas fa-envelope"></i>
-                        <h4>Email</h4>
-                        <p>aquariz.official@gmail.com</p>
-                    </div>
-
-                    <div class="contact-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h4>Address</h4>
-                        <p>123 Culinary Boulevard<br>Flavor District, FD 12345</p>
-                    </div>
-
-                    <div class="contact-card">
-                        <i class="fas fa-clock"></i>
-                        <h4>Business Hours</h4>
-                        <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <h4 style="font-size:0.88rem; font-weight:700; text-transform:uppercase; color:#86efac; margin-bottom:1rem;">Legal</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.5rem; font-size:0.88rem; color:#cbd5e1;">
+            <li>GSTIN: 32ACCFA6985C1ZL</li>
+            <li>FSSAI: Registered</li>
+            <li>&copy; <span id="aqYear">2026</span> Aquariz. All Rights Reserved.</li>
+          </ul>
         </div>
-    </section>
+      </div>
+      <div class="footer-bottom-copy">
+        <div>Thrissur, Kerala, India</div>
+        <div>Customer Support: +91 6238 796 383</div>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Our Brands</h4>
-                    <ul>
-                        <li><a href="flanora/">Flanora</a></li>
-                        <li><a href="#contact">Upcoming Brands</a></li>
-                    </ul>
-                </div>
+  <!-- MOBILE QUICK BAR -->
+  <div class="mobile-bottom-bar" aria-label="Mobile Quick Actions">
+    <a href="https://wa.me/916238796383?text=Hello%20Aquariz%2C%20I%20would%20like%20to%20connect" class="bar-btn bar-wa" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+    <a href="tel:+916238796383" class="bar-btn bar-call">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call</span>
+    </a>
+    <a href="#facility" class="bar-btn bar-parent">
+      <i class="fa-solid fa-industry"></i>
+      <span>Facility</span>
+    </a>
+  </div>
 
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                    </ul>
-                </div>
+  <!-- TOAST -->
+  <div class="toast-aquariz" id="toastAquariz">
+    <i class="fa-solid fa-circle-check" style="color: var(--color-primary-bright);"></i>
+    <span id="toastAquarizMsg">Copied to clipboard!</span>
+  </div>
 
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    </ul>
-                </div>
-            </div>
+  <script>
+    // Year
+    document.getElementById('aqYear').textContent = new Date().getFullYear();
 
-            <div class="footer-bottom">
-                <p>&copy; 2025 Aquariz. All rights reserved. | Bringing Premium Quality to Your Kitchen</p>
-            </div>
-        </div>
-    </footer>
+    // Drawer toggle
+    const aquarizMenuToggle = document.getElementById('aquarizMenuToggle');
+    const aquarizDrawerClose = document.getElementById('aquarizDrawerClose');
+    const aquarizDrawer = document.getElementById('aquarizDrawer');
+    const fNavItems = document.querySelectorAll('.drawer-item');
 
-    <script>
-        // Performance optimized JavaScript
-        document.addEventListener('DOMContentLoaded', function () {
-            // Loading screen
-            const loadingScreen = document.getElementById('loadingScreen');
+    function openDrawer() { aquarizDrawer.classList.add('open'); aquarizDrawer.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; aquarizMenuToggle.querySelector('i').classList.remove('fa-bars'); aquarizMenuToggle.querySelector('i').classList.add('fa-xmark'); }
+    function closeDrawer() { aquarizDrawer.classList.remove('open'); aquarizDrawer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; aquarizMenuToggle.querySelector('i').classList.remove('fa-xmark'); aquarizMenuToggle.querySelector('i').classList.add('fa-bars'); }
+    if (aquarizMenuToggle) aquarizMenuToggle.addEventListener('click', openDrawer);
+    if (aquarizDrawerClose) aquarizDrawerClose.addEventListener('click', closeDrawer);
+    fNavItems.forEach(item => item.addEventListener('click', closeDrawer));
 
-            window.addEventListener('load', function () {
-                setTimeout(() => {
-                    loadingScreen.classList.add('hidden');
-                }, 1200);
-            });
+    // Toast
+    function showToast(msg) {
+      const toast = document.getElementById('toastAquariz');
+      document.getElementById('toastAquarizMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
 
-            // Mobile navigation
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
+    // Copy GSTIN
+    function copyAquarizGstin() {
+      const gstin = '32ACCFA6985C1ZL';
+      navigator.clipboard.writeText(gstin).then(() => showToast('GSTIN copied!')).catch(() => showToast('GSTIN: ' + gstin));
+    }
 
-            navToggle.addEventListener('click', function () {
-                navToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-            // Close mobile menu when clicking on links
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', function () {
-                    navToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                });
-            });
-
-            // Smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Scroll animations with Intersection Observer
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function (entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.scroll-reveal').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Header background change on scroll
-            let ticking = false;
-
-            function updateHeader() {
-                const header = document.querySelector('header');
-                const scrolled = window.pageYOffset;
-
-                if (scrolled > 50) {
-                    header.style.background = 'linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(30, 58, 138, 0.95))';
-                    header.style.backdropFilter = 'blur(15px)';
-                } else {
-                    header.style.background = 'linear-gradient(135deg, var(--primary-blue), var(--secondary-blue))';
-                    header.style.backdropFilter = 'blur(10px)';
-                }
-
-                ticking = false;
-            }
-
-            window.addEventListener('scroll', function () {
-                if (!ticking) {
-                    requestAnimationFrame(updateHeader);
-                    ticking = true;
-                }
-            });
-
-            // Stats counter animation
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const statNumber = entry.target.querySelector('.stat-number');
-                        if (statNumber && !statNumber.classList.contains('counted')) {
-                            statNumber.classList.add('counted');
-                            const finalText = statNumber.textContent;
-                            const isPercentage = finalText.includes('%');
-                            const isPlus = finalText.includes('+');
-                            const numberValue = parseInt(finalText);
-
-                            if (!isNaN(numberValue)) {
-                                let counter = 0;
-                                const increment = numberValue / 30;
-
-                                const timer = setInterval(() => {
-                                    counter += increment;
-                                    if (counter >= numberValue) {
-                                        counter = numberValue;
-                                        clearInterval(timer);
-                                    }
-
-                                    let displayValue = Math.floor(counter);
-                                    if (isPercentage) displayValue += '%';
-                                    if (isPlus) displayValue += '+';
-                                    if (finalText.includes('/')) displayValue = finalText;
-
-                                    statNumber.textContent = displayValue;
-                                }, 50);
-                            }
-                        }
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            document.querySelectorAll('.stat-item').forEach(item => {
-                statsObserver.observe(item);
-            });
-
-            // Preload critical resources
-            const preloadLink = document.createElement('link');
-            preloadLink.rel = 'preload';
-            preloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap';
-            preloadLink.as = 'style';
-            document.head.appendChild(preloadLink);
-        });
-    </script>
+    // Contact form
+    
+    function sendAquarizEmail() {
+      const name = document.getElementById('aqName').value.trim();
+      const phone = document.getElementById('aqPhone').value.trim();
+      const message = document.getElementById('aqMessage').value.trim();
+      const subject = encodeURIComponent('Aquariz Web Inquiry' + (name ? ' - ' + name : ''));
+      const body = encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nMessage: ' + message + '\n\nSent from Aquariz Website');
+      window.location.href = 'mailto:aquariz.official@gmail.com?subject=' + subject + '&body=' + body;
+    }
+    function submitAquarizContact() {
+      const name = document.getElementById('aqName').value.trim();
+      const phone = document.getElementById('aqPhone').value.trim();
+      const message = document.getElementById('aqMessage').value.trim();
+      if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+      let msg = `*Aquariz Inquiry*\n• *Name:* ${name}\n• *Phone:* ${phone}\n`;
+      if (message) msg += `• *Message:* ${message}\n`;
+      msg += `\n_Submitted via Aquariz Official Web Portal_`;
+      window.open(`https://wa.me/916238796383?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
 </body>
-
 </html>

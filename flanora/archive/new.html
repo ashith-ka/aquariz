@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flanora | The Essence of Pure Garlic</title>
+
+    <!-- GSAP Core & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-green: #2d5a27;
+            --brand-cream: #f9f7f2;
+            --text-dark: #1a1a1a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--text-dark);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            opacity: 0;
+            /* Hidden until loaded */
+            transition: opacity 0.5s ease;
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--text-dark);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            width: 0%;
+            height: 100%;
+            background: var(--brand-green);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* --- MAIN SCROLL CONTAINER --- */
+        .scroll-container {
+            position: relative;
+            height: 500vh;
+            /* Determines length of scroll animation */
+        }
+
+        /* --- STICKY CANVAS WRAPPER --- */
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+        }
+
+        /* --- TEXT OVERLAYS --- */
+        .overlay-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Let clicks pass through to scroll */
+        }
+
+        .section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 1.25rem;
+            color: #888;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: var(--brand-green);
+            font-weight: 600;
+        }
+
+        /* --- CTA SECTION --- */
+        .final-cta {
+            height: 100vh;
+            background: var(--brand-cream);
+            color: var(--text-dark);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button.primary-btn {
+            background: var(--brand-green);
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button.primary-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            nav {
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div style="font-family: 'Playfair Display'; margin-bottom: 10px;">FLANORA</div>
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">Flanora.</div>
+        <div class="nav-links">
+            <a href="#">Our Roots</a>
+            <a href="#">Process</a>
+            <a href="#">Shop</a>
+        </div>
+    </nav>
+
+    <!-- SCROLL ANIMATION AREA -->
+    <div class="scroll-container">
+
+        <!-- THE CANVAS (Visuals) -->
+        <div class="sticky-wrapper">
+            <canvas id="hero-canvas"></canvas>
+        </div>
+
+        <!-- THE TEXT (Story) -->
+        <div class="overlay-text">
+            <!-- Frame 0-100 -->
+            <div class="section" id="sec-1">
+                <h1>Nature’s<br>Secret Weapon.</h1>
+                <p class="subtitle">100% Organic Garlic Paste.</p>
+            </div>
+
+            <!-- Frame 100-200 (Bottle Opening) -->
+            <div class="section" id="sec-2">
+                <h1>Unseal the<br>Freshness.</h1>
+                <p class="subtitle">Cold-pressed to preserve the <span class="highlight">essential oils</span>.</p>
+            </div>
+
+            <!-- Frame 200-300 (Texture Reveal) -->
+            <div class="section" id="sec-3">
+                <h1>Ready to<br>Transform.</h1>
+                <p class="subtitle">From the jar to your pan in seconds.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER / SHOP -->
+    <div class="final-cta">
+        <h1 style="-webkit-text-fill-color: var(--text-dark);">Elevate Your Cooking.</h1>
+        <p class="subtitle">Order your trial pack today.</p>
+        <button class="primary-btn">Shop Flanora</button>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // REPLACE this with your actual image path prefix
+        // Example: 'assets/images/bottle_0001.webp'
+        const config = {
+            frameCount: 148, // Total images in your sequence
+            urlPrefix: 'https://t4.ftcdn.net/jpg/13/33/11/21/240_F_1333112168_NXROZsLDQz0D4R5yUMsCf3C6NFyIKJTR.jpg?q=80&w=200&auto=format&fit=crop', // PLACEHOLDER URL
+            fileType: 'jpg'
+        };
+
+        // --- SETUP CANVAS ---
+        const canvas = document.getElementById("hero-canvas");
+        const context = canvas.getContext("2d");
+
+        // Set canvas dimensions to match window
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Image sequence array
+        const images = [];
+        const airpods = { frame: 0 };
+
+        // --- PRELOAD IMAGES ---
+        // In production, this loop loads 'bottle_001.jpg', 'bottle_002.jpg', etc.
+        // For this DEMO, we are loading the same placeholder image to prevent 404 errors.
+
+        const loaderProgress = document.querySelector('.loader-progress');
+        let loadedCount = 0;
+
+        const currentFrame = index => {
+            // PRODUCTION CODE:
+            // return `./assets/bottle_${index.toString().padStart(4, '0')}.webp`;
+
+            // DEMO PLACEHOLDER:
+            return config.urlPrefix;
+        };
+
+        for (let i = 0; i < config.frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            img.onload = () => {
+                loadedCount++;
+                gsap.to(loaderProgress, { width: (loadedCount / config.frameCount) * 100 + "%" });
+                if (loadedCount === config.frameCount) startAnimation();
+            };
+            images.push(img);
+        }
+
+        // --- RENDER FUNCTION ---
+        function render() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw image centered and "contain" fit
+            const img = images[airpods.frame];
+            if (img) {
+                const hRatio = canvas.width / img.width;
+                const vRatio = canvas.height / img.height;
+                const ratio = Math.max(hRatio, vRatio); // "Cover" fit
+                const centerShift_x = (canvas.width - img.width * ratio) / 2;
+                const centerShift_y = (canvas.height - img.height * ratio) / 2;
+                context.drawImage(img, 0, 0, img.width, img.height, centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+            }
+        }
+
+        // --- ANIMATION LOGIC ---
+        function startAnimation() {
+            // Hide Loader
+            gsap.to("#preloader", {
+                opacity: 0, duration: 0.5, onComplete: () => {
+                    document.getElementById("preloader").style.display = "none";
+                    document.body.style.opacity = 1;
+                }
+            });
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Animate the Frame Numbers based on scroll
+            gsap.to(airpods, {
+                frame: config.frameCount - 1,
+                snap: "frame",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".scroll-container",
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 0.5 // Smooth scrubbing effect
+                },
+                onUpdate: render // Redraw canvas on every update
+            });
+
+            // 2. Animate Text Fade In/Out
+            const sections = gsap.utils.toArray('.section');
+            sections.forEach((section, i) => {
+                gsap.to(section, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: ".scroll-container",
+                        start: "top " + (50 + (i * 100)) + "%", // Staggered start based on scroll depth
+                        end: "+=500",
+                        toggleActions: "play reverse play reverse",
+                        scrub: true
+                    }
+                })
+            });
+
+            // Initial render
+            render();
+        }
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            render();
+        });
+    </script>
+</body>
+
+</html>

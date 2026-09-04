@@ -1,1701 +1,2366 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aquariz Flanora - Premium Ginger & Garlic Pastes</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-green: #0d4f1a;
-            --secondary-green: #1a5f2d;
-            --accent-green: #22c55e;
-            --light-green: #dcfce7;
-            --accent-orange: #ea580c;
-            --warm-orange: #fb923c;
-            --warm-white: #fefffe;
-            --cream: #faf8f5;
-            --text-dark: #1f2937;
-            --text-light: #6b7280;
-            --text-muted: #9ca3af;
-            --gold: #f59e0b;
-            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --shadow-glow: 0 0 15px rgba(34, 197, 94, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--warm-white);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Enhanced container sizing */
-        @media (min-width: 640px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .container {
-                padding: 0 2rem;
-            }
-        }
-
-        /* Premium Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.95);
-        }
-
-        .loading-content {
-            text-align: center;
-            transform: translateY(-20px);
-        }
-
-        .loading-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: white;
-            margin-bottom: 0.5rem;
-            animation: logoFloat 3s ease-in-out infinite;
-        }
-
-        .loading-tagline {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            font-style: italic;
-            font-weight: 300;
-        }
-
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            border-top: 4px solid var(--accent-orange);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes logoFloat {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Ultra-Premium Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-lg);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            min-height: 80px;
-        }
-
-        .logo-section {
-            flex: 1;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-section:hover {
-            transform: scale(1.02);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .brand-tagline {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 300;
-            margin-top: 0.2rem;
-            line-height: 1.2;
-            font-style: italic;
-        }
-
-        /* Advanced Mobile Navigation */
-        .nav-toggle {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 32px;
-            height: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1001;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .nav-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: white;
-            border-radius: 3px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-            transform: scale(0);
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            list-style: none;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-menu li {
-            margin: 2rem 0;
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu.active li {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .nav-menu.active li:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .nav-menu.active li:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .nav-menu.active li:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        .nav-menu.active li:nth-child(4) {
-            transition-delay: 0.4s;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-            padding: 1rem 2rem;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-menu a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .nav-menu a:hover::before {
-            left: 100%;
-        }
-
-        .nav-menu a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(10px) scale(1.05);
-            box-shadow: var(--shadow-glow);
-        }
-
-        /* Desktop Navigation */
-        @media (min-width: 1024px) {
-            .header-container {
-                padding: 1.5rem 2rem;
-            }
-
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .brand-tagline {
-                font-size: 0.9rem;
-            }
-
-            .nav-toggle {
-                display: none;
-            }
-
-            .nav-menu {
-                position: static;
-                width: auto;
-                height: auto;
-                background: none;
-                flex-direction: row;
-                justify-content: flex-end;
-                gap: 2rem;
-            }
-
-            .nav-menu li {
-                margin: 0;
-                opacity: 1;
-                transform: none;
-            }
-
-            .nav-menu a {
-                font-size: 1rem;
-                padding: 0.8rem 1.5rem;
-            }
-
-            .nav-menu a:hover {
-                transform: translateY(-2px);
-            }
-        }
-
-        /* Hero Section - Ultra Premium */
-        .hero {
-            background: linear-gradient(135deg, rgba(13, 79, 26, 0.95), rgba(26, 95, 45, 0.9)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="hero1" cx="30%" cy="30%" r="40%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.2" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient><radialGradient id="hero2" cx="70%" cy="70%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.15" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient><pattern id="organic" width="200" height="200" patternUnits="userSpaceOnUse"><circle cx="100" cy="100" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="50" r="1.5" fill="%23ffffff" opacity="0.08"/><circle cx="150" cy="150" r="1.5" fill="%23ffffff" opacity="0.08"/><circle cx="30" cy="170" r="1" fill="%23ffffff" opacity="0.06"/><circle cx="170" cy="30" r="1" fill="%23ffffff" opacity="0.06"/></pattern></defs><rect width="1200" height="800" fill="%23dcfce7"/><rect fill="url(%23organic)" width="1200" height="800"/><ellipse cx="300" cy="200" rx="150" ry="120" fill="url(%23hero1)"/><ellipse cx="900" cy="600" rx="200" ry="160" fill="url(%23hero2)"/><ellipse cx="1100" cy="300" rx="100" ry="80" fill="url(%23hero1)"/></svg>');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
-            animation: heroShimmer 6s infinite ease-in-out;
-        }
-
-        @keyframes heroShimmer {
-            0% {
-                transform: translateX(-100%) skewX(-15deg);
-            }
-
-            100% {
-                transform: translateX(100%) skewX(-15deg);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
-            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            min-width: 220px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-orange), var(--warm-orange));
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(15px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Responsive Hero */
-        @media (min-width: 640px) {
-            .hero-title {
-                font-size: 3.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.4rem;
-            }
-
-            .hero-buttons {
-                flex-direction: row;
-                gap: 1.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-title {
-                font-size: 5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* Ultra-Premium Products Section */
-        .products {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--warm-white) 0%, var(--cream) 100%);
-            position: relative;
-        }
-
-        .products::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="0.5" fill="%23dcfce7" opacity="0.5"/></svg>');
-            background-size: 100px 100px;
-            pointer-events: none;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--primary-green);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange), var(--warm-orange));
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            font-weight: 300;
-            line-height: 1.6;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            margin-top: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 24px;
-            padding: 0;
-            box-shadow: var(--shadow-md);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            border: 1px solid rgba(220, 252, 231, 0.8);
-            position: relative;
-            transform: translateY(0);
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
-        .product-image {
-            height: 220px;
-            background: linear-gradient(135deg, var(--light-green), #bbf7d0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .product-card:hover .product-image::after {
-            opacity: 1;
-        }
-
-        .quality-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, var(--accent-orange), var(--warm-orange));
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 3;
-            box-shadow: var(--shadow-md);
-            animation: badgePulse 2s infinite;
-        }
-
-        @keyframes badgePulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .product-content {
-            padding: 2.5rem;
-        }
-
-        .product-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            margin-bottom: 1rem;
-        }
-
-        .product-features {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .feature-tag {
-            background: var(--light-green);
-            color: var(--primary-green);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .feature-tag:hover {
-            background: var(--accent-green);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .product-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .ingredient-highlight {
-            background: linear-gradient(135deg, rgba(234, 88, 12, 0.05), rgba(251, 146, 60, 0.05));
-            border-left: 4px solid var(--accent-orange);
-            padding: 1rem;
-            margin: 1.5rem 0;
-            border-radius: 0 12px 12px 0;
-            transition: all 0.3s ease;
-        }
-
-        .ingredient-highlight:hover {
-            background: linear-gradient(135deg, rgba(234, 88, 12, 0.1), rgba(251, 146, 60, 0.1));
-            transform: translateX(5px);
-        }
-
-        .ingredient-highlight h5 {
-            color: var(--accent-orange);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .ingredient-highlight p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin: 0;
-        }
-
-        .btn-product {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            width: 100%;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-product::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-product:hover::before {
-            left: 100%;
-        }
-
-        .btn-product:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Responsive Products */
-        @media (min-width: 768px) {
-            .products {
-                padding: 6rem 0;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 3rem;
-            }
-
-            .product-image {
-                height: 240px;
-                font-size: 5rem;
-            }
-
-            .section-title {
-                font-size: 3.5rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .product-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 3.5rem;
-            }
-
-            .product-image {
-                height: 260px;
-                font-size: 5.5rem;
-            }
-
-            .section-title {
-                font-size: 4rem;
-            }
-        }
-
-        /* Premium About Section */
-        .about {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--light-green) 0%, #f0fdf4 100%);
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><radialGradient id="about-bg" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0" /></radialGradient></defs><circle cx="100" cy="100" r="80" fill="url(%23about-bg)"/></svg>');
-            background-size: 400px 400px;
-            opacity: 0.5;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .features-list li {
-            padding: 1rem 0;
-            position: relative;
-            padding-left: 3rem;
-            font-size: 1rem;
-            color: var(--text-dark);
-            border-bottom: 1px solid rgba(13, 79, 26, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .features-list li:hover {
-            background: rgba(255, 255, 255, 0.5);
-            padding-left: 3.5rem;
-        }
-
-        .features-list li:before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(135deg, var(--accent-orange), var(--warm-orange));
-            border-radius: 50%;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .features-list li:after {
-            content: "✓";
-            position: absolute;
-            left: 6px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        .about-visual {
-            background: linear-gradient(135deg, var(--accent-green), var(--secondary-green));
-            border-radius: 24px;
-            padding: 3rem;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .about-visual::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: visualPulse 6s ease-in-out infinite;
-        }
-
-        @keyframes visualPulse {
-
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.6;
-                transform: scale(1.1);
-            }
-        }
-
-        .about-visual h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-visual p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            position: relative;
-            z-index: 2;
-            opacity: 0.95;
-        }
-
-        /* Responsive About */
-        @media (min-width: 768px) {
-            .about {
-                padding: 6rem 0;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 4rem;
-            }
-
-            .about-text h3 {
-                font-size: 3rem;
-            }
-        }
-
-        /* Ultra-Premium Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.08"/><circle cx="20" cy="20" r="0.5" fill="white" opacity="0.06"/><circle cx="80" cy="80" r="0.5" fill="white" opacity="0.06"/></svg>');
-            background-size: 100px 100px;
-            animation: contactBg 20s linear infinite;
-        }
-
-        @keyframes contactBg {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            100% {
-                transform: translate(100px, 100px);
-            }
-        }
-
-        .contact-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .contact-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-            font-weight: 300;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .contact-card:hover::before {
-            left: 100%;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .contact-card i {
-            font-size: 2.5rem;
-            color: var(--accent-orange);
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-        }
-
-        .contact-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .contact-card p {
-            font-size: 1rem;
-            opacity: 0.9;
-            line-height: 1.5;
-        }
-
-        /* Responsive Contact */
-        @media (min-width: 640px) {
-            .contact-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .contact {
-                padding: 6rem 0;
-            }
-
-            .contact-title {
-                font-size: 3.5rem;
-            }
-
-            .contact-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .contact-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2.5rem;
-            }
-        }
-
-        /* Premium Footer */
-        footer {
-            background: linear-gradient(135deg, #0f1419, #1a1f2e);
-            color: white;
-            padding: 4rem 0 2rem;
-            position: relative;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-section h4 {
-            color: var(--accent-orange);
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-section ul li a:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Responsive Footer */
-        @media (min-width: 768px) {
-            .footer-content {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Scroll animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Performance optimizations */
-        .product-card,
-        .contact-card,
-        .btn {
-            will-change: transform;
-        }
-
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Enhanced touch targets for mobile */
-        @media (max-width: 768px) {
-
-            .btn,
-            .btn-product,
-            .nav-menu a,
-            .feature-tag {
-                min-height: 44px;
-                min-width: 44px;
-            }
-        }
-
-        /* Floating action button for mobile */
-        .fab-contact {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-orange), var(--warm-orange));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: var(--shadow-lg);
-            z-index: 100;
-            transition: all 0.3s ease;
-            animation: fabPulse 2s infinite;
-        }
-
-        .fab-contact:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        @keyframes fabPulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .fab-contact {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#061a0c" />
+    <meta name="robots" content="index, follow" />
+  <meta name="description" content="Flanora – 100% Pure, Cold-Pressed Crushed Ginger & Garlic Pastes in Induction-Sealed PET Bottles from Kerala. Zero artificial fillers, zero vinegar aftertaste, maximum culinary yield." />
+  <meta name="keywords" content="Flanora, Ginger Garlic Paste, Cold Pressed Paste, Kerala Ginger, Crushed Garlic, Aquariz, Thrissur FMCG, HORECA Catering Paste, Induction Sealed Bottles, Malabar Biryani Paste" />
+  <meta property="og:title" content="Flanora | 100% Cold-Pressed Kerala Ginger & Garlic Pastes" />
+  <meta property="og:description" content="Ammikallil aracha pole fresh! 100% pure crushed pastes in induction-sealed PET bottles. Retail, trial trio boxes & commercial HORECA packs." />
+  <meta property="og:type" content="website" />
+
+  <title>Flanora | 100% Cold-Pressed Kerala Ginger & Garlic Pastes</title>
+  <link rel="canonical" href="https://aquariz.in/flanora/" />
+  <meta property="og:image" content="https://aquariz.in/flanora/logo-flanora.png" />
+  <meta property="og:url" content="https://aquariz.in/flanora/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://aquariz.in/flanora/logo-flanora.png" />
+  <meta name="twitter:title" content="Flanora | 100% Cold-Pressed Kerala Ginger & Garlic Pastes" />
+  <meta name="twitter:description" content="100% pure crushed pastes in induction-sealed PET bottles. Zero artificial fillers." />
+  <link rel="icon" type="image/jpeg" href="logo-flanora.png" />
+  <link rel="apple-touch-icon" href="logo-flanora.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* ==========================================================================
+       1. BOTANICAL LUXURY DESIGN SYSTEM & VARIABLES
+       ========================================================================== */
+    :root {
+      /* Color System */
+      --color-bg: #05150a;
+      --color-surface: #0a2313;
+      --color-surface-elevated: #10331c;
+      --color-border: rgba(255, 255, 255, 0.08);
+      --color-border-emerald: rgba(34, 197, 94, 0.2);
+      --color-border-gold: rgba(230, 167, 66, 0.3);
+
+      --color-primary: #15803d;
+      --color-primary-bright: #22c55e;
+      --color-accent: #e6a742;
+      --color-accent-light: #fef08a;
+      --color-accent-cream: #fbf8f2;
+
+      --color-text: #f1f5f9;
+      --color-text-muted: #94a3b8;
+      --color-text-green: #86efac;
+      --color-white: #ffffff;
+
+      /* Typography */
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+
+      --text-xs: 0.75rem;
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.25rem;
+      --text-2xl: 1.5rem;
+      --text-3xl: 1.875rem;
+      --text-4xl: 2.25rem;
+      --text-5xl: 3rem;
+      --text-6xl: 3.75rem;
+
+      --leading-tight: 1.1;
+      --leading-snug: 1.375;
+      --leading-normal: 1.6;
+      --leading-relaxed: 1.75;
+
+      /* Spacing Scale (8px baseline) */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-8: 48px;
+      --space-10: 64px;
+      --space-12: 96px;
+
+      /* Radius Scale */
+      --radius-none: 0;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+      --shadow-focus: 0 0 0 3px rgba(34, 197, 94, 0.3);
+
+      /* Transitions */
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      background-color: var(--color-bg);
+      scroll-padding-top: 74px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a, button, input, select, textarea, .pack-pill-btn, .btn-flanora-bar { touch-action: manipulation; }
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+    @media (max-width: 480px) {
+      .container { padding-left: var(--space-3); padding-right: var(--space-3); }
+    }
+
+    /* Background Layers */
+    .bg-mesh-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(34, 197, 94, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(230, 167, 66, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 75%, rgba(21, 128, 61, 0.15) 0%, transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(34, 197, 94, 0.08) 0%, transparent 45%);
+    }
+
+    .bg-pattern-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Top Banner & Navbar */
+    .top-parent-banner {
+      background: #020b05;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      padding: 0.45rem 0;
+      color: var(--color-text-muted);
+      position: relative;
+      z-index: 100;
+    }
+    .top-banner-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    @media (max-width: 520px) {
+      .top-banner-flex {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 0.25rem;
+        font-size: 0.74rem;
+      }
+    }
+
+    .top-parent-banner a {
+      color: var(--color-accent);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .top-parent-banner a:hover { color: #fff; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(5, 21, 10, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--color-border-emerald);
+      transition: all var(--transition-smooth);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .brand-header-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .flanora-nav-logo {
+      height: 46px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .flanora-title-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .flanora-brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .flanora-by-parent {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #86efac;
+    }
+
+    .nav-links-desktop {
+      display: none;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    @media (min-width: 960px) {
+      .nav-links-desktop { display: flex; }
+    }
+
+    .nav-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      position: relative;
+    }
+    @media (min-width: 768px) { .nav-link { font-size: 0.9rem; } }
+
+    .nav-link:hover, .nav-link.active { color: #fff; }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--color-primary-bright);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    .nav-action-btns {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-nav-order {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-nav-order:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-mobile-toggle {
+      background: transparent;
+      border: 1px solid var(--color-border-emerald);
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    @media (min-width: 960px) {
+      .btn-mobile-toggle { display: none; }
+    }
+
+    /* Mobile Drawer */
+    .flanora-drawer {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 16, 8, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      transform: translateX(100%);
+      transition: transform var(--transition-smooth);
+    }
+
+    .flanora-drawer.open { transform: translateX(0); }
+
+    .drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .drawer-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .drawer-item {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+      min-height: 48px;
+    }
+
+    /* Hero Section */
+    .hero-wrap {
+      position: relative;
+      padding: var(--space-8) 0 var(--space-8);
+      z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+      .hero-wrap { padding: var(--space-12) 0 var(--space-10); }
+    }
+
+    @media (min-width: 768px) {
+      .hero-wrap { padding: var(--space-12) 0 var(--space-10); }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    @media (min-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1.2fr 1fr;
+        gap: var(--space-8);
+      }
+    }
+
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #86efac;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-main-title {
+      font-size: 1.85rem;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (min-width: 480px) { .hero-main-title { font-size: 2.3rem; } }
+
+    @media (min-width: 640px) { .hero-main-title { font-size: 3.2rem; } }
+    @media (min-width: 1024px) { .hero-main-title { font-size: 3.8rem; } }
+
+    .title-highlight-gold {
+      background: linear-gradient(135deg, #fff 10%, #fde047 50%, #eab308 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 620px;
+    }
+
+
+    .hero-button-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 639px) {
+      .hero-button-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+      .hero-button-group .btn-hero-primary,
+      .hero-button-group .btn-hero-secondary {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: linear-gradient(135deg, #22c55e, #15803d);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.98rem;
+      padding: 0.95rem 1.85rem;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      min-height: 48px;
+    }
+
+    .btn-hero-primary:hover {
+      box-shadow: var(--shadow-lg);
+      background: linear-gradient(135deg, #4ade80, #16a34a);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border-emerald);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.95rem 1.6rem;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(34, 197, 94, 0.6);
+    }
+
+    /* Trust Chips */
+    .trust-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .trust-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(16, 51, 28, 0.6);
+      border: 1px solid var(--color-border-emerald);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .trust-chip i { color: var(--color-primary-bright); }
+
+    /* Hero Showcase Card */
+    .hero-showcase-card {
+      background: linear-gradient(145deg, rgba(16, 51, 28, 0.7) 0%, rgba(6, 26, 12, 0.9) 100%);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 2.25rem 2rem;
+      text-align: center;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .flanora-hero-image-pane {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    @media (min-width: 768px) {
+      .flanora-hero-image-pane { height: 240px; }
+    }
+
+    .hero-badge-seal {
+      background: rgba(230, 167, 66, 0.15);
+      border: 1px solid var(--color-border-gold);
+      color: var(--color-accent-light);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    .hero-pack-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      text-align: left;
+    }
+
+    .pack-preview-item {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem;
+    }
+
+    .pack-preview-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .pack-preview-desc {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Sections */
+    .section-spacing {
+      padding: var(--space-8) 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (min-width: 768px) {
+      .section-spacing { padding: var(--space-12) 0; }
+    }
+
+    .section-header-center {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto var(--space-10);
+    }
+
+    .badge-sub {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .section-heading { font-size: 1.95rem; }
+    }
+    @media (min-width: 768px) {
+      .section-heading { font-size: 2.5rem; }
+    }
+
+    .section-subtext {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       MARKETING FEATURE 1: THE SIZZLE TEST & SENSORY PROOF
+       ========================================================================== */
+    .sizzle-test-wrapper {
+      background: linear-gradient(135deg, rgba(8, 32, 16, 0.9) 0%, rgba(4, 18, 9, 0.95) 100%);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.5rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 860px) {
+      .sizzle-test-wrapper {
+        padding: 3.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+    }
+
+    .sizzle-head-malayalam {
+      font-size: 1.1rem;
+      color: #fef08a;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sizzle-comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .sizzle-card {
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid;
+    }
+
+    .sizzle-card-flanora {
+      background: rgba(34, 197, 94, 0.08);
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+
+    .sizzle-card-others {
+      background: rgba(239, 68, 68, 0.06);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .sizzle-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sizzle-card-flanora .sizzle-card-title { color: #86efac; }
+    .sizzle-card-others .sizzle-card-title { color: #fca5a5; }
+
+    .sizzle-card-desc {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       MARKETING FEATURE 2: TRIO STARTER BUNDLE
+       ========================================================================== */
+    .bundle-banner-card {
+      background: linear-gradient(135deg, rgba(230, 167, 66, 0.15) 0%, rgba(16, 51, 28, 0.9) 100%);
+      border: 1px solid var(--color-border-gold);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (min-width: 860px) {
+      .bundle-banner-card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3rem;
+      }
+    }
+
+    .bundle-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--color-accent);
+      color: #05150a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .bundle-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .bundle-items-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .bundle-pill {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fef08a;
+    }
+
+    
+    @media (max-width: 859px) {
+      .bundle-banner-card {
+        padding: 1.5rem 1.25rem;
+      }
+      .bundle-banner-card a.btn-hero-primary {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        white-space: normal;
+      }
+    }
+
+    /* Product Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    @media (min-width: 768px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1080px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .product-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      border-color: var(--color-border-emerald);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-badge-flag {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(230, 167, 66, 0.9);
+      color: #05150a;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 2;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .product-photo-wrap {
+      width: 100%;
+      height: 180px;
+      border-radius: var(--radius-none);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .product-photo-wrap { height: 220px; }
+    }
+
+    .product-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-photo-img { transform: scale(1.05); }
+
+    .product-tagline {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #86efac;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-desc {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    /* Kerala Recipe Pairing Tags */
+    .recipe-pairings-box {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .recipe-pairings-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fef08a;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .recipe-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .recipe-tag {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #e2e8f0;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Yield & Pack Selector */
+    .pack-size-selector-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .pack-selector-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .yield-serving-counter {
+      color: #86efac;
+      font-weight: 700;
+    }
+
+    .pack-pills-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.35rem;
+    }
+
+    .pack-pill-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #cbd5e1;
+      padding: 0.5rem 0.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+    }
+    .pack-pill-btn:active {
+      transform: scale(0.96);
+    }
+    .pack-pill-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary-bright);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+    }
+
+    .btn-order-sku-whatsapp {
+      width: 100%;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #16a34a;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(22, 163, 74, 0.35);
+      transition: all var(--transition-fast);
+      touch-action: manipulation;
+    }
+
+    .btn-order-sku-whatsapp:hover {
+      background: #22c55e;
+      transform: translateY(-1px);
+    }
+    .btn-order-sku-whatsapp:active {
+      transform: scale(0.98);
+      background: #15803d;
+    }
+
+    /* Process & Comparison */
+    .process-timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (min-width: 640px) {
+      .process-timeline-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .process-timeline-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .process-step-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .step-number-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      border: 2px solid var(--color-primary-bright);
+    }
+
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .purity-comparison-box {
+      margin-top: 3rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 580px;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.82rem;
+    }
+    @media (min-width: 768px) {
+      .comparison-table th, .comparison-table td {
+        padding: 1rem;
+        font-size: 0.92rem;
+      }
+    }
+
+    .comparison-table th {
+      font-weight: 700;
+      color: #86efac;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+    }
+
+    .comparison-table td.flanora-col {
+      background: rgba(34, 197, 94, 0.08);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    
+    .table-scroll-hint-mobile {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.85rem;
+    }
+    @media (min-width: 768px) {
+      .table-scroll-hint-mobile { display: none; }
+    }
+    .purity-comparison-box {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Testimonials & Purity Promise */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-10);
+    }
+
+    @media (min-width: 768px) {
+      .trust-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .testimonial-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testimonial-quote {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #86efac;
+    }
+
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    /* B2B Tiers Stack & Sample Box CTA */
+    .b2b-wrapper {
+      background: linear-gradient(145deg, #092614 0%, #05190c 100%);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    @media (min-width: 900px) {
+      .b2b-wrapper { padding: 3.5rem; }
+    }
+
+    @media (min-width: 900px) {
+      .b2b-wrapper {
+        padding: 3.5rem;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 3.5rem;
+        align-items: start;
+      }
+    }
+
+    .b2b-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .b2b-p {
+      color: #cbd5e1;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .b2b-tiers-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .b2b-tier-card {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: all var(--transition-fast);
+    }
+
+    .b2b-tier-card:hover {
+      border-color: var(--color-primary-bright);
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .b2b-tier-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .b2b-tier-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .b2b-tier-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .b2b-tier-desc {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .rfq-form {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .rfq-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .rfq-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #86efac;
+      text-transform: uppercase;
+    }
+
+    .rfq-input, .rfq-select, .rfq-textarea {
+      width: 100%;
+      background: rgba(5, 21, 10, 0.8);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.95rem;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border-color var(--transition-fast);
+      touch-action: manipulation;
+    }
+    .rfq-input, .rfq-select {
+      min-height: 48px;
+    }
+
+    .rfq-input:focus, .rfq-select:focus, .rfq-textarea:focus {
+      border-color: var(--color-primary-bright);
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.25);
+    }
+
+    .btn-submit-rfq {
+      background: linear-gradient(135deg, #16a34a, #15803d);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(22, 163, 74, 0.4);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-submit-rfq:hover {
+      background: #22c55e;
+      transform: translateY(-1px);
+    }
+
+    .location-card-flanora {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 860px) {
+      .location-card-flanora {
+        grid-template-columns: 1.1fr 1fr;
+        padding: 3rem;
+      }
+    }
+
+    .facility-meta-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .gstin-pill-box {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid var(--color-border-emerald);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+
+    .flanora-footer {
+      background: #020904;
+      border-top: 1px solid var(--color-border-emerald);
+      padding: 2.5rem 0 calc(5.5rem + env(safe-area-inset-bottom, 0px));
+      margin-top: auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-flex {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    @media (min-width: 768px) {
+      .footer-flex {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .footer-bottom-copy {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: var(--space-6);
+      margin-top: var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* Mobile Quick Bar */
+    .mobile-flanora-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(3, 14, 7, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--color-border-emerald);
+      padding: 0.55rem 0.75rem;
+      padding-bottom: max(0.55rem, env(safe-area-inset-bottom));
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 0.5rem;
+      z-index: 99;
+    }
+
+    @media (min-width: 768px) {
+      .mobile-flanora-bar { display: none; }
+      .flanora-footer { padding-bottom: 3.5rem; }
+    }
+
+    .btn-flanora-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 700;
+      min-height: 44px;
+      touch-action: manipulation;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+    .btn-flanora-bar:active {
+      transform: scale(0.96);
+    }
+
+    .bar-wa { background: #16a34a; color: #fff; }
+    .bar-call { background: #15803d; color: #fff; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .bar-parent { background: rgba(255, 255, 255, 0.08); color: #cbd5e1; }
+
+    .toast-flanora {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: #061e0d;
+      border: 1px solid var(--color-primary-bright);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .toast-flanora.show { opacity: 1; transform: translateY(0); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Flanora Crushed Ginger-Garlic Paste",
+    "description": "100% pure cold-pressed crushed ginger and garlic pastes from Kerala in induction-sealed PET bottles.",
+    "brand": { "@type": "Brand", "name": "Flanora" },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "Aquariz",
+      "address": { "@type": "PostalAddress", "streetAddress": "Ward -12, Plot no 801/2-24, Thumboor", "addressLocality": "Thrissur", "addressRegion": "Kerala", "postalCode": "680662", "addressCountry": "IN" }
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowCurrency": "INR",
+      "availability": "https://schema.org/InStock"
+    },
+    "image": "https://aquariz.in/flanora/logo-flanora.png"
+  }
+  </script>
 </head>
 
 <body>
-    <!-- Premium Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-content">
-            <div class="loading-logo">Flanora</div>
-            <div class="loading-tagline">Taste the Freshness</div>
-            <div class="loading-spinner"></div>
-        </div>
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link" style="position:fixed; left:-999px; top:-999px; z-index:999;">Skip to main content</a>
+  <div class="bg-mesh-layer" aria-hidden="true"></div>
+  <div class="bg-pattern-layer" aria-hidden="true"></div>
+
+  <!-- Top Parent Brand Banner -->
+  <aside class="top-parent-banner" aria-label="Parent Venture">
+    <div class="container top-banner-flex">
+      <span>🏢 <strong>Flanora</strong> &bull; Pure Cold-Pressed Pastes by <strong>Aquariz</strong> (Thrissur)</span>
+      <a href="../index.html"><i class="fa-solid fa-arrow-left"></i> Aquariz Parent Hub &rarr;</a>
     </div>
+  </aside>
 
-    <!-- Ultra-Premium Header -->
-    <header>
-        <div class="container">
-            <div class="header-container">
-                <div class="logo-section">
-                    <a href="#home" class="logo">Aquariz</a>
-                    <div class="brand-tagline">Flanora - Taste the Freshness</div>
+  <!-- Flanora Main Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-header-link" aria-label="Flanora Home">
+        <img src="logo-flanora.png" alt="Flanora Brand Logo" class="flanora-nav-logo" />
+        <div class="flanora-title-text">
+          <span class="flanora-brand-title">FLANORA</span>
+          <span class="flanora-by-parent">Cold-Pressed Pastes</span>
+        </div>
+      </a>
+
+      <nav class="nav-links-desktop" aria-label="Flanora Navigation">
+        <a href="#products" class="nav-link">Our Pastes</a>
+        <a href="#sizzle-test" class="nav-link">The Sizzle Proof</a>
+        <a href="#trio-box" class="nav-link">Trial Trio Box</a>
+        <a href="#process" class="nav-link">Purity &amp; Process</a>
+        <a href="#b2b" class="nav-link">B2B &amp; Chef Samples</a>
+        <a href="../index.html" class="nav-link"><i class="fa-solid fa-building"></i> Aquariz Hub</a>
+      </nav>
+
+      <div class="nav-action-btns">
+        <a href="https://wa.me/916238796383?text=Hello%20Flanora%2C%20I%20would%20like%20to%20order%20crushed%20paste" target="_blank" rel="noopener noreferrer" class="btn-nav-order">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>Order on WhatsApp</span>
+        </a>
+        <button class="btn-mobile-toggle" id="flanoraMenuToggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="flanora-drawer" id="flanoraDrawer" aria-hidden="true">
+    <div class="drawer-top">
+      <div class="flanora-title-text">
+        <span class="flanora-brand-title">FLANORA</span>
+        <span class="flanora-by-parent">A Brand by Aquariz</span>
+      </div>
+      <button class="btn-mobile-toggle" id="flanoraDrawerClose" aria-label="Close Menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="drawer-items">
+      <a href="#products" class="drawer-item f-nav-item"><span>Our Cold-Pressed Pastes</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#sizzle-test" class="drawer-item f-nav-item"><span>The Hot Oil Sizzle Test</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#trio-box" class="drawer-item f-nav-item"><span>Trial Trio Starter Kit</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#process" class="drawer-item f-nav-item"><span>Purity &amp; Process</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="#b2b" class="drawer-item f-nav-item"><span>Chef Sample Kits &amp; B2B</span> <i class="fa-solid fa-chevron-right"></i></a>
+      <a href="../index.html" class="drawer-item f-nav-item" style="color: var(--color-accent);"><span>Visit Aquariz Parent Site</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+      <a href="https://wa.me/916238796383?text=Hello%20Flanora%2C%20I%20would%20like%20to%20order%20crushed%20ginger%20garlic%20paste" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="justify-content: center; margin-top: 1rem;">
+        <i class="fa-brands fa-whatsapp"></i> Quick WhatsApp Order
+      </a>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero-wrap">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge-pill">
+              <i class="fa-solid fa-seedling"></i>
+              <span>Ammikallil aracha pole fresh • 100% Kerala Single-Origin</span>
+            </div>
+
+            <h1 class="hero-main-title">
+              The Real Taste of <br />
+              <span class="title-highlight-gold">Fresh Kerala Ginger &amp; Garlic</span>
+            </h1>
+
+            <p class="hero-description">
+              Zero water dilution. Zero vinegar shock. Zero cornstarch fillers. 
+              <strong>Flanora delivers 100% stone-crushed density in induction-sealed PET bottles</strong>, so 1 spoon delivers triple the aroma of watery commercial brands.
+            </p>
+
+            <div class="hero-button-group">
+              <a href="#products" class="btn-hero-primary">
+                <i class="fa-solid fa-jar"></i>
+                <span>Explore Pastes &amp; Bottles</span>
+              </a>
+              <a href="#b2b" class="btn-hero-secondary">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Request Free Chef Sample Kit</span>
+              </a>
+            </div>
+
+            <!-- Trust Chips -->
+            <div class="trust-chips-row">
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> Zero Sour Vinegar Taste</div>
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> Airtight Induction Seal</div>
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> Clean Sizzle in Hot Oil</div>
+              <div class="trust-chip"><i class="fa-solid fa-check"></i> FSSAI &amp; Batch Tested</div>
+            </div>
+          </div>
+
+          <!-- Hero Showcase Card -->
+          <div class="hero-showcase-card">
+            <img src="../assets/images/flanora_ginger_garlic_jar.jpg" alt="Flanora Fresh Kerala Ginger Garlic Paste" class="flanora-hero-image-pane" loading="lazy" />
+            <div class="hero-badge-seal">
+              <i class="fa-solid fa-certificate"></i> Authentic Coarse-Crushed Homemade Texture
+            </div>
+
+            <div class="hero-pack-preview-grid">
+              <div class="pack-preview-item">
+                <div class="pack-preview-title">PET Bottles</div>
+                <div class="pack-preview-desc">200g &amp; 500g (~30 to 75 Meals)</div>
+              </div>
+              <div class="pack-preview-item">
+                <div class="pack-preview-title">Commercial Buckets</div>
+                <div class="pack-preview-desc">1kg &amp; 5kg (~150 to 750 Servings)</div>
+              </div>
+              <div class="pack-preview-item">
+                <div class="pack-preview-title">Origin</div>
+                <div class="pack-preview-desc">Thrissur Processing Hub</div>
+              </div>
+              <div class="pack-preview-item">
+                <div class="pack-preview-title">Purity Promise</div>
+                <div class="pack-preview-desc">100% Refund if Starch Found</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKETING FEATURE 1: THE SIZZLE TEST & SENSORY PROOF -->
+    <section class="section-spacing" id="sizzle-test" style="padding-top: 0;">
+      <div class="container">
+        <div class="sizzle-test-wrapper">
+          <div>
+            <div class="sizzle-head-malayalam">
+              <i class="fa-solid fa-fire-burner"></i> The Hot Oil Sizzle Test
+            </div>
+            <h2 style="font-size: 2rem; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 1rem;">
+              Why Cheap Pastes Splatter &amp; Ruin Your Curry
+            </h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.7;">
+              Mass-market brands dilute their pastes with up to <strong>40% water and cornstarch</strong>, and preserve them with harsh acetic acid (vinegar). When dropped into hot oil, water causes dangerous splattering, and vinegar leaves a sour aftertaste in your Biryani or Roast.
+            </p>
+            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem; color: #86efac; font-weight: 700; font-size: 0.95rem;">
+              <i class="fa-solid fa-shield-heart" style="font-size: 1.3rem;"></i>
+              <span>Flanora is 100% pure spice density: Sweet-fiery aroma, clean fry, zero sourness.</span>
+            </div>
+          </div>
+
+          <div class="sizzle-comparison-grid">
+            <div class="sizzle-card sizzle-card-flanora">
+              <div class="sizzle-card-title">
+                <i class="fa-solid fa-circle-check"></i> Flanora Cold-Pressed (Pure Density)
+              </div>
+              <p class="sizzle-card-desc">
+                Clean, aromatic sizzle in hot coconut/vegetable oil. Pure essential oils caramelize gently without violent popping. Authentic rich spice aroma within 5 seconds.
+              </p>
+            </div>
+
+            <div class="sizzle-card sizzle-card-others">
+              <div class="sizzle-card-title">
+                <i class="fa-solid fa-triangle-exclamation"></i> Water-Diluted Mass Pastes
+              </div>
+              <p class="sizzle-card-desc">
+                Violent, messy oil splatter across the stove. Starch burns to the bottom of the pan while artificial vinegar sourness overpowers the dish.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKETING FEATURE 2: TRIO STARTER KIT PROMOTION -->
+    <section class="section-spacing" id="trio-box" style="padding-top: 0;">
+      <div class="container">
+        <div class="bundle-banner-card">
+          <div>
+            <div class="bundle-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Best Value Trial Kit</div>
+            <h2 class="bundle-title">Flanora Kitchen Trio Starter Box</h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem; max-width: 620px; line-height: 1.6;">
+              Experience all three culinary essentials in one box. Handpicked for Kerala households wanting authentic stone-crushed flavor.
+            </p>
+            <div class="bundle-items-pills">
+              <span class="bundle-pill">200g Crushed Ginger-Garlic</span>
+              <span class="bundle-pill">200g Pure Mountain Garlic</span>
+              <span class="bundle-pill">200g Single-Origin Ginger</span>
+              <span class="bundle-pill" style="border-color: #22c55e; color: #86efac;">Induction Sealed</span>
+            </div>
+          </div>
+          <div>
+            <a href="https://wa.me/916238796383?text=Hello%20Flanora%2C%20I%20would%20like%20to%20order%20the%20Kitchen%20Trio%20Starter%20Box%20(3%20x%20200g%20PET%20Bottles)%20for%20my%20home." target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="padding: 1rem 1.75rem; white-space: nowrap;">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Order Trio Box on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PRODUCT CATALOG WITH DYNAMIC PACK & YIELD SELECTOR -->
+    <section class="section-spacing" id="products" style="background: rgba(2, 12, 5, 0.5);">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="badge-sub"><i class="fa-solid fa-basket-shopping"></i> Product Lineup &amp; Yield</div>
+          <h2 class="section-heading">Select Your Paste &amp; Bottle Size</h2>
+          <p class="section-subtext">
+            Choose your desired quantity below to calculate your kitchen yield and generate an instant WhatsApp order.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <!-- PRODUCT 1: Crushed Ginger-Garlic Paste -->
+          <div class="product-card" id="card-gg">
+            <div class="product-badge-flag">Best Seller</div>
+            
+            <div class="product-photo-wrap">
+              <img src="../assets/images/flanora_ginger_garlic_jar.jpg" alt="Flanora Crushed Ginger-Garlic Paste" class="product-photo-img" loading="lazy" />
+            </div>
+
+            <div class="product-tagline">Golden 50:50 Kerala Balance</div>
+            <h3 class="product-title">Crushed Ginger-Garlic Paste</h3>
+            <p class="product-desc">
+              Balanced 50:50 blend of spicy Wayanad ginger and potent mountain garlic, crushed coarsely to release maximum essential oils into your tadka.
+            </p>
+
+            <!-- Kerala Recipe Pairings -->
+            <div class="recipe-pairings-box">
+              <div class="recipe-pairings-label"><i class="fa-solid fa-utensils"></i> Perfect For:</div>
+              <div class="recipe-tags-list">
+                <span class="recipe-tag">Thalassery Dum Biryani</span>
+                <span class="recipe-tag">Malabar Chicken Roast</span>
+                <span class="recipe-tag">Kozhikode Ghee Rice</span>
+                <span class="recipe-tag">Kerala Fish Curry</span>
+              </div>
+            </div>
+
+            <!-- Pack Size Selector with Serving Yield -->
+            <div style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 1rem; border-left: 2px solid #22c55e; padding-left: 0.75rem;"><strong>Shelf Life:</strong> 1 Year (Refrigerate after opening)</div>
+            <div class="pack-size-selector-box">
+              <div class="pack-selector-label">
+                <span>Select Size:</span>
+                <span class="yield-serving-counter" id="yield-card-gg">~30 Home Meals</span>
+              </div>
+              <div class="pack-pills-row">
+                <button type="button" class="pack-pill-btn active" onclick="selectPack('card-gg', '200g PET Bottle', '~30 Home Meals')">200g</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-gg', '500g PET Bottle', '~75 Family Meals')">500g</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-gg', '1kg Commercial Bottle', '~150 Restaurant Portions')">1kg</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-gg', '5kg Catering Bucket', '~750+ Banqueting Portions')">5kg</button>
+              </div>
+            </div>
+
+            <button type="button" class="btn-order-sku-whatsapp" onclick="orderProductWhatsApp('Flanora Crushed Ginger-Garlic Paste', 'card-gg')">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Get Price & Order on WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- PRODUCT 2: Pure Crushed Garlic Paste -->
+          <div class="product-card" id="card-garlic">
+            <div class="product-badge-flag">High Potency</div>
+
+            <div class="product-photo-wrap">
+              <img src="../assets/images/flanora_garlic_jar.jpg" alt="Flanora Pure Crushed Mountain Garlic Paste" class="product-photo-img" loading="lazy" />
+            </div>
+
+            <div class="product-tagline">100% Pungent Mountain Garlic</div>
+            <h3 class="product-title">Pure Crushed Garlic Paste</h3>
+            <p class="product-desc">
+              Made from select whole peeled garlic cloves. Cold-crushed with virgin cold-pressed oil and sea salt to retain raw allicin content and authentic pungent aroma.
+            </p>
+
+            <!-- Kerala Recipe Pairings -->
+            <div class="recipe-pairings-box">
+              <div class="recipe-pairings-label"><i class="fa-solid fa-utensils"></i> Perfect For:</div>
+              <div class="recipe-tags-list">
+                <span class="recipe-tag">Shawarma Toum (Garlic Dip)</span>
+                <span class="recipe-tag">Al-Faham Marinade</span>
+                <span class="recipe-tag">Garlic Butter Naan</span>
+                <span class="recipe-tag">Kerala Beef Ularthiyathu</span>
+              </div>
+            </div>
+
+            <!-- Pack Size Selector with Serving Yield -->
+            <div style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 1rem; border-left: 2px solid #22c55e; padding-left: 0.75rem;"><strong>Shelf Life:</strong> 1 Year (Refrigerate after opening)</div>
+            <div class="pack-size-selector-box">
+              <div class="pack-selector-label">
+                <span>Select Size:</span>
+                <span class="yield-serving-counter" id="yield-card-garlic">~30 Home Meals</span>
+              </div>
+              <div class="pack-pills-row">
+                <button type="button" class="pack-pill-btn active" onclick="selectPack('card-garlic', '200g PET Bottle', '~30 Home Meals')">200g</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-garlic', '500g PET Bottle', '~75 Family Meals')">500g</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-garlic', '1kg Commercial Bottle', '~150 Restaurant Portions')">1kg</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-garlic', '5kg Catering Bucket', '~750+ Banqueting Portions')">5kg</button>
+              </div>
+            </div>
+
+            <button type="button" class="btn-order-sku-whatsapp" onclick="orderProductWhatsApp('Flanora Pure Crushed Garlic Paste', 'card-garlic')">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Get Price & Order on WhatsApp</span>
+            </button>
+          </div>
+
+          <!-- PRODUCT 3: Single-Origin Crushed Ginger Paste -->
+          <div class="product-card" id="card-ginger">
+            <div class="product-badge-flag">Kerala High-Range</div>
+
+            <div class="product-photo-wrap">
+              <img src="../assets/images/flanora_ginger_jar.jpg" alt="Flanora Single-Origin Crushed Ginger Paste" class="product-photo-img" loading="lazy" />
+            </div>
+
+            <div class="product-tagline">Fiery Wayanad Ginger Roots</div>
+            <h3 class="product-title">Single-Origin Crushed Ginger Paste</h3>
+            <p class="product-desc">
+              Freshly harvested Kerala ginger roots ground with fiber-retention cold milling. Delivers a fiery, clean ginger punch that brings authentic depth to curries and broths.
+            </p>
+
+            <!-- Kerala Recipe Pairings -->
+            <div class="recipe-pairings-box">
+              <div class="recipe-pairings-label"><i class="fa-solid fa-utensils"></i> Perfect For:</div>
+              <div class="recipe-tags-list">
+                <span class="recipe-tag">Kerala Inji Curry (Puli Inji)</span>
+                <span class="recipe-tag">Ginger Pepper Chicken</span>
+                <span class="recipe-tag">Ayurvedic Herbal Kadha</span>
+                <span class="recipe-tag">Kuttanad Duck Roast</span>
+              </div>
+            </div>
+
+            <!-- Pack Size Selector with Serving Yield -->
+            <div style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 1rem; border-left: 2px solid #22c55e; padding-left: 0.75rem;"><strong>Shelf Life:</strong> 1 Year (Refrigerate after opening)</div>
+            <div class="pack-size-selector-box">
+              <div class="pack-selector-label">
+                <span>Select Size:</span>
+                <span class="yield-serving-counter" id="yield-card-ginger">~30 Home Meals</span>
+              </div>
+              <div class="pack-pills-row">
+                <button type="button" class="pack-pill-btn active" onclick="selectPack('card-ginger', '200g PET Bottle', '~30 Home Meals')">200g</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-ginger', '500g PET Bottle', '~75 Family Meals')">500g</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-ginger', '1kg Commercial Bottle', '~150 Restaurant Portions')">1kg</button>
+                <button type="button" class="pack-pill-btn" onclick="selectPack('card-ginger', '5kg Catering Bucket', '~750+ Banqueting Portions')">5kg</button>
+              </div>
+            </div>
+
+            <button type="button" class="btn-order-sku-whatsapp" onclick="orderProductWhatsApp('Flanora Single-Origin Crushed Ginger Paste', 'card-ginger')">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Get Price & Order on WhatsApp</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: THE COLD-CRUSH PURITY PROCESS -->
+    <section class="section-spacing" id="process">
+      <div class="container">
+        <div class="section-header-center">
+          <div class="badge-sub"><i class="fa-solid fa-microscope"></i> Manufacturing Integrity</div>
+          <h2 class="section-heading">The 4-Stage Farm-to-Kitchen Journey</h2>
+          <p class="section-subtext">
+            How we protect delicate spice aromas from thermal heat and chemical contamination.
+          </p>
+        </div>
+
+        <div class="process-timeline-grid">
+          <div class="process-step-card">
+            <div class="step-number-badge">1</div>
+            <h3 class="step-title">Single-Origin Harvest</h3>
+            <p class="step-desc">
+              Procured directly from small-holder organic farms in Wayanad and Idukki with zero synthetic pesticides.
+            </p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number-badge">2</div>
+            <h3 class="step-title">Cryo-Cold Crushing</h3>
+            <p class="step-desc">
+              Low-temperature mechanical crushing below 18&deg;C prevents thermal dissipation of volatile spice essences.
+            </p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number-badge">3</div>
+            <h3 class="step-title">Natural Mineral Seal</h3>
+            <p class="step-desc">
+              Preserved naturally with food-grade sea salt and cold-pressed edible oil. 0% added water or cornstarch.
+            </p>
+          </div>
+
+          <div class="process-step-card">
+            <div class="step-number-badge">4</div>
+            <h3 class="step-title">Induction-Sealed PET</h3>
+            <p class="step-desc">
+              Airtight tamper-proof induction foil sealed over PET bottles in our Thrissur unit for zero-leak freshness.
+            </p>
+          </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="purity-comparison-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom: 0.75rem;">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">
+              Why Flanora Outperforms Mass Commercial Pastes
+            </h3>
+            <div class="table-scroll-hint-mobile">
+              <i class="fa-solid fa-arrows-left-right"></i> Swipe sideways to compare
+            </div>
+          </div>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Purity Parameter</th>
+                <th style="color: #86efac;">Flanora Crushed Pastes</th>
+                <th>Standard Mass-Market Pastes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Spice Concentration</strong></td>
+                <td class="flanora-col">100% Pure Raw Spices (Dense)</td>
+                <td>40% to 50% Diluted with Water</td>
+              </tr>
+              <tr>
+                <td><strong>Texture &amp; Mouthfeel</strong></td>
+                <td class="flanora-col">Authentic Coarsely Crushed</td>
+                <td>Over-processed Slimy Starch Puree</td>
+              </tr>
+              <tr>
+                <td><strong>Aftertaste / Flavor</strong></td>
+                <td class="flanora-col">Natural Sweet-Pungent Spice Notes</td>
+                <td>Sour Acetic Acid (Vinegar) Shock</td>
+              </tr>
+              <tr>
+                <td><strong>Packaging Technology</strong></td>
+                <td class="flanora-col">Induction-Sealed Airtight PET Bottle</td>
+                <td>Loose Pouch with Plastic Leaching Risk</td>
+              </tr>
+              <tr>
+                <td><strong>Yield &amp; Dosage</strong></td>
+                <td class="flanora-col">1 Spoon Equals Full Dish Flavor</td>
+                <td>2 to 3 Spoons Needed for Same Aroma</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Testimonials & Trust Grid -->
+        <div class="trust-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">
+              "Currently supplying to leading cloud kitchens and restaurants across Ernakulam and Thrissur with our commercial 5kg catering buckets."
+            </p>
+            <div>
+              <div class="testimonial-author">HORECA Supply Network</div>
+              <div class="testimonial-role">Central Kerala</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-quote">
+              "Actively expanding our distributor network across Kerala districts with guaranteed retail margins and territorial exclusivity."
+            </p>
+            <div>
+              <div class="testimonial-author">Retail Distribution</div>
+              <div class="testimonial-role">District Dealerships</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-quote">
+              "Delivering the authentic taste of ammikallu-crushed ginger and garlic directly to households with 100% purity guarantee."
+            </p>
+            <div>
+              <div class="testimonial-author">D2C Home Delivery</div>
+              <div class="testimonial-role">Kerala-Wide Reach</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- SECTION: DELIVERY & LOGISTICS -->
+    <section class="section-spacing" id="delivery" style="background: rgba(4, 18, 9, 0.95);">
+      <div class="container">
+        <div class="bundle-banner-card" style="flex-direction: column; align-items: flex-start;">
+          <div class="bundle-badge"><i class="fa-solid fa-truck-fast"></i> Delivery & Logistics</div>
+          <h2 class="bundle-title" style="font-size: 1.5rem;">Fast & Reliable Shipping Across Kerala</h2>
+          <ul style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.8; margin-top: 1rem; list-style: none; padding: 0;">
+            <li><i class="fa-solid fa-check" style="color: #22c55e; margin-right: 0.5rem;"></i> <strong>Free Delivery within 2 days</strong> to Thrissur, Ernakulam, and Palakkad for bulk orders.</li>
+            <li><i class="fa-solid fa-check" style="color: #22c55e; margin-right: 0.5rem;"></i> <strong>Other Districts:</strong> Calculated delivery fees applied at final payment.</li>
+            <li><i class="fa-solid fa-check" style="color: #22c55e; margin-right: 0.5rem;"></i> <strong>Cash on Delivery (COD)</strong> available.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: B2B DEALERSHIP, CHEF SAMPLES & WHOLESALE RFQ -->
+    <section class="section-spacing" id="b2b" style="background: rgba(3, 14, 7, 0.6);">
+      <div class="container">
+        <div class="b2b-wrapper">
+          <!-- Left info & Cleanly Aligned Tiers -->
+          <div>
+            <div class="badge-sub"><i class="fa-solid fa-handshake"></i> Commercial Distribution &amp; Samples</div>
+            <h2 class="b2b-title">Wholesale, Dealership &amp; Chef Sample Kits</h2>
+            <p class="b2b-p">
+              We supply supermarkets, luxury restaurants, wedding caterers, and regional distributors across Kerala and export channels. <strong>Request a free commercial tasting kit for your kitchen.</strong>
+            </p>
+
+            
+            <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 2rem; border-left: 3px solid #22c55e;">
+                <h4 style="color: #fff; margin-bottom: 0.5rem;">Distributor Margins</h4>
+                <p style="color: #cbd5e1; font-size: 0.9rem;">Enjoy highly competitive retail partner margins ranging from <strong>18% to 25%</strong> depending on the SKU and volume, with protected district exclusivity.</p>
+            </div>
+            <!-- Properly Aligned B2B Tiers Stack -->
+
+            <div class="b2b-tiers-stack">
+              <div class="b2b-tier-card">
+                <div class="b2b-tier-icon"><i class="fa-solid fa-shop"></i></div>
+                <div class="b2b-tier-content">
+                  <span class="b2b-tier-name">District Distributorships</span>
+                  <span class="b2b-tier-desc">Exclusive retail margin tiers (18–25%) with territorial protection across Kerala districts.</span>
                 </div>
+              </div>
 
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+              <div class="b2b-tier-card">
+                <div class="b2b-tier-icon"><i class="fa-solid fa-utensils"></i></div>
+                <div class="b2b-tier-content">
+                  <span class="b2b-tier-name">HORECA &amp; Catering (1kg / 5kg Buckets)</span>
+                  <span class="b2b-tier-desc">Commercial food service buckets with custom batch pricing that saves 30% on kitchen spice spend.</span>
+                </div>
+              </div>
+
+              <div class="b2b-tier-card">
+                <div class="b2b-tier-icon"><i class="fa-solid fa-plane-departure"></i></div>
+                <div class="b2b-tier-content">
+                  <span class="b2b-tier-name">GCC &amp; Export Inquiries</span>
+                  <span class="b2b-tier-desc">Vacuum sealed containerized bulk packaging compliant with UAE, Saudi, and GCC food standards.</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="tel:+916238796383" class="btn-hero-secondary" style="font-size: 0.9rem;">
+                <i class="fa-solid fa-phone"></i> Call Dealership Desk (+91 6238 796 383)
+              </a>
+            </div>
+          </div>
+
+          <!-- Right form -->
+          <div>
+            <form class="rfq-form" id="rfqForm" onsubmit="event.preventDefault(); submitFlanoraRFQ();">
+              <div class="rfq-group">
+                <label for="rfqName" class="rfq-label">Business / Contact Name *</label>
+                <input type="text" id="rfqName" class="rfq-input" autocomplete="name" placeholder="e.g. Malabar Supermarket / Chef Vinod" required />
+              </div>
+
+              <div class="rfq-group">
+                <label for="rfqPhone" class="rfq-label">WhatsApp / Phone *</label>
+                <input type="tel" id="rfqPhone" class="rfq-input" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" required />
+              </div>
+
+              <div class="rfq-group">
+                <label for="rfqTier" class="rfq-label">Partnership Tier / Sample Request *</label>
+                <select id="rfqTier" class="rfq-select">
+                  <option value="Request Free Chef Sample Tasting Kit">Request Free Chef / Retailer Sample Kit</option>
+                  <option value="District Distributorship (Kerala / India)">District Distributorship (Kerala / India)</option>
+                  <option value="HORECA & Catering Bulk (1kg / 5kg Buckets)">HORECA &amp; Catering Bulk (1kg / 5kg Buckets)</option>
+                  <option value="Supermarket / Retail Store Stocking">Supermarket / Retail Store Stocking</option>
+                  <option value="GCC & Export Inquiries">GCC &amp; Export Inquiries</option>
+                </select>
+              </div>
+
+              <div class="rfq-group">
+                <label for="rfqVolume" class="rfq-label">Estimated Monthly Volume / Establishment Type</label>
+                <input type="text" id="rfqVolume" class="rfq-input" placeholder="e.g. 50 kg / Restaurant in Kochi / 100 cases" />
+              </div>
+
+              <div class="rfq-group">
+                <label for="rfqNotes" class="rfq-label">Delivery Address &amp; Specific Requirements</label>
+                <textarea id="rfqNotes" class="rfq-textarea" placeholder="Please provide your kitchen/store address for sample kit dispatch..."></textarea>
+              </div>
+
+              <div style="display: flex; gap: 0.75rem; margin-top: 1rem; flex-direction: column;">
+                <button type="submit" class="btn-submit-rfq" style="width: 100%; min-height: 48px;">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>Get Instant Quote via WhatsApp</span>
                 </button>
-
-                <nav>
-                    <ul class="nav-menu" id="navMenu">
-                        <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#products"><i class="fas fa-seedling"></i> Products</a></li>
-                        <li><a href="#about"><i class="fas fa-leaf"></i> About</a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
+                <a href="mailto:aquariz.official@gmail.com?subject=Flanora B2B Inquiry" class="btn-hero-secondary" style="width: 100%; justify-content: center; min-height: 48px; text-align: center;">
+                  <i class="fa-solid fa-envelope"></i> Email Us for Formal RFQ
+                </a>
+              </div>
+            </form>
+          </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Premium Ginger & Garlic Pastes</h1>
-                <p class="hero-subtitle">Fresh, Natural, and Authentic Flavors for Your Kitchen - Crafted with Care,
-                    Delivered with Love</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary">
-                        <i class="fas fa-eye"></i> Explore Our Products
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-phone"></i> Get in Touch
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    <!-- Ultra-Premium Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-header scroll-reveal">
-                <h2 class="section-title">Our Flanora Products</h2>
-                <p class="section-subtitle">Discover our carefully crafted range of premium ginger and garlic pastes,
-                    made with the finest ingredients</p>
+    <!-- SECTION: FACILITY LOCATION & COMPLIANCE -->
+    <section class="section-spacing" id="location">
+      <div class="container">
+        <div class="location-card-flanora">
+          <div>
+            <div class="badge-sub"><i class="fa-solid fa-industry"></i> Processing Facility</div>
+            <h2 class="facility-meta-title">Manufactured by Aquariz in Thrissur, Kerala</h2>
+            <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6;">
+              Flanora products are manufactured and induction-sealed under strict food safety guidelines at Aquariz's central manufacturing unit in Thrissur.
+            </p>
+
+            <div class="gstin-pill-box">
+              <div>
+                <span style="font-size: 0.72rem; color: #86efac; font-weight: 700; text-transform: uppercase;">GSTIN & FSSAI Compliance</span>
+                <div style="font-family: monospace; font-size: 1.15rem; font-weight: 700; color: #fff;">GSTIN: 32ACCFA6985C1ZL</div><div style="font-family: monospace; font-size: 1rem; font-weight: 700; color: #86efac; margin-top: 0.25rem;">FSSAI: XXXXXX (Processing)</div>
+              </div>
+              <button type="button" class="btn-nav-order" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="copyFlanoraGstin()">
+                <i class="fa-regular fa-copy"></i> Copy GSTIN
+              </button>
             </div>
 
-            <div class="product-grid">
-                <div class="product-card scroll-reveal">
-                    <div class="quality-badge">Premium</div>
-                    <div class="product-image">🫚</div>
-                    <div class="product-content">
-                        <h3>Ginger Paste</h3>
-                        <div class="product-features">
-                            <span class="feature-tag">Fresh</span>
-                            <span class="feature-tag">Natural</span>
-                            <span class="feature-tag">Organic</span>
-                            <span class="feature-tag">Pure</span>
-                        </div>
-                        <p>Premium quality ginger paste made from fresh, handpicked ginger roots. Perfect for adding
-                            that authentic zing to your dishes with unmatched flavor and aroma.</p>
-
-                        <div class="ingredient-highlight">
-                            <h5>🌿 Health Benefits</h5>
-                            <p>Rich in antioxidants, anti-inflammatory properties, and natural digestive benefits</p>
-                        </div>
-
-                        <a href="#contact" class="btn-product">
-                            <i class="fas fa-shopping-cart"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-
-                <div class="product-card scroll-reveal">
-                    <div class="quality-badge">Premium</div>
-                    <div class="product-image">🧄</div>
-                    <div class="product-content">
-                        <h3>Garlic Paste</h3>
-                        <div class="product-features">
-                            <span class="feature-tag">Premium</span>
-                            <span class="feature-tag">Aromatic</span>
-                            <span class="feature-tag">Pure</span>
-                            <span class="feature-tag">Fresh</span>
-                        </div>
-                        <p>Rich and aromatic garlic paste crafted from the finest garlic cloves. Brings out the true
-                            essence of garlic in every meal with authentic taste and fragrance.</p>
-
-                        <div class="ingredient-highlight">
-                            <h5>💪 Health Benefits</h5>
-                            <p>Boosts immunity, supports heart health, and provides natural antibacterial properties</p>
-                        </div>
-
-                        <a href="#contact" class="btn-product">
-                            <i class="fas fa-shopping-cart"></i> Order Now
-                        </a>
-                    </div>
-                </div>
-
-                <div class="product-card scroll-reveal">
-                    <div class="quality-badge">Bestseller</div>
-                    <div class="product-image">🫚🧄</div>
-                    <div class="product-content">
-                        <h3>Ginger Garlic Paste</h3>
-                        <div class="product-features">
-                            <span class="feature-tag">Blend</span>
-                            <span class="feature-tag">Balanced</span>
-                            <span class="feature-tag">Essential</span>
-                            <span class="feature-tag">Popular</span>
-                        </div>
-                        <p>The perfect blend of fresh ginger and garlic. A kitchen essential that combines the best of
-                            both worlds for enhanced flavor and convenient cooking.</p>
-
-                        <div class="ingredient-highlight">
-                            <h5>✨ Combined Benefits</h5>
-                            <p>Complete flavor profile with combined health benefits of both ginger and garlic</p>
-                        </div>
-
-                        <a href="#contact" class="btn-product">
-                            <i class="fas fa-shopping-cart"></i> Order Now
-                        </a>
-                    </div>
-                </div>
+            <div style="font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; margin-top: 1rem;">
+              <strong>Facility Address:</strong><br />
+              Aquariz (Flanora Processing Division)<br />
+              Ward -12, Plot no 801/2-24, Thumboor, Thumboor P.O,<br />
+              Thrissur District, Kerala, PIN: <strong>680662</strong>
             </div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="https://www.google.com/maps/search/?api=1&query=Ward%20-12%2C%20Plot%20no%20801%2F2-24%2C%20Thumboor%2C%20Thrissur%2C%20Kerala%20680662" target="_blank" rel="noopener noreferrer" class="btn-hero-primary" style="font-size: 0.85rem; padding: 0.75rem 1.25rem;">
+                <i class="fa-solid fa-location-arrow"></i> Open Google Maps Location
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 1rem;">Direct Flanora Desk</h3>
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <a href="https://wa.me/916238796383" target="_blank" rel="noopener noreferrer" style="background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-emerald); padding: 1rem; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 1rem;">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem; color: #22c55e;"></i>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700;">Customer &amp; Chef WhatsApp</div>
+                  <div style="font-weight: 700; color: #fff;">+91 6238 796 383</div>
+                </div>
+              </a>
+
+              <a href="mailto:aquariz.official@gmail.com" style="background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-emerald); padding: 1rem; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 1rem;">
+                <i class="fa-solid fa-envelope" style="font-size: 1.3rem; color: var(--color-accent);"></i>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700;">Email Desk</div>
+                  <div style="font-weight: 700; color: #fff;">aquariz.official@gmail.com</div>
+                </div>
+              </a>
+
+              <!-- Separated Flanora Instagram Handle -->
+              <a href="https://instagram.com/flanora.in" target="_blank" rel="noopener noreferrer" style="background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-emerald); padding: 1rem; border-radius: var(--radius-sm); display: flex; align-items: center; gap: 1rem;">
+                <i class="fa-brands fa-instagram" style="font-size: 1.4rem; color: #ec4899;"></i>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700;">Flanora Instagram</div>
+                  <div style="font-weight: 700; color: #fff;">@flanora.in</div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Premium About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content scroll-reveal">
-                <div class="about-text">
-                    <h3>About Aquariz Flanora</h3>
-                    <p>At Aquariz, we believe that great cooking starts with great ingredients. Our Flanora brand
-                        represents our unwavering commitment to delivering the finest ginger and garlic pastes that
-                        enhance the natural flavors of your favorite dishes.</p>
-
-                    <p>We source only the freshest ginger and garlic from trusted farms, processing them with care to
-                        preserve their natural goodness and authentic taste. Each jar of our paste is a testament to
-                        quality, freshness, and the rich culinary traditions we honor.</p>
-
-                    <ul class="features-list">
-                        <li>100% Natural and Fresh Ingredients</li>
-                        <li>No Artificial Preservatives</li>
-                        <li>Authentic Taste and Aroma</li>
-                        <li>Hygienic Processing Standards</li>
-                        <li>Extended Shelf Life</li>
-                        <li>Convenient Packaging</li>
-                    </ul>
-                </div>
-
-                <div class="about-visual">
-                    <h4>🌿 Fresh & Natural 🌿</h4>
-                    <p>From farm to jar, we maintain the highest standards of quality and freshness</p>
-                </div>
-            </div>
+  <!-- FOOTER -->
+  <footer class="flanora-footer">
+    <div class="container">
+      <div class="footer-flex">
+        <div>
+          <div class="flanora-title-text" style="margin-bottom: 0.75rem;">
+            <span class="flanora-brand-title" style="font-size: 1.6rem;">FLANORA</span>
+            <span class="flanora-by-parent">Cold-Pressed Ginger &amp; Garlic Pastes</span>
+          </div>
+          <p style="font-size: 0.88rem; color: #cbd5e1; max-width: 380px; line-height: 1.6;">
+            A culinary FMCG brand proudly crafted by <strong>Aquariz</strong> in Thrissur, Kerala. Pure, simple, and powerful kitchen staples in induction-sealed PET bottles.
+          </p>
+          <div style="margin-top: 1rem; display: flex; gap: 0.75rem;">
+            <a href="https://instagram.com/flanora.in" target="_blank" rel="noopener noreferrer" style="width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--color-border-emerald); display: flex; align-items: center; justify-content: center; color: #fff;" aria-label="Flanora Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/916238796383" target="_blank" rel="noopener noreferrer" style="width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--color-border-emerald); display: flex; align-items: center; justify-content: center; color: #22c55e;" aria-label="WhatsApp Us"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:aquariz.official@gmail.com" style="width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--color-border-emerald); display: flex; align-items: center; justify-content: center; color: #e5a93c;" aria-label="Email Us"><i class="fa-solid fa-envelope"></i></a>
+          </div>
         </div>
-    </section>
 
-    <!-- Ultra-Premium Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-content scroll-reveal">
-                <h2 class="contact-title">Get in Touch</h2>
-                <p class="contact-subtitle">Ready to add authentic flavors to your kitchen? Contact us to place your
-                    order!</p>
-
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <i class="fas fa-phone"></i>
-                        <h4>Phone</h4>
-                        <p>+91 6238 796 383</p>
-                    </div>
-
-                    <div class="contact-card">
-                        <i class="fas fa-envelope"></i>
-                        <h4>Email</h4>
-                        <p>aquariz.official@gmail.com</p>
-                    </div>
-
-                    <div class="contact-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h4>Address</h4>
-                        <p>123 Spice Street<br>Flavor Town, FT 12345</p>
-                    </div>
-                </div>
-            </div>
+        <div>
+          <h4 style="font-size: 0.88rem; font-weight: 700; text-transform: uppercase; color: #86efac; margin-bottom: 1rem;">Products &amp; Bottles</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; color: #cbd5e1;">
+            <li><a href="#products">Crushed Ginger-Garlic (200g/500g)</a></li>
+            <li><a href="#products">Pure Mountain Garlic (200g/500g)</a></li>
+            <li><a href="#products">Single-Origin Ginger (200g/500g)</a></li>
+            <li><a href="#trio-box">Kitchen Trio Trial Kit</a></li>
+            <li><a href="#b2b">Commercial 1kg Bottles &amp; 5kg Buckets</a></li>
+          </ul>
         </div>
-    </section>
 
-    <!-- Premium Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Our Products</h4>
-                    <ul>
-                        <li><a href="#products"><i class="fas fa-seedling"></i> Ginger Paste</a></li>
-                        <li><a href="#products"><i class="fas fa-seedling"></i> Garlic Paste</a></li>
-                        <li><a href="#products"><i class="fas fa-seedling"></i> Ginger Garlic Paste</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                        <li><a href="#quality"><i class="fas fa-certificate"></i> Quality Standards</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Aquariz Flanora. All rights reserved. | Bringing Fresh Flavors to Your Kitchen</p>
-            </div>
+        <div>
+          <h4 style="font-size: 0.88rem; font-weight: 700; text-transform: uppercase; color: #86efac; margin-bottom: 1rem;">Parent Venture</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; color: #cbd5e1;">
+            <li><a href="../index.html"><strong>Aquariz Parent Portal</strong></a></li>
+            <li><a href="../index.html#engineering">Engineering Rigor</a></li>
+            <li><a href="../index.html#story">Founders &amp; Venture Story</a></li>
+            <li><a href="../index.html#facility">Governance &amp; Tax</a></li>
+          </ul>
         </div>
-    </footer>
+      </div>
 
-    <!-- Floating Action Button -->
-    <a href="#contact" class="fab-contact">
-        <i class="fas fa-phone"></i>
+      <div class="footer-bottom-copy">
+        <div>
+          &copy; <span id="fYear">2026</span> Flanora &amp; Aquariz. All Rights Reserved. Thrissur, Kerala, India.
+        </div>
+        <div>
+          GSTIN: 32ACCFA6985C1ZL | Customer Support: +91 6238 796 383
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE FLANORA QUICK BAR -->
+  <div class="mobile-flanora-bar" aria-label="Mobile Quick Actions">
+    <a href="https://wa.me/916238796383?text=Hello%20Flanora%2C%20I%20would%20like%20to%20order%20paste" class="btn-flanora-bar bar-wa" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>Order on WA</span>
     </a>
+    <a href="tel:+916238796383" class="btn-flanora-bar bar-call">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call Desk</span>
+    </a>
+    <a href="#delivery" class="btn-flanora-bar bar-parent">
+      <i class="fa-solid fa-truck"></i>
+      <span>Delivery</span>
+    </a>
+  </div>
 
-    <script>
-        // Ultra-optimized JavaScript for performance
-        document.addEventListener('DOMContentLoaded', function () {
-            // Premium loading screen
-            const loadingScreen = document.getElementById('loadingScreen');
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-flanora" id="toastFlanora">
+    <i class="fa-solid fa-circle-check" style="color: var(--color-primary-bright);"></i>
+    <span id="toastFlanoraMsg">GSTIN Copied to Clipboard!</span>
+  </div>
 
-            window.addEventListener('load', function () {
-                setTimeout(() => {
-                    loadingScreen.classList.add('hidden');
-                }, 1500);
-            });
+  <!-- SCRIPT LOGIC -->
+  <script>
+    document.getElementById('fYear').textContent = new Date().getFullYear();
 
-            // Advanced mobile navigation
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
+    // Mobile Drawer Toggle
+    const flanoraMenuToggle = document.getElementById('flanoraMenuToggle');
+    const flanoraDrawerClose = document.getElementById('flanoraDrawerClose');
+    const flanoraDrawer = document.getElementById('flanoraDrawer');
+    const fNavItems = document.querySelectorAll('.f-nav-item');
 
-            navToggle.addEventListener('click', function () {
-                navToggle.classList.toggle('active');
-                navMenu.classList.toggle('active');
+    function openFlanoraDrawer() {
+      flanoraDrawer.classList.add('open');
+      flanoraDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      flanoraMenuToggle.querySelector('i').classList.remove('fa-bars');
+      flanoraMenuToggle.querySelector('i').classList.add('fa-xmark');
+    }
 
-                // Prevent body scroll when menu is open
-                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-            });
+    function closeFlanoraDrawer() {
+      flanoraDrawer.classList.remove('open');
+      flanoraDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      flanoraMenuToggle.querySelector('i').classList.remove('fa-xmark');
+      flanoraMenuToggle.querySelector('i').classList.add('fa-bars');
+    }
 
-            // Close mobile menu when clicking on links
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', function () {
-                    navToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
+    if (flanoraMenuToggle) flanoraMenuToggle.addEventListener('click', openFlanoraDrawer);
+    if (flanoraDrawerClose) flanoraDrawerClose.addEventListener('click', closeFlanoraDrawer);
+    fNavItems.forEach(item => item.addEventListener('click', closeFlanoraDrawer));
 
-            // Ultra-smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+    // Toast
+    const toastFlanora = document.getElementById('toastFlanora');
+    const toastFlanoraMsg = document.getElementById('toastFlanoraMsg');
 
-            // Advanced scroll animations with Intersection Observer
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
+    function showFlanoraToast(msg) {
+      toastFlanoraMsg.textContent = msg;
+      toastFlanora.classList.add('show');
+      setTimeout(() => {
+        toastFlanora.classList.remove('show');
+      }, 3000);
+    }
 
-            const observer = new IntersectionObserver(function (entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, observerOptions);
+    function copyFlanoraGstin() {
+      const gstin = '32ACCFA6985C1ZL';
+      navigator.clipboard.writeText(gstin).then(() => {
+        showFlanoraToast('GSTIN: ' + gstin + ' copied!');
+      }).catch(() => {
+        showFlanoraToast('GSTIN: ' + gstin);
+      });
+    }
 
-            document.querySelectorAll('.scroll-reveal').forEach(el => {
-                observer.observe(el);
-            });
+    // Interactive Pack & Yield Selector
+    const selectedPacks = {
+      'card-gg': '200g PET Bottle',
+      'card-garlic': '200g PET Bottle',
+      'card-ginger': '200g PET Bottle'
+    };
 
-            // Premium header background change on scroll
-            let ticking = false;
+    function selectPack(cardId, packSize, yieldText) {
+      selectedPacks[cardId] = packSize;
+      const card = document.getElementById(cardId);
+      if (!card) return;
 
-            function updateHeader() {
-                const header = document.querySelector('header');
-                const scrolled = window.pageYOffset;
+      const buttons = card.querySelectorAll('.pack-pill-btn');
+      buttons.forEach(btn => {
+        if (btn.textContent.trim() === packSize.replace(' PET Bottle', '').replace(' Commercial Bottle', '').replace(' Catering Bucket', '')) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
 
-                if (scrolled > 50) {
-                    header.style.background = 'linear-gradient(135deg, rgba(13, 79, 26, 0.95), rgba(26, 95, 45, 0.95))';
-                    header.style.backdropFilter = 'blur(20px)';
-                    header.style.boxShadow = 'var(--shadow-xl)';
-                } else {
-                    header.style.background = 'linear-gradient(135deg, var(--primary-green), var(--secondary-green))';
-                    header.style.backdropFilter = 'blur(10px)';
-                    header.style.boxShadow = 'var(--shadow-lg)';
-                }
+      const label = card.querySelector('.selected-pack-label');
+      if (label) label.textContent = packSize;
 
-                ticking = false;
-            }
+      const yieldDisplay = document.getElementById(`yield-${cardId}`);
+      if (yieldDisplay && yieldText) yieldDisplay.textContent = yieldText;
+    }
 
-            window.addEventListener('scroll', function () {
-                if (!ticking) {
-                    requestAnimationFrame(updateHeader);
-                    ticking = true;
-                }
-            });
+    function orderProductWhatsApp(productName, cardId) {
+      const pack = selectedPacks[cardId] || '200g PET Bottle';
+      const msg = `*Flanora Product Order*\n` +
+                  `• *Product:* ${productName}\n` +
+                  `• *Selected Packaging:* ${pack} (Induction-Sealed)\n` +
+                  `• *Origin:* Thrissur Facility\n\n` +
+                  `Hello Flanora Team, please confirm availability, pricing, and dispatch timeline for my location.`;
 
-            // Enhanced product card animations
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-15px) scale(1.02)';
-                    this.style.boxShadow = 'var(--shadow-2xl)';
-                });
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/916238796383?text=${encoded}`, '_blank');
+    }
 
-                card.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
-                    this.style.boxShadow = 'var(--shadow-md)';
-                });
-            });
+    // B2B Wholesale RFQ Submission
+    function submitFlanoraRFQ() {
+      const name = document.getElementById('rfqName').value.trim();
+      const phone = document.getElementById('rfqPhone').value.trim();
+      const tier = document.getElementById('rfqTier').value;
+      const volume = document.getElementById('rfqVolume').value.trim() || 'Not specified';
+      const notes = document.getElementById('rfqNotes').value.trim();
 
-            // Feature tag hover effects
-            document.querySelectorAll('.feature-tag').forEach(tag => {
-                tag.addEventListener('mouseenter', function () {
-                    this.style.transform = 'scale(1.05) translateY(-2px)';
-                });
+      if (!name || !phone) {
+        alert('Please enter your Business/Contact Name and Phone number.');
+        return;
+      }
 
-                tag.addEventListener('mouseleave', function () {
-                    this.style.transform = 'scale(1) translateY(0)';
-                });
-            });
+      let msg = `*Flanora B2B Inquiry / Sample Request*\n` +
+                `• *Contact/Company:* ${name}\n` +
+                `• *Phone/WhatsApp:* ${phone}\n` +
+                `• *Inquiry Type:* ${tier}\n` +
+                `• *Estimated Volume/Profile:* ${volume}\n`;
+      if (notes) {
+        msg += `• *Delivery Address/Notes:* ${notes}\n`;
+      }
+      msg += `\n_Submitted via Flanora Official Web Portal_`;
 
-            // Preload critical resources
-            const preloadLink = document.createElement('link');
-            preloadLink.rel = 'preload';
-            preloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap';
-            preloadLink.as = 'style';
-            document.head.appendChild(preloadLink);
-
-            // Stagger animation for product cards
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.2}s`;
-            });
-
-            // Enhanced contact card animations
-            document.querySelectorAll('.contact-card').forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
-                });
-
-                card.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Lazy loading for better performance
-            if ('IntersectionObserver' in window) {
-                const lazyElements = document.querySelectorAll('.product-image, .about-visual');
-                const lazyObserver = new IntersectionObserver(function (entries) {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }
-                    });
-                });
-
-                lazyElements.forEach(element => {
-                    lazyObserver.observe(element);
-                });
-            }
-
-            // Add premium focus styles for accessibility
-            document.querySelectorAll('a, button').forEach(element => {
-                element.addEventListener('focus', function () {
-                    this.style.outline = '3px solid var(--accent-orange)';
-                    this.style.outlineOffset = '2px';
-                });
-
-                element.addEventListener('blur', function () {
-                    this.style.outline = 'none';
-                });
-            });
-        });
-    </script>
+      const encodedMsg = encodeURIComponent(msg);
+      window.open(`https://wa.me/916238796383?text=${encodedMsg}`, '_blank');
+    }
+  </script>
 </body>
-
 </html>

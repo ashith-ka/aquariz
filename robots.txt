@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /flanora/
+Disallow: /flanora/archive/
+
+Sitemap: https://aquariz.in/sitemap.xml
