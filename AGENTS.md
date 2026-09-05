@@ -30,7 +30,7 @@ The `flanora/README.md` claims the site uses Three.js, GSAP, Lenis, 3D tilt card
 - GSTIN: `32ACCFA6985C1ZL`
 - Phone: `+91 6238 796 383`
 - Email: `aquariz.official@gmail.com`
-- Instagram: `@aquariz.official` & `@flanora.in`
+- Instagram: `@aquariz.in` & `@flanora.in`
 - Address: Ward -12, Plot no 801/2-24, Thumboor, Thrissur, Kerala, PIN 680662
 - Domain: `aquariz.in`
 

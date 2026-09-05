@@ -35,7 +35,7 @@ aquariz/
 - **Contact:**
   - **Phone / WhatsApp:** `+91 6238 796 383`
   - **Email:** `aquariz.official@gmail.com`
-  - **Instagram:** `@aquariz.official` & `@flanora.in`
+  - **Instagram:** `@aquariz.in` & `@flanora.in`
 
 ---
 

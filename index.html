@@ -408,8 +408,8 @@
 
     @media (min-width: 768px) {
       .btn-mobile-toggle {
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
       }
     }
 
@@ -435,6 +435,11 @@
 
     .aquariz-drawer.open {
       transform: translateX(0);
+    }
+
+    :where(a, button, input, select, textarea):focus-visible {
+      outline: 3px solid var(--color-accent-light);
+      outline-offset: 3px;
     }
 
     .drawer-top {
@@ -1165,6 +1170,22 @@
       transform: scale(0.96);
     }
 
+    @media (max-width: 767px) {
+      .trust-chips-row .trust-chip:nth-child(n + 4) {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     .bar-wa {
       background: #16a34a;
       color: #fff;
@@ -1269,7 +1290,7 @@
     "logo": "https://aquariz.in/Aquariz%20logo%20white.jpg",
     "address": { "@type": "PostalAddress", "streetAddress": "Ward -12, Plot no 801/2-24, Thumboor", "addressLocality": "Thrissur", "addressRegion": "Kerala", "postalCode": "680662", "addressCountry": "IN" },
     "contactPoint": { "@type": "ContactPoint", "telephone": "+916238796383", "contactType": "customer service", "email": "aquariz.official@gmail.com" },
-    "sameAs": ["https://instagram.com/aquariz.official"]
+    "sameAs": ["https://www.instagram.com/aquariz.in/"]
   }
   </script>
 </head>
@@ -1292,7 +1313,8 @@
   <header class="navbar">
     <div class="container nav-inner">
       <a href="index.html" class="brand-header-link" aria-label="Aquariz Home">
-        <img src="Aquariz logo white.jpg" alt="Aquariz Brand Logo" class="aquariz-nav-logo" />
+        <img src="Aquariz logo white.jpg" alt="Aquariz Brand Logo" class="aquariz-nav-logo"
+          width="1563" height="749" decoding="async" />
         <div class="aquariz-title-text">
           <span class="aquariz-brand-title">AQUARIZ</span>
           <span class="aquariz-by-parent">Precision Engineering & FMCG</span>
@@ -1313,7 +1335,8 @@
           <i class="fa-brands fa-whatsapp"></i>
           <span>Contact</span>
         </a>
-        <button class="btn-mobile-toggle" id="aquarizMenuToggle" aria-label="Toggle Menu">
+        <button class="btn-mobile-toggle" id="aquarizMenuToggle" aria-label="Open menu"
+          aria-expanded="false" aria-controls="aquarizDrawer">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
@@ -1321,13 +1344,14 @@
   </header>
 
   <!-- Mobile Drawer -->
-  <div class="aquariz-drawer" id="aquarizDrawer" aria-hidden="true">
+  <div class="aquariz-drawer" id="aquarizDrawer" role="dialog" aria-modal="true"
+    aria-label="Aquariz navigation" aria-hidden="true" inert>
     <div class="drawer-top">
       <div class="aquariz-title-text">
         <span class="aquariz-brand-title">AQUARIZ</span>
         <span class="aquariz-by-parent">Precision & FMCG</span>
       </div>
-      <button class="btn-mobile-toggle" id="aquarizDrawerClose" aria-label="Close Menu">
+      <button class="btn-mobile-toggle" id="aquarizDrawerClose" aria-label="Close menu">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
@@ -1375,18 +1399,17 @@
                 <i class="fa-solid fa-gears"></i>
                 <span>Explore Engineering</span>
               </a>
-              <a href="#facility" class="btn-hero-secondary">
-                <i class="fa-solid fa-industry"></i>
-                <span>Visit Our Facility</span>
+              <a href="flanora/index.html" class="btn-hero-secondary">
+                <i class="fa-solid fa-jar"></i>
+                <span>Explore Flanora FMCG</span>
               </a>
             </div>
 
             <!-- Trust Chips -->
             <div class="trust-chips-row">
-              <div class="trust-chip"><i class="fa-solid fa-check"></i> GST Registered</div>
-              <div class="trust-chip"><i class="fa-solid fa-check"></i> FSSAI Compliant</div>
-              <div class="trust-chip"><i class="fa-solid fa-check"></i> Thrissur Based</div>
-              <div class="trust-chip"><i class="fa-solid fa-check"></i> Kerala Made</div>
+              <div class="trust-chip"><i class="fa-solid fa-gears"></i> Engineering systems</div>
+              <div class="trust-chip"><i class="fa-solid fa-jar"></i> Flanora FMCG</div>
+              <div class="trust-chip"><i class="fa-solid fa-location-dot"></i> Thrissur, Kerala</div>
               <div class="trust-chip" style="border-color: rgba(34, 197, 94, 0.5);"><span class="pulse-dot"></span>
                 Active on WhatsApp • Fast Response</div>
             </div>
@@ -1395,7 +1418,8 @@
           <!-- Hero Showcase Card -->
           <div class="hero-showcase-card">
             <div class="aquariz-hero-logo-box">
-              <img src="Aquariz logo white.jpg" alt="Aquariz Brand Logo" class="aquariz-hero-logo-img" loading="lazy" />
+              <img src="Aquariz logo white.jpg" alt="Aquariz Brand Logo" class="aquariz-hero-logo-img"
+                width="1563" height="749" loading="eager" fetchpriority="high" decoding="async" />
             </div>
             <div class="hero-badge-seal">
               <i class="fa-solid fa-certificate"></i> Verified Indian Manufacturer
@@ -1545,7 +1569,7 @@
 
           <div class="facility-image-wrap">
             <img src="assets/images/aquariz_facility.jpg" alt="Aquariz Processing Facility in Thrissur, Kerala"
-              class="facility-image" loading="lazy" />
+              class="facility-image" width="1376" height="768" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -1587,12 +1611,12 @@
                 <div class="contact-value">aquariz.official@gmail.com</div>
               </div>
             </a>
-            <a href="https://instagram.com/aquariz.official" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/aquariz.in/" target="_blank" rel="noopener noreferrer"
               class="contact-link">
               <i class="fa-brands fa-instagram" style="color: #ec4899;"></i>
               <div>
                 <div class="contact-label">Instagram</div>
-                <div class="contact-value">@aquariz.official</div>
+                <div class="contact-value">@aquariz.in</div>
               </div>
             </a>
           </div>
@@ -1654,7 +1678,7 @@
             or direct order — we work with home cooks, restaurants, and small retailers.
           </p>
           <div style="margin-top:1rem; display:flex; gap:0.75rem;">
-            <a href="https://instagram.com/aquariz.official" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/aquariz.in/" target="_blank" rel="noopener noreferrer"
               style="width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid var(--color-border-emerald); display:flex; align-items:center; justify-content:center; color:#fff;"
               aria-label="Aquariz Instagram"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://wa.me/916238796383" target="_blank" rel="noopener noreferrer"
@@ -1728,11 +1752,34 @@
     const aquarizDrawer = document.getElementById('aquarizDrawer');
     const fNavItems = document.querySelectorAll('.drawer-item');
 
-    function openDrawer() { aquarizDrawer.classList.add('open'); aquarizDrawer.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; aquarizMenuToggle.querySelector('i').classList.remove('fa-bars'); aquarizMenuToggle.querySelector('i').classList.add('fa-xmark'); }
-    function closeDrawer() { aquarizDrawer.classList.remove('open'); aquarizDrawer.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; aquarizMenuToggle.querySelector('i').classList.remove('fa-xmark'); aquarizMenuToggle.querySelector('i').classList.add('fa-bars'); }
+    let lastDrawerFocus;
+    function openDrawer() {
+      lastDrawerFocus = document.activeElement;
+      aquarizDrawer.classList.add('open');
+      aquarizDrawer.removeAttribute('inert');
+      aquarizDrawer.setAttribute('aria-hidden', 'false');
+      aquarizMenuToggle.setAttribute('aria-expanded', 'true');
+      aquarizMenuToggle.setAttribute('aria-label', 'Close menu');
+      document.body.style.overflow = 'hidden';
+      aquarizDrawerClose.focus();
+    }
+    function closeDrawer() {
+      aquarizDrawer.classList.remove('open');
+      aquarizDrawer.setAttribute('aria-hidden', 'true');
+      aquarizDrawer.setAttribute('inert', '');
+      aquarizMenuToggle.setAttribute('aria-expanded', 'false');
+      aquarizMenuToggle.setAttribute('aria-label', 'Open menu');
+      document.body.style.overflow = '';
+      aquarizMenuToggle.querySelector('i').classList.remove('fa-xmark');
+      aquarizMenuToggle.querySelector('i').classList.add('fa-bars');
+      if (lastDrawerFocus) lastDrawerFocus.focus();
+    }
     if (aquarizMenuToggle) aquarizMenuToggle.addEventListener('click', openDrawer);
     if (aquarizDrawerClose) aquarizDrawerClose.addEventListener('click', closeDrawer);
     fNavItems.forEach(item => item.addEventListener('click', closeDrawer));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && aquarizDrawer.classList.contains('open')) closeDrawer();
+    });
 
     // Toast
     function showToast(msg) {
