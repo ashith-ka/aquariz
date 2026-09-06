@@ -31,6 +31,12 @@
     --paper: #f5efe4;
 }
 
+[data-site="flanora"] .brand-name {
+    font-family: 'Bree Serif', Georgia, serif;
+    font-size: 1.22rem;
+    letter-spacing: .02em;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -280,7 +286,8 @@ button {
 
 .drawer-inner {
     min-height: 100%;
-    width: min(420px, 88%);
+    width: 70vw;
+    max-width: 340px;
     margin-left: auto;
     padding: 22px;
     background: var(--paper);
@@ -452,10 +459,14 @@ button {
 }
 
 .process-card h3,
-.info-block h3 {
-    font-family: var(--display);
-    font-size: 1.35rem;
-    margin: 0 0 9px;
+margin: 0 9px 0 0;
+font-family: var(--display);
+font-size: 1.35rem;
+margin: 0 0 9px;
+}
+
+.process-card h3 {
+    display: inline;
 }
 
 .process-card p,
@@ -576,13 +587,22 @@ textarea {
 
 textarea {
     min-height: 110px;
-    resize: vertical;
+    width: min(340px, 78%);
 }
 
 .form-status {
     min-height: 24px;
     color: var(--accent-dark);
     font-size: .86rem;
+}
+
+.btn-primary.is-success {
+    background: #2e8b57 !important;
+    border-color: #2e8b57 !important;
+}
+
+.btn-primary.is-success:hover {
+    background: #246b44;
 }
 
 .site-footer {
@@ -737,6 +757,46 @@ textarea {
     width: 100%;
 }
 
+.add-slot {
+    min-height: 46px;
+}
+
+.bag-stepper {
+    min-height: 46px;
+    display: grid;
+    grid-template-columns: 46px 1fr 46px;
+    align-items: center;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+}
+
+.bag-stepper button {
+    align-self: stretch;
+    border: 0;
+    background: transparent;
+    color: var(--accent-dark);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.bag-stepper button:hover {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.bag-stepper strong {
+    text-align: center;
+    color: var(--ink);
+}
+
+.wa-icon {
+    width: 1.05em;
+    height: 1.05em;
+    flex: 0 0 auto;
+    fill: #25d366;
+}
+
 .shop-proof {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -787,7 +847,7 @@ textarea {
     right: 20px;
     bottom: 20px;
     width: min(370px, calc(100% - 40px));
-    padding: 16px;
+    padding: 10px 12px;
     background: var(--ink);
     color: white;
     border: 1px solid #4d5a4d;
@@ -803,7 +863,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
 }
 
 .cart-tray small {
@@ -1028,4 +1088,31 @@ textarea {
         transition-duration: .01ms !important;
         animation-duration: .01ms !important;
     }
+}
+
+.mobile-bar .bar-flanora {
+    background: #667a45;
+    border-color: #667a45;
+    color: #fff;
+}
+
+[data-site="aquariz"] .nav-actions>.btn-primary {
+    max-width: 90px;
+    padding-inline: 10px;
+}
+
+[data-site="aquariz"] .mobile-bar .bar-flanora {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+[data-site="aquariz"] .mobile-bar .bar-wa {
+    background: #25d366;
+    border-color: #25d366;
+    color: #fff;
+}
+
+[data-site="aquariz"] .mobile-bar .bar-wa .wa-icon {
+    fill: #fff;
 }

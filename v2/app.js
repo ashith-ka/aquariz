@@ -45,7 +45,14 @@
         navigator.clipboard?.writeText(value).then(() => toast('GSTIN copied.')).catch(() => toast(value));
     };
 
-    const cart = [];
+    const cartStorageKey = 'aquariz-v2-flanora-bag';
+    let cart = [];
+    try {
+        const savedCart = JSON.parse(localStorage.getItem(cartStorageKey) || '[]');
+        cart = Array.isArray(savedCart) ? savedCart : [];
+    } catch {
+        cart = [];
+    }
     const selectedPacks = {};
     const productNames = {
         gg: 'Crushed Ginger-Garlic Paste',
@@ -60,8 +67,8 @@
             $$('.pack-row button', card).forEach(item => item.classList.remove('active'));
             button.classList.add('active');
             selectedPacks[id] = button.dataset.pack;
+            renderCart();
         }));
-        $('.add-product', card)?.addEventListener('click', () => addToCart(id));
         $('.single-order', card)?.addEventListener('click', () => orderSingle(id));
     });
     function addToCart(id) {
@@ -82,16 +89,33 @@
     }
     function renderCart() {
         const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+        localStorage.setItem(cartStorageKey, JSON.stringify(cart));
         const tray = $('#cartTray');
-        if (!tray) return;
-        tray.hidden = total === 0;
-        $('.cart-count', tray).textContent = total;
-        $('.cart-summary', tray).textContent = `${total} item${total === 1 ? '' : 's'} ready to order`;
+        $$('.cart-count').forEach(counter => {
+            counter.textContent = total;
+            counter.setAttribute('aria-label', `${total} items in kitchen bag`);
+        });
+        if (tray) {
+            tray.hidden = total === 0;
+            $('.cart-summary', tray).textContent = `${total} item${total === 1 ? '' : 's'} ready to order`;
+        }
+        $$('.product-card').forEach(card => {
+            const id = card.dataset.product;
+            const pack = selectedPacks[id];
+            const key = `${id}:${pack}`;
+            const item = cart.find(entry => entry.key === key);
+            const slot = $('.add-slot', card);
+            if (!slot) return;
+            slot.innerHTML = item
+                ? `<div class="bag-stepper" aria-label="${productNames[id]} ${pack} quantity"><button type="button" data-key="${key}" data-change="-1" aria-label="Remove one ${productNames[id]} ${pack}">−</button><strong>${item.quantity}</strong><button type="button" data-key="${key}" data-change="1" aria-label="Add one ${productNames[id]} ${pack}">+</button></div>`
+                : '<button class="btn btn-primary add-product" type="button">Add to bag</button>';
+            $('.add-product', slot)?.addEventListener('click', () => addToCart(id));
+            $$('.bag-stepper button', slot).forEach(button => button.addEventListener('click', () => changeQuantity(button.dataset.key, Number(button.dataset.change))));
+        });
         const list = $('#cartItems');
         if (!list) return;
         list.innerHTML = cart.length ? cart.map(item => `<div class="cart-item"><div><strong>${productNames[item.id]}</strong><small>${item.pack}</small></div><div class="qty"><button type="button" data-key="${item.key}" data-change="-1" aria-label="Remove one">−</button><strong>${item.quantity}</strong><button type="button" data-key="${item.key}" data-change="1" aria-label="Add one">+</button></div></div>`).join('') : '<p class="muted">Your kitchen bag is empty.</p>';
         $$('.qty button', list).forEach(button => button.addEventListener('click', () => changeQuantity(button.dataset.key, Number(button.dataset.change))));
-        $('.cart-count', tray).setAttribute('aria-label', `${total} items in kitchen bag`);
     }
     function openCart() {
         if (!cart.length) return;
@@ -121,10 +145,19 @@
         event.preventDefault();
         const pin = $('#pincode')?.value.trim();
         const result = $('#deliveryResult');
+        const submitButton = event.currentTarget.querySelector('button[type="submit"]');
+        submitButton.classList.remove('is-success');
+        submitButton.style.backgroundColor = '';
+        submitButton.style.borderColor = '';
         if (!/^\d{6}$/.test(pin)) { result.textContent = 'Enter a valid 6-digit Indian PIN code.'; result.dataset.state = 'error'; return; }
         const fast = ['680', '682', '683', '678'];
-        result.textContent = fast.some(prefix => pin.startsWith(prefix)) ? 'Fast route available. We will confirm the exact timeline on WhatsApp.' : 'Kerala-wide courier delivery available. We will confirm the exact timeline on WhatsApp.';
+        const isFastRoute = fast.some(prefix => pin.startsWith(prefix));
+        result.textContent = isFastRoute ? 'Fast route available · We will confirm the exact timeline on WhatsApp.' : 'Kerala-wide courier route available · We will confirm the exact timeline on WhatsApp.';
         result.dataset.state = 'success';
+        submitButton.classList.add('is-success');
+        submitButton.style.backgroundColor = '#2e8b57';
+        submitButton.style.borderColor = '#2e8b57';
+        submitButton.innerHTML = `<span aria-hidden="true">✓</span> ${isFastRoute ? 'Fast route available' : 'Route available'}`;
     });
     $('#rfqForm')?.addEventListener('submit', event => {
         event.preventDefault();
@@ -152,4 +185,5 @@
         window.location.href = `mailto:aquariz.official@gmail.com?subject=${subject}&body=${body}`;
     });
     $$('.year').forEach(node => node.textContent = new Date().getFullYear());
+    renderCart();
 })();
