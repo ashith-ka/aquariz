@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-site="flanora">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Flanora cold-pressed ginger and garlic pastes, made in Thrissur, Kerala.">
+    <title>Flanora | Freshness you can see</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,500&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
+</head>
+
+<body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container nav"><a class="brand" href="flanora.html" aria-label="Flanora home"><img
+                    src="logo-flanora.png" alt="Flanora logo"><span class="brand-copy"><span
+                        class="brand-name">FLANORA</span><span class="brand-meta">Cold-pressed pastes by
+                        Aquariz</span></span></a>
+            <nav class="nav-links" aria-label="Primary navigation"><a href="#shop">Shop</a><a href="#proof">The
+                    difference</a><a href="#wholesale">Wholesale</a><a href="index.html">Aquariz</a></nav>
+            <div class="nav-actions"><button class="btn btn-primary" id="openCart" type="button">Bag <span
+                        class="cart-count">0</span></button><button class="menu-toggle" id="menuToggle" type="button"
+                    aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">☰</button></div>
+        </div>
+    </header>
+    <div class="drawer" id="mobileDrawer" hidden tabindex="-1">
+        <div class="drawer-inner"><button class="icon-btn" id="closeMenu" type="button"
+                aria-label="Close menu">×</button>
+            <nav aria-label="Mobile navigation"><a class="drawer-link" href="#shop">Shop the pastes</a><a
+                    class="drawer-link" href="#proof">The difference</a><a class="drawer-link"
+                    href="#wholesale">Wholesale</a><a class="drawer-link" href="index.html">Aquariz</a></nav>
+        </div>
+    </div>
+    <main id="main">
+        <section class="hero shop-hero">
+            <div class="container hero-grid">
+                <div><span class="eyebrow">Made in Thrissur · Kerala</span>
+                    <h1 class="display">Freshness you can <em>see.</em></h1>
+                    <p class="hero-copy">Coarsely crushed ginger and garlic pastes made for the pan, not the shelf.
+                        Choose a bottle for home or a commercial pack for your kitchen.</p>
+                    <div class="hero-actions"><a class="btn btn-primary" href="#shop">Shop the pastes</a><a
+                            class="btn btn-quiet" href="#proof">See what changes</a></div>
+                    <div class="proof-row">
+                        <div><strong>03</strong>kitchen staples</div>
+                        <div><strong>04</strong>pack sizes</div>
+                        <div><strong>01</strong>easy WhatsApp handoff</div>
+                    </div>
+                </div>
+                <figure class="hero-image"><img src="assets/images/flanora_ginger_garlic_jar.jpg"
+                        alt="Flanora ginger garlic paste jar" width="1200" height="896" fetchpriority="high">
+                    <figcaption class="image-note"><strong>Stone-crushed texture.</strong><span>A rich aroma that starts
+                            in the pan.</span></figcaption>
+                </figure>
+            </div>
+        </section>
+        <section class="section" id="shop">
+            <div class="container">
+                <div class="section-head"><span class="eyebrow">The kitchen lineup</span>
+                    <h2 class="display">Pick your everyday base.</h2>
+                    <p>Start with 200g, settle into 500g, or choose a commercial pack for a busier kitchen.</p>
+                </div>
+                <div class="product-grid">
+                    <article class="product-card" data-product="gg">
+                        <div class="product-photo"><img src="assets/images/flanora_ginger_garlic_jar.jpg"
+                                alt="Crushed ginger-garlic paste" width="1200" height="896" loading="lazy"></div>
+                        <div class="product-body"><span class="eyebrow">The balanced one</span>
+                            <h3>Crushed Ginger-Garlic</h3>
+                            <p>A 50:50 everyday blend for biryani, roasts, curries, and marinades.</p>
+                            <div class="product-tags"><span>Everyday cooking</span><span>Coarse texture</span></div>
+                            <div class="pack-select"><label>Choose a size</label>
+                                <div class="pack-row"><button class="active" type="button"
+                                        data-pack="200g PET Bottle">200g</button><button type="button"
+                                        data-pack="500g PET Bottle">500g</button><button type="button"
+                                        data-pack="1kg Commercial Bottle">1kg</button><button type="button"
+                                        data-pack="5kg Catering Bucket">5kg</button></div>
+                            </div>
+                            <div class="product-actions"><button class="btn btn-primary add-product" type="button">Add
+                                    to bag</button><button class="btn btn-quiet single-order" type="button">Ask on
+                                    WhatsApp</button></div>
+                        </div>
+                    </article>
+                    <article class="product-card" data-product="garlic">
+                        <div class="product-photo"><img src="assets/images/flanora_garlic_jar.jpg"
+                                alt="Pure crushed garlic paste" width="1200" height="896" loading="lazy"></div>
+                        <div class="product-body"><span class="eyebrow">The pungent one</span>
+                            <h3>Pure Crushed Garlic</h3>
+                            <p>Whole cloves, cold-crushed for marinades, dips, naan, and deep savoury flavour.</p>
+                            <div class="product-tags"><span>High aroma</span><span>Marinades</span></div>
+                            <div class="pack-select"><label>Choose a size</label>
+                                <div class="pack-row"><button class="active" type="button"
+                                        data-pack="200g PET Bottle">200g</button><button type="button"
+                                        data-pack="500g PET Bottle">500g</button><button type="button"
+                                        data-pack="1kg Commercial Bottle">1kg</button><button type="button"
+                                        data-pack="5kg Catering Bucket">5kg</button></div>
+                            </div>
+                            <div class="product-actions"><button class="btn btn-primary add-product" type="button">Add
+                                    to bag</button><button class="btn btn-quiet single-order" type="button">Ask on
+                                    WhatsApp</button></div>
+                        </div>
+                    </article>
+                    <article class="product-card" data-product="ginger">
+                        <div class="product-photo"><img src="assets/images/flanora_ginger_jar.jpg"
+                                alt="Single-origin crushed ginger paste" width="1200" height="896" loading="lazy"></div>
+                        <div class="product-body"><span class="eyebrow">The fiery one</span>
+                            <h3>Single-Origin Ginger</h3>
+                            <p>Fresh Kerala ginger with fiber retained for a clean, bright punch in curries and broths.
+                            </p>
+                            <div class="product-tags"><span>Kerala ginger</span><span>Clean heat</span></div>
+                            <div class="pack-select"><label>Choose a size</label>
+                                <div class="pack-row"><button class="active" type="button"
+                                        data-pack="200g PET Bottle">200g</button><button type="button"
+                                        data-pack="500g PET Bottle">500g</button><button type="button"
+                                        data-pack="1kg Commercial Bottle">1kg</button><button type="button"
+                                        data-pack="5kg Catering Bucket">5kg</button></div>
+                            </div>
+                            <div class="product-actions"><button class="btn btn-primary add-product" type="button">Add
+                                    to bag</button><button class="btn btn-quiet single-order" type="button">Ask on
+                                    WhatsApp</button></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="proof">
+            <div class="container shop-proof">
+                <article class="proof-panel dark"><span class="eyebrow">The texture test</span>
+                    <h3>Less watery drama. More spice in the pan.</h3>
+                    <p>Flanora is built around dense, coarsely crushed texture so the first thing you notice is the
+                        aroma, not excess liquid.</p>
+                </article>
+                <article class="proof-panel"><span class="eyebrow">Simple by design</span>
+                    <h3>Read the bottle. Know the base.</h3>
+                    <p>We keep the product story focused: the ingredient, the texture, the pack, and a direct line to
+                        the people making it.</p>
+                    <form id="deliveryForm">
+                        <div class="field"><label for="pincode">Check your PIN code</label><input id="pincode"
+                                inputmode="numeric" maxlength="6" placeholder="e.g. 680662" required></div><button
+                            class="btn btn-dark" type="submit">Check delivery</button>
+                        <p class="form-status" id="deliveryResult" aria-live="polite"></p>
+                    </form>
+                </article>
+            </div>
+        </section>
+        <section class="section" id="wholesale">
+            <div class="container b2b">
+                <div><span class="eyebrow">For restaurants and stores</span>
+                    <h2 class="display">A better base for a busier kitchen.</h2>
+                    <p class="hero-copy">Ask about 1kg and 5kg packs, retail stocking, chef samples, or a district
+                        partnership. We will continue the conversation on WhatsApp.</p>
+                </div>
+                <form class="contact-card" id="rfqForm">
+                    <div class="field"><label for="rfqName">Name or business *</label><input id="rfqName" name="name"
+                            required></div>
+                    <div class="field"><label for="rfqPhone">Phone *</label><input id="rfqPhone" name="phone" type="tel"
+                            required></div>
+                    <div class="field"><label for="rfqNeed">What do you need?</label><select id="rfqNeed" name="need">
+                            <option>Chef sample</option>
+                            <option>Restaurant bulk packs</option>
+                            <option>Retail stocking</option>
+                            <option>District partnership</option>
+                        </select></div>
+                    <div class="field"><label for="rfqVolume">Monthly volume</label><input id="rfqVolume" name="volume"
+                            placeholder="Optional"></div>
+                    <div class="field"><label for="rfqNotes">Notes</label><textarea id="rfqNotes"
+                            name="notes"></textarea></div><button class="btn btn-primary" type="submit">Open wholesale
+                        WhatsApp</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-row"><span><strong>FLANORA</strong> · Cold-pressed pastes by
+                Aquariz</span><span>Thrissur, Kerala · <a href="index.html">Aquariz parent site</a></span></div>
+    </footer>
+    <div class="mobile-bar"><a class="btn btn-primary" href="#shop">Shop</a><button class="btn btn-dark" id="openCart"
+            type="button">Bag <span class="cart-count">0</span></button><a class="btn btn-quiet"
+            href="https://wa.me/916238796383" target="_blank" rel="noopener">WhatsApp</a></div>
+    <div class="cart-tray" id="cartTray" hidden>
+        <div class="cart-tray-row">
+            <div><strong>Kitchen bag <span class="cart-count">0</span></strong><small class="cart-summary">Ready to
+                    order</small></div><button class="btn btn-primary" id="reviewCart" type="button">Review bag</button>
+        </div>
+    </div>
+    <div class="cart-modal" id="cartModal" hidden>
+        <div class="cart-sheet" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+            <div class="sheet-head">
+                <h2 id="cartTitle">Your kitchen bag</h2><button class="icon-btn" id="closeCart" type="button"
+                    aria-label="Close kitchen bag">×</button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="field"><label for="bagDestination">Delivery destination</label><select id="bagDestination">
+                    <option>Thrissur</option>
+                    <option>Ernakulam</option>
+                    <option>Palakkad</option>
+                    <option>Other Kerala district</option>
+                </select></div><button class="btn btn-primary" id="sendBag" type="button">Send bag on WhatsApp</button>
+        </div>
+        <div id="cartBackdrop" aria-label="Close kitchen bag"></div>
+    </div>
+    <p id="toast" class="toast" hidden role="status"></p>
+</body>
+
+</html>
